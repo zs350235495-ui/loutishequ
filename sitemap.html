@@ -56,13 +56,25 @@
     <!-- Header -->
     <header class="bg-white border-b-2 border-[#18181B] py-3 px-4 sticky top-0 z-50">
         <div class="max-w-6xl mx-auto flex items-center justify-between">
-            <a href="/" class="flex items-center gap-2">
-                <div class="bg-[#FF5500] text-white text-lg font-black px-2 py-0.5 border-2 border-[#18181B] shadow-[2px_2px_0px_#18181B]">
+            <a href="/" class="flex items-center gap-3 group">
+                <!-- 橙色方块 Logo 图标 -->
+                <div class="w-10 h-10 bg-[#FF5500] group-hover:bg-[#18181B] transition-colors text-white flex items-center justify-center font-bold text-sm border border-zinc-900 shadow-[2px_2px_0px_#18181B] shrink-0">
                     梯子
                 </div>
-                <div>
-                    <span class="font-extrabold text-base tracking-tight">梯子社区 · 网站地图</span>
-                    <span class="text-xs font-mono text-zinc-500 block">tizishequ.com // SITEMAP DIRECTORY</span>
+
+                <!-- 文字标牌区（彻底精简，单行舒展） -->
+                <div class="flex flex-col justify-center">
+                    <!-- 第一行：主品牌与简短定位（加粗单行，不折行） -->
+                    <div class="flex items-center gap-2">
+                        <span class="font-bold text-base text-zinc-900 tracking-tight whitespace-nowrap">梯子社区</span>
+                        <span class="text-zinc-300 font-mono text-xs">/</span>
+                        <span class="text-xs font-mono font-medium text-zinc-600 tracking-wide whitespace-nowrap">网站地图</span>
+                    </div>
+
+                    <!-- 第二行：极简等宽副标（提供干净的工程代号与域名） -->
+                    <div class="text-[11px] font-mono text-zinc-400 mt-0.5 whitespace-nowrap">
+                        tizishequ.com <span class="text-zinc-300">·</span> SITEMAP_DIRECTORY
+                    </div>
                 </div>
             </a>
             <a href="/" class="btn-industrial px-3 py-1.5 text-xs flex items-center gap-1">
