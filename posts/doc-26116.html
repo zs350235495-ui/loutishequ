@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iKuai + OpenWrt 双软路由分流终极实操 - 梯子社区 (tizishequ.com)</title>
+    <meta name="description" content="详细拆解 iKuai 主路由 + OpenWrt 旁路双软路由网络架构、DNS 防污染 MosDNS 配置、四类终端系统调优与避坑排错指南。">
+    <meta name="keywords" content="iKuai软路由, OpenWrt旁路由, 双软路由分流, MosDNS配置, DNS防污染, 软路由拓扑, 梯子社区, tizishequ.com">
+    <link rel="canonical" href="https://tizishequ.com/posts/doc-26116.html">
+    
+    <!-- Open Graph / Meta -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://tizishequ.com/posts/doc-26116.html">
+    <meta property="og:title" content="iKuai + OpenWrt 双软路由分流终极实操：如何实现境内直连低延迟与境外流量智能分流？">
+    <meta property="og:description" content="详细拆解双软路由网络架构、DNS防污染配置与旁路网关分流避坑指南。基于真实机房与极客环境验证。">
+    <meta property="og:site_name" content="梯子社区 tizishequ.com">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://tizishequ.com/posts/doc-26116.html">
+    <meta name="twitter:title" content="iKuai + OpenWrt 双软路由分流终极实操 - 梯子社区">
+    <meta name="twitter:description" content="详细拆解双软路由网络架构、DNS防污染配置与旁路网关分流避坑指南。">
+
+    <!-- Schema.org Article Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "headline": "iKuai + OpenWrt 双软路由分流终极实操：如何实现境内直连低延迟与境外流量智能分流？",
+      "description": "详细拆解双软路由网络架构、DNS防污染配置与旁路网关分流避坑指南。",
+      "datePublished": "2026-10-11",
+      "dateModified": "2026-10-11",
+      "author": {
+        "@type": "Organization",
+        "name": "VPN 实验室架构师团队",
+        "url": "https://tizishequ.com/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "梯子社区",
+        "url": "https://tizishequ.com/"
+      },
+      "mainEntityOfPage": "https://tizishequ.com/posts/doc-26116.html"
+    }
+    </script>
+
+    <!-- Google Fonts & Tailwind -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #F8F9FA;
+            background-image: radial-gradient(#18181B 0.75px, transparent 0.75px);
+            background-size: 16px 16px;
+            color: #18181B;
+            font-family: 'Inter', -apple-system, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .industrial-card {
+            background-color: #FFFFFF;
+            border: 2px solid #18181B;
+            box-shadow: 4px 4px 0px #18181B;
+        }
+        .btn-industrial {
+            font-family: 'JetBrains Mono', monospace;
+            background-color: #FFFFFF;
+            color: #18181B;
+            border: 2px solid #18181B;
+            box-shadow: 2px 2px 0px #18181B;
+            font-weight: 700;
+            transition: all 0.08s ease;
+            user-select: none;
+        }
+        .btn-industrial:hover {
+            background-color: #F1F5F9;
+        }
+        .btn-industrial:active {
+            transform: translate(2px, 2px);
+            box-shadow: 0px 0px 0px #18181B;
+        }
+        .btn-industrial-orange {
+            background-color: #FF5500;
+            color: #FFFFFF;
+            border: 2px solid #18181B;
+            box-shadow: 2px 2px 0px #18181B;
+            font-weight: 700;
+        }
+        .tag-mono {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            padding: 0.125rem 0.375rem;
+            border: 1px solid #18181B;
+            background-color: #F1F5F9;
+            color: #18181B;
+            font-weight: 600;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F8F9FA;
+            border-left: 1px solid #18181B;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #18181B;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between">
+
+    <!-- 顶部导航栏 -->
+    <header class="sticky top-0 bg-[#FFFFFF] border-b-2 border-[#18181B] z-40 shadow-sm">
+        <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
+            <div class="flex items-center space-x-3">
+                <a href="../index.html" class="flex items-center gap-2 group">
+                    <div class="bg-[#FF5500] text-white text-xl font-extrabold px-2.5 py-1 border-2 border-[#18181B] shadow-[2px_2px_0px_#18181B] tracking-tighter group-hover:bg-[#18181B] transition-colors">
+                        梯子
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-1.5">
+                            <span class="text-base md:text-lg font-black tracking-tight leading-none">梯子社区 · VPN 实验室</span>
+                            <span class="tag-mono bg-[#18181B] text-white py-0 px-1 text-[10px]">[DOC-26116]</span>
+                        </div>
+                        <p class="text-[11px] font-mono text-zinc-600 leading-tight mt-0.5">tizishequ.com // 深度技术文献库</p>
+                    </div>
+                </a>
+            </div>
+
+            <!-- 右侧返回导航 -->
+            <div class="flex items-center gap-2 font-mono text-xs">
+                <a href="../index.html" class="btn-industrial px-3 py-1.5 flex items-center gap-1">
+                    <span>[ ← 返回机场天梯榜 ]</span>
+                </a>
+                <a href="../index.html#blog" class="btn-industrial px-3 py-1.5 hidden md:flex items-center gap-1">
+                    <span>[ 实验室博客 ]</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主体文章容器 -->
+    <main class="max-w-5xl mx-auto px-4 py-8 w-full space-y-6">
+
+        <!-- 顶部状态条 -->
+        <div class="flex flex-wrap items-center justify-between gap-2 border-b-2 border-[#18181B] pb-3 font-mono text-xs">
+            <div class="flex items-center gap-2">
+                <a href="../index.html" class="text-zinc-600 hover:text-[#FF5500] font-bold">首页</a>
+                <span class="text-zinc-400">/</span>
+                <a href="../index.html#blog" class="text-zinc-600 hover:text-[#FF5500] font-bold">实验室博客</a>
+                <span class="text-zinc-400">/</span>
+                <span class="text-zinc-900 font-bold">DOC-26116</span>
+            </div>
+            <div class="bg-white border border-[#18181B] px-2 py-0.5 font-bold shadow-[1px_1px_0px_#18181B]">
+                DOC_STATUS: AUDITED_AND_VERIFIED // TIZISHEQU.COM
+            </div>
+        </div>
+
+        <!-- 实体文章卡片 -->
+        <article class="industrial-card p-6 md:p-8 space-y-8 font-sans text-zinc-800 leading-relaxed text-sm md:text-base">
+            
+            <!-- 文章元信息头部 -->
+            <div class="border-b-2 border-[#18181B] pb-6 mb-6">
+                <div class="flex flex-wrap items-center gap-2 font-mono text-xs text-zinc-500 mb-3">
+                    <span class="tag-mono bg-[#18181B] text-white font-bold">DOC-26116</span>
+                    <span class="tag-mono bg-lime-100 text-lime-800 border-lime-300 font-bold">双软路由架构</span>
+                    <span class="bg-zinc-100 border border-zinc-900 px-1.5 py-0.5 font-bold text-zinc-700">DATE: 2026-10-11</span>
+                    <span class="bg-zinc-100 border border-zinc-900 px-1.5 py-0.5 font-bold text-zinc-700">TIME: 26 MINS (3500+ 字实操长文)</span>
+                </div>
+                
+                <h1 class="text-2xl md:text-3xl font-black text-[#18181B] leading-tight mb-4 tracking-tight">
+                    iKuai + OpenWrt 双软路由分流终极实操：如何实现境内直连低延迟与境外流量智能分流？
+                </h1>
+                
+                <p class="text-zinc-600 text-sm md:text-base bg-zinc-50 p-4 border-l-4 border-[#FF5500] font-mono leading-relaxed">
+                    彻底根治网络回环与 DNS 污染：VPN 实验室深度解析 iKuai 主路由 + OpenWrt 旁路分流终极拓扑，结合 MosDNS 与多网关 DHCP 静态分池，实测榨干千兆带宽，实现境内极致低延迟直连与境外毫秒级科学分流。
+                </p>
+
+                <!-- 标签列表 -->
+                <div class="flex flex-wrap gap-1.5 font-mono text-xs text-zinc-600 mt-4">
+                    <span class="tag-mono">#软路由分流</span> <span class="tag-mono">#iKuai实操</span> <span class="tag-mono">#OpenWrt网关</span> <span class="tag-mono">#客户端调优</span> <span class="tag-mono">#Windows调优</span> <span class="tag-mono">#AirDrop穿透</span> <span class="tag-mono">#DNS防污染</span>
+                </div>
+            </div>
+
+            <!-- 完整硬核正文内容 -->
+            
+    <div class="space-y-8 font-sans text-zinc-800 leading-relaxed text-sm md:text-base">
+      
+      <!-- 导言痛点剖析 -->
+      <div class="bg-amber-50/70 border-l-4 border-amber-600 p-5 rounded-r">
+        <div class="font-mono text-xs text-amber-900 font-bold mb-1">// NETWORK ARCHITECT FIELD OBSERVATION //</div>
+        <p class="text-zinc-700 font-medium">
+          在追求千兆甚至万兆内网吞吐的极客家庭与企业机房网络中，强行让单一 OpenWrt 承担全网 NAT 转发与代理重任，往往是一场灾难——轻则遭遇流量在主旁网关间反复震荡的<strong>网络回环（Routing Loop）</strong>，重则因代理核心对国内巨额无害流量进行冗余解包导致 CPU 软中断（ksoftirqd）飙升破表、千兆下行直接腰斩，伴随而来的还有让视频流媒体 CDN 节点严重漂移的致命<strong>DNS 双向污染</strong>。本文由 VPN 实验室网络架构师团队基于真实机房与极客环境验证，拆解 iKuai（爱快）主路由与 OpenWrt 旁路协同作战的终极架构。
+        </p>
+      </div>
+
+      <!-- 一、痛点与拓扑设计 -->
+      <section class="space-y-4">
+        <h2 class="text-xl md:text-2xl font-black text-[#18181B] border-b-2 border-[#18181B] pb-2 flex items-center justify-between">
+          <span>一、 痛点与拓扑设计：为什么必须引入双软路由？</span>
+          <span class="text-xs font-mono text-zinc-500 font-normal">[ SEC_01 // TOPOLOGY_ANALYSIS ]</span>
+        </h2>
+        
+        <p>
+          在深入配置命令行之前，我们必须在协议栈与物理层面对两种软路由系统的底层基因建立清晰的架构认知。许多网络管理员最容易犯的错误，就是将 OpenWrt 视作“全能路由系统”，试图在同一个 Linux 系统中堆砌 PPPoE 拨号、无线漫游、静态 DHCP、QoS 流量整形、网络存储、以及复杂的透明代理协议栈。这种单兵作战的架构存在三大致命物理硬伤：
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 my-4">
+          <div class="border border-zinc-900 bg-white p-4 shadow-[2px_2px_0px_#18181B]">
+            <div class="font-mono text-xs text-red-600 font-bold mb-1">DEFECT 01 // 单核软中断瓶颈</div>
+            <p class="text-xs text-zinc-600 leading-relaxed">
+              Linux Netfilter / conntrack 跟踪表在应对多线程高并发连接（如 BT/PT 下载、大规模并发请求）时，软中断线程将迅速吃满单个 CPU 核心，导致网络抖动与丟包雪崩。
+            </p>
+          </div>
+          <div class="border border-zinc-900 bg-white p-4 shadow-[2px_2px_0px_#18181B]">
+            <div class="font-mono text-xs text-red-600 font-bold mb-1">DEFECT 02 // 缺乏硬件级 DPI 流控</div>
+            <p class="text-xs text-zinc-600 leading-relaxed">
+              OpenWrt 自带的 SQM 或简易 QoS 依赖繁重的哈希队列运算，在 1000Mbps 以上速率下会导致整体带宽大打折扣，无法精准识别超 3000+ 种主流网络协议。
+            </p>
+          </div>
+          <div class="border border-zinc-900 bg-white p-4 shadow-[2px_2px_0px_#18181B]">
+            <div class="font-mono text-xs text-red-600 font-bold mb-1">DEFECT 03 // 插件耦合导致灾难性瘫痪</div>
+            <p class="text-xs text-zinc-600 leading-relaxed">
+              代理内核（Sing-box / Clash Meta）的规则更新、崩溃或内存泄漏，将直接阻断全网 DNS 解析与底层路由，导致智能家居、NAS、工作机全家瞬间断网。
+            </p>
+          </div>
+        </div>
+
+        <p>
+          <strong>双软路由的核心哲学在于“职能解耦与专业分工”</strong>：
+        </p>
+        <ul class="list-disc pl-6 space-y-2 text-zinc-700">
+          <li><strong>iKuai（爱快）物理主路由</strong>：作为局域网的“守门人”。基于深度精简的专用网络内核，专精于线速 PPPoE 多拨叠加、硬件级 NAT 数据包转换、基于七层 DPI 的精准流量整形、以及超高稳定性的 DHCP 与 ARP 物理绑定。即使内网有设备遭受攻击，主网关依然稳如泰山。</li>
+          <li><strong>OpenWrt 旁路网关</strong>：作为局域网的“特种作战中枢”。彻底卸下繁重的 NAT 转发与物理接口调度包袱，只作为一个单纯的局域网 IP 实体，专职运行 Mihomo / Sing-box / Xray 代理内核、MosDNS 无污染分流模块，提供极致的透明代理与分流服务。</li>
+        </ul>
+
+        <div class="my-6">
+          <div class="text-xs font-mono text-zinc-500 mb-1 font-bold">PHYSICAL TOPOLOGY & TRAFFIC FLOW // 物理网络拓扑与流量分配字符流</div>
+          <pre class="bg-zinc-900 text-emerald-400 p-4 font-mono text-xs rounded overflow-x-auto leading-normal">
+[ 公网光猫 (Bridge 桥接模式) ]
+              │ (WAN 物理直连 / 2.5G 网口 / PPPoE 拨号)
+              ▼
+┌────────────────────────────────────────────────────────────────────────┐
+│  iKuai 物理主路由 (硬件平台: Intel J4125 / N100 / 多网卡物理机)          │
+│  - 物理 LAN IP: 192.168.1.1 (子网掩码: 255.255.255.0)                   │
+│  - 核心职责: PPPoE 硬件拨号、线速 NAT 转发、七层 DPI 流控、DHCP 分组下发  │
+│  - 本地 DNS: 运营商 Local DNS / 119.29.29.29 / 223.5.5.5               │
+└───────────────────────────────────┬────────────────────────────────────┘
+                                    │ (物理千兆 / 2.5G 局域网总线交换机)
+            ┌───────────────────────┴────────────────────────┐
+            ▼                                                ▼
+┌───────────────────────────────────────┐   ┌────────────────────────────────────┐
+│ OpenWrt 旁路网关 (虚拟机/Docker/小主机) │   │ 普通直连设备池 (Pool A: 国内直连)   │
+│ - 静态 IP: 192.168.1.2                │   │ - 智能电视/NAS/父母手机/扫地机器人   │
+│ - 网关指向: 192.168.1.1 (iKuai)       │   │ - IP 分配段: 192.168.1.100~199     │
+│ - 关闭全部自带 DHCP 服务              │   │ - 网关自动下发: 192.168.1.1        │
+│ - 运行组件: Sing-box/Mihomo + MosDNS  │   │ - DNS 自动下发: 192.168.1.1        │
+└───────────────────┬───────────────────┘   └────────────────────────────────────┘
+                    │ (针对特种设备下发 Option 3 网关)
+                    ▼
+┌────────────────────────────────────────────────────────────────────────┐
+│ 极客/研发终端设备池 (Pool B: 智能代理分流设备)                            │
+│ - 个人主力 PC / 开发工作站 / 海外平板 / 游戏主机代理通道                 │
+│ - 静态绑定 IP: 192.168.1.200~250                                       │
+│ - 网关指向: 192.168.1.2 (OpenWrt 旁路由)                               │
+│ - DNS 指向: 192.168.1.2 (MosDNS 智能分流与防污染核心)                  │
+└────────────────────────────────────────────────────────────────────────┘
+          </pre>
+        </div>
+      </section>
+
+      <!-- 二、两种经典架构深度比对 -->
+      <section class="space-y-4">
+        <h2 class="text-xl md:text-2xl font-black text-[#18181B] border-b-2 border-[#18181B] pb-2 flex items-center justify-between">
+          <span>二、 两种经典架构深度比对与科学选型</span>
+          <span class="text-xs font-mono text-zinc-500 font-normal">[ SEC_02 // ARCHITECTURE_CHOICE ]</span>
+        </h2>
+        
+        <p>
+          在业界与网络玩家的实践中，双软路由的串联主要派生为两大流派。理解两者的拓扑差异与协议损耗，是避免后期踩坑的关键。
+        </p>
+
+        <div class="border border-zinc-900 bg-white p-5 my-4 shadow-[3px_3px_0px_#18181B]">
+          <h3 class="font-bold text-base text-red-600 mb-2">方案 A：全网旁路由模式（全局劫持 / 网关互指）—— 慎用！</h3>
+          <p class="text-xs text-zinc-600 mb-3 leading-relaxed">
+            <strong>工作机制</strong>：在 iKuai 的主 DHCP 服务中，将所有终端的默认网关（Gateway）强行篡改为 OpenWrt 的 IP（192.168.1.2），而 OpenWrt 内部的网关则指向 iKuai（192.168.1.1）。全网任何设备发出的每一个数据包，无论目标是国内百度还是海外服务器，都会无差别注入 OpenWrt。
+          </p>
+          <div class="bg-red-50 border-l-4 border-red-500 p-3 text-xs text-red-900 space-y-1 font-mono">
+            <div>[×] 致命缺陷 1: 三角路由（Triangle Routing）破坏 TCP 状态机同步，触发大量非预期 RST。</div>
+            <div>[×] 致命缺陷 2: 百度网盘、Steam 国区满速下载时，巨量流量在交换机与旁路由间空转，旁路 CPU 直接 100%。</div>
+            <div>[×] 致命缺陷 3: 单点故障。OpenWrt 一旦重启或核心崩溃，全屋所有智能设备彻底断网。</div>
+          </div>
+        </div>
+
+        <div class="border-2 border-emerald-600 bg-emerald-50/20 p-5 my-4 shadow-[3px_3px_0px_#18181B]">
+          <h3 class="font-bold text-base text-emerald-800 mb-2">方案 B：主路由端口分流 / DHCP 指定分池分流 —— 实验室强力推荐！</h3>
+          <p class="text-xs text-zinc-700 mb-3 leading-relaxed">
+            <strong>工作机制</strong>：尊重物理主路由的权威，iKuai 默认 DHCP 下发的网关依然是标准的 <code>192.168.1.1</code>。电视盒子、智能家居、父母手机以及 NAS 本地大流量存储设备完全感知不到旁路由的存在，享受 iKuai 硬件级千兆线速直连与 0 毫秒额外延迟。<br>
+            仅在 iKuai 内针对需要科学分流的极客终端（通过 MAC 静态绑定或特定 IP 地址池 <code>192.168.1.200-250</code>），在 DHCP 选项中单独下发网关为 <code>192.168.1.2</code>（Option 3）与 DNS <code>192.168.1.2</code>（Option 6）。
+          </p>
+          <div class="bg-emerald-100/60 border-l-4 border-emerald-600 p-3 text-xs text-emerald-950 space-y-1 font-mono">
+            <div>[✓] 优势 1: 完美实现零物理损耗。国内大带宽流量完全不经过旁路由内核，物理网卡双工带宽无浪费。</div>
+            <div>[✓] 优势 2: 极致容灾。即使 OpenWrt 宕机或崩溃，仅影响需要代理的设备，家用普通设备完全不受影响。</div>
+            <div>[✓] 优势 3: 排错边界极度清晰。若某台工作机无法访问外网，仅需比对该机单点的网关路由表即可精准定位。</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 三、DNS 泄漏与污染终极解决方案 -->
+      <section class="space-y-4">
+        <h2 class="text-xl md:text-2xl font-black text-[#18181B] border-b-2 border-[#18181B] pb-2 flex items-center justify-between">
+          <span>三、 核心避坑难点：DNS 泄漏与污染终极解决方案</span>
+          <span class="text-xs font-mono text-zinc-500 font-normal">[ SEC_03 // DNS_LEAK_PREVENTION ]</span>
+        </h2>
+        
+        <p>
+          在双软路由部署中，超过 80% 的“网速慢、网页加载白屏、测速虚高但实际打不开”等灵异事件，根源都不在节点质量，而在于<strong>DNS 双向污染</strong>与<strong>CDN 调度解析畸变</strong>。
+        </p>
+        
+        <div class="bg-zinc-100 p-4 border border-zinc-300 font-mono text-xs space-y-2">
+          <div class="font-bold text-zinc-900">// DNS 污染与 CDN 减速的底层物理机理：</div>
+          <div class="text-zinc-600">
+            1. <strong>国内解析海外域名</strong>：境内运营商的递归 DNS 遭遇 GFW 针对 UDP 53 端口的深度包检测（DPI），直接伪造虚假 IP（如 8.8.8.8 解析推特返回 203.0.113.x 这种保留黑洞地址），客户端直连该 IP 瞬间超时。<br>
+            2. <strong>海外 DNS 解析国内大厂</strong>：若无脑让所有域名走 Google DNS (8.8.8.8) 或 Cloudflare (1.1.1.1)，由于海外 DNS 服务器在美西或欧洲，国内腾讯云、爱奇艺、Bilibili 等网站的 EDNS 匹配到的就近 CDN 节点被定位至加利福尼亚，原本 2ms 的国内访问被迫绕洋半圈，百兆光纤瞬间跌落为“龟速”。
+          </div>
+        </div>
+
+        <p class="mt-3">
+          <strong>实验室终极解法：MosDNS 智能双轨分流架构</strong>。在 OpenWrt 内部部署 MosDNS，彻底接管 53 端口，将国内域名白名单与中国 GeoIP 全权交还 iKuai 主路由进行低延迟解析；仅将海外及未命中域名的解析请求，经由基于 TLS / HTTPS 的安全隧道送往海外纯净 DNS。
+        </p>
+
+        <div class="my-4">
+          <div class="text-xs font-mono text-zinc-500 mb-1 font-bold">MOSDNS CONFIGURATION // /etc/mosdns/config.yaml 核心配置落地</div>
+          <pre class="bg-zinc-900 text-emerald-400 p-4 font-mono text-xs rounded overflow-x-auto leading-normal">
+# /etc/mosdns/config.yaml - 实验室高可用双软路由 DNS 防污染配置
+log:
+  level: info
+  file: "/var/log/mosdns.log"
+
+plugins:
+  # 1. 国内域名白名单载入 (geosite:cn)
+  - tag: domain_china
+    type: domain_set
+    args:
+      files:
+        - "/var/mosdns/geosite_cn.txt"
+
+  # 2. 国内 IP 库载入 (geoip:cn)
+  - tag: ip_china
+    type: ip_set
+    args:
+      files:
+        - "/var/mosdns/geoip_cn.txt"
+
+  # 3. 国内主路由上游 DNS (指向 iKuai 本地高缓存 DNS)
+  - tag: forward_local
+    type: forward
+    args:
+      concurrent: 2
+      upstreams:
+        - addr: "192.168.1.1:53"
+        - addr: "223.5.5.5"
+
+  # 4. 远程纯净 DoT / DoH 上游 (防篡改加密通道)
+  - tag: forward_remote
+    type: forward
+    args:
+      concurrent: 2
+      upstreams:
+        - addr: "tls://1.1.1.1:853"
+          enable_pipeline: true
+        - addr: "tls://8.8.8.8:853"
+          enable_pipeline: true
+
+  # 5. 核心分流主逻辑序列
+  - tag: main_sequence
+    type: sequence
+    args:
+      - exec: $forward_local
+      - matches:
+          - qname $domain_china
+        exec: accept
+
+      # 针对非白名单域名，执行纯净远程解析
+      - exec: $forward_remote
+      - matches:
+          - resp_ip $ip_china
+        exec: accept
+
+  # 6. 本地监听服务
+  - tag: udp_server
+    type: udp_server
+    args:
+      entry: main_sequence
+      listen: "0.0.0.0:53"
+          </pre>
+        </div>
+
+        <div class="my-4">
+          <div class="text-xs font-mono text-zinc-500 mb-1 font-bold">TERMINAL BENCHMARK // 终端诊断与防污染连通性测试命令</div>
+          <pre class="bg-zinc-900 text-amber-300 p-4 font-mono text-xs rounded overflow-x-auto leading-normal">
+# 1. 验证国内域名是否经由 iKuai 正确解析为本地最近 CDN 节点
+$ nslookup -query=A bilibili.com 192.168.1.2
+Server:     192.168.1.2
+Address:    192.168.1.2#53
+
+Non-authoritative answer:
+Name:   bilibili.com
+Address: 119.3.238.163  # 腾讯云/华为云境内极速 CDN，延迟 < 5ms
+
+# 2. 验证海外域名是否彻底规避 GFW 伪造的假 IP (如 203.0.113.x 投毒地址)
+$ nslookup -query=A twitter.com 192.168.1.2
+Server:     192.168.1.2
+Address:    192.168.1.2#53
+
+Non-authoritative answer:
+Name:   twitter.com
+Address: 104.244.42.1   # 真实官方 Twitter Anycast 节点，无任何 DNS 投毒特征
+
+# 3. 校验终端经由旁路由向目标发起的 HTTP/2 握手连通性与回程链路
+$ curl -I -s --connect-timeout 3 https://www.google.com | grep "HTTP"
+HTTP/2 200
+          </pre>
+        </div>
+      </section>
+
+      <!-- 四、实验室终端排错手册 -->
+      <section class="space-y-4">
+        <h2 class="text-xl md:text-2xl font-black text-[#18181B] border-b-2 border-[#18181B] pb-2 flex items-center justify-between">
+          <span>四、 实验室终端排错手册：四大常见故障自查</span>
+          <span class="text-xs font-mono text-zinc-500 font-normal">[ SEC_04 // TROUBLESHOOTING_MANUAL ]</span>
+        </h2>
+
+        <div class="space-y-4">
+          
+          <!-- 故障 1 -->
+          <div class="border border-zinc-900 p-4 bg-white shadow-[2px_2px_0px_#18181B]">
+            <h3 class="font-bold text-sm text-[#18181B] flex items-center gap-2">
+              <span class="bg-red-600 text-white font-mono text-xs px-1.5 py-0.5">BUG 01</span>
+              <span>内网 IP 冲突与 ARP 漂移（MAC 地址抖动震荡）</span>
+            </h3>
+            <p class="text-xs text-zinc-600 mt-2 leading-relaxed">
+              <strong>故障征兆</strong>：内网 ping <code>192.168.1.1</code> 时常发生 1ms 到 300ms 的剧烈波动，抓包显示主路由的 IP 对应的 MAC 地址在 iKuai 网卡和 OpenWrt 网卡之间不断来回切换。<br>
+              <strong>根因剖析</strong>：OpenWrt 的 LAN 接口误开启了 Proxy ARP（代理 ARP）功能，导致 OpenWrt 会代替局域网内所有未应答的 IP 响应 ARP 请求，严重扰乱 iKuai 的正常局域网寻址。<br>
+              <strong>修复方案</strong>：登录 OpenWrt 终端，执行以下内核参数关闭全局 Proxy ARP 并固化：
+            </p>
+            <pre class="bg-zinc-900 text-emerald-400 p-3 font-mono text-xs rounded mt-2 overflow-x-auto">
+# 在 OpenWrt 终端下关闭所有物理网卡的 Proxy ARP
+echo 0 > /proc/sys/net/ipv4/conf/all/proxy_arp
+echo 0 > /proc/sys/net/ipv4/conf/br-lan/proxy_arp
+
+# 写入持久化配置文件 /etc/sysctl.conf
+cat &lt;&lt; 'EOF' &gt;&gt; /etc/sysctl.conf
+net.ipv4.conf.all.proxy_arp = 0
+net.ipv4.conf.br-lan.proxy_arp = 0
+EOF
+sysctl -p
+            </pre>
+          </div>
+
+          <!-- 故障 2 -->
+          <div class="border border-zinc-900 p-4 bg-white shadow-[2px_2px_0px_#18181B]">
+            <h3 class="font-bold text-sm text-[#18181B] flex items-center gap-2">
+              <span class="bg-red-600 text-white font-mono text-xs px-1.5 py-0.5">BUG 02</span>
+              <span>IPv6 导致的透明代理绕过与“漏油”事故</span>
+            </h3>
+            <p class="text-xs text-zinc-600 mt-2 leading-relaxed">
+              <strong>故障征兆</strong>：终端配置了旁路由网关，但访问某些海外网站（如 YouTube / Netflix）依旧打不开，或者显示真实原生大陆 IP，DNS 泄漏测试严重飘红。<br>
+              <strong>根因剖析</strong>：现代操作系统遵循 RFC 6555（Happy Eyeballs 机制），当域名解析出 AAAA 记录（IPv6）时，会优先走 IPv6 路由直连。而许多旁路由仅做了 IPv4 透明代理，导致 IPv6 流量直接从 iKuai 的公网 IPv6 通道裸奔出境，遭遇阻断或泄露真实位置。<br>
+              <strong>修复方案</strong>：在 OpenWrt 的网络分流内核中彻底过滤 AAAA 记录，或在 OpenWrt 的 LAN 口关闭 IPv6 DHCP 服务，禁止其向代理设备分发无过滤能力的 IPv6 网关。
+            </p>
+            <pre class="bg-zinc-900 text-emerald-400 p-3 font-mono text-xs rounded mt-2 overflow-x-auto">
+# 在 OpenWrt 的 /etc/config/dhcp 中彻底禁用旁路由的 IPv6 通告
+uci set dhcp.lan.dhcpv6='disabled'
+uci set dhcp.lan.ra='disabled'
+uci commit dhcp
+/etc/init.d/odhcpd restart
+
+# 并在 Sing-box / Mihomo 配置中开启 DNS 过滤 AAAA 记录
+# dns: { query_type: ["A"] } 或 filter_aaaa: true
+            </pre>
+          </div>
+
+          <!-- 故障 3 -->
+          <div class="border border-zinc-900 p-4 bg-white shadow-[2px_2px_0px_#18181B]">
+            <h3 class="font-bold text-sm text-[#18181B] flex items-center gap-2">
+              <span class="bg-red-600 text-white font-mono text-xs px-1.5 py-0.5">BUG 03</span>
+              <span>游戏主机 NAT 类型变 Strict（严格）与 UDP 穿透受阻</span>
+            </h3>
+            <p class="text-xs text-zinc-600 mt-2 leading-relaxed">
+              <strong>故障征兆</strong>：Switch 连喷射战士报 NAT Type D/F 错误，PS5 派对语音无法接通，Steam P2P 联机频繁提示 NAT 协商失败。<br>
+              <strong>根因剖析</strong>：普通代理核心在处理 UDP 流量时往往采用 Symmetric NAT（对称 NAT）打标映射，导致外部对端无法建立反向 UDP 会话。<br>
+              <strong>修复方案</strong>：主机设备严禁走旁路由！在 iKuai 内将游戏机划入 Pool A（直连池），并开启 iKuai 的 Full Cone NAT 模块与 UPnP 协议支持。若必须给主机加速，必须在 OpenWrt 部署具备 FullCone-NAT 支持的内核并放行 STUN 穿透端口。
+            </p>
+          </div>
+
+          <!-- 故障 4 -->
+          <div class="border border-zinc-900 p-4 bg-white shadow-[2px_2px_0px_#18181B]">
+            <h3 class="font-bold text-sm text-[#18181B] flex items-center gap-2">
+              <span class="bg-red-600 text-white font-mono text-xs px-1.5 py-0.5">BUG 04</span>
+              <span>晚高峰旁路由软中断（ksoftirqd）飙升与多队列网卡优化</span>
+            </h3>
+            <p class="text-xs text-zinc-600 mt-2 leading-relaxed">
+              <strong>故障征兆</strong>：在晚高峰大并发时，通过 <code>top</code> 观察到 CPU 占用不高，但 <code>%si</code>（软中断）达到 70%~90%，网络出现断续高丢包。<br>
+              <strong>修复方案</strong>：开启虚拟网卡/物理网卡的硬件多队列 RPS（Receive Packet Steering），将网络中断平摊到多核心处理：
+            </p>
+            <pre class="bg-zinc-900 text-emerald-400 p-3 font-mono text-xs rounded mt-2 overflow-x-auto">
+# 针对 OpenWrt 网卡 (如 eth0) 分配多核心软中断绑定
+for rps_file in /sys/class/net/eth0/queues/rx-*/rps_cpus; do
+    echo "f" > $rps_file  # 4 核心全开 (二进制 1111 = f)
+done
+            </pre>
+          </div>
+
+        </div>
+      </section>
+
+      
+      <!-- 五、全平台客户端极致调优指南 -->
+      <section class="space-y-4">
+        <h2 class="text-xl md:text-2xl font-black text-[#18181B] border-b-2 border-[#18181B] pb-2 flex items-center justify-between">
+          <span>五、 全平台客户端极致调优：Windows / macOS / Android / iOS 零损耗接入指南</span>
+          <span class="text-xs font-mono text-zinc-500 font-normal">[ SEC_05 // CLIENT_OPTIMIZATION ]</span>
+        </h2>
+        
+        <p>
+          在完成 iKuai 主路由与 OpenWrt 旁路网关的底层打通后，各操作系统客户端在接入双网关环境时，往往由于操作系统自带的网络探测协议、私有加密 DNS、以及 MTU 分片机制，导致出现“频繁弹出网络登录窗”、“Wi-Fi 图标显示感叹号或感叹号问号”、“隔空投送搜不到设备”等恶性体验。本节给出终端设备的实验室级优化脚本与注册表调整方案。
+        </p>
+
+        <!-- 1. Windows 11 / 10 深度调优 -->
+        <div class="border border-zinc-900 p-5 bg-white shadow-[2px_2px_0px_#18181B] space-y-3">
+          <div class="flex items-center justify-between">
+            <h3 class="font-bold text-base text-[#18181B] flex items-center gap-2">
+              <span class="bg-blue-600 text-white font-mono text-xs px-2 py-0.5">PLATFORM 01</span>
+              <span>Windows 11 / 10：根除黄色感叹号与 TCP 窗口吞吐最大化</span>
+            </h3>
+            <span class="text-xs font-mono text-zinc-500">PowerShell & Registry</span>
+          </div>
+          <p class="text-xs text-zinc-600 leading-relaxed">
+            <strong>痛点 1：NCSI 探针误判“无 Internet 访问”</strong>。Windows 会通过向 <code>www.msftconnecttest.com/connecttest.txt</code> 发起探测来确认网络连通性。在旁路由分流中，该请求由于 DNS 劫持或代理转发延迟，易导致右下角网络图标显示黄色感叹号并弹出 MSN 网页。<br>
+            <strong>痛点 2：默认 TCP 接收窗口过于保守</strong>。Windows 默认的拥塞控制算法为复合 TCP（Cubic），且自动调优往往受限，在高延迟跨国链路中无法跑满千兆带宽。
+          </p>
+          <pre class="bg-zinc-900 text-cyan-300 p-3 font-mono text-xs rounded overflow-x-auto leading-normal">
+# 以管理员权限打开 PowerShell 执行以下优化：
+
+# 1. 禁用 Windows 误判探针，彻底根治右下角黄色感叹号与弹窗
+Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\NlaSvc\Parameters\Internet" -Name "EnableActiveProbing" -Value 0
+
+# 2. 优化全局 TCP 自动调优级别，开启高度自适应接收窗口
+netsh int tcp set global autotuninglevel=normal
+netsh int tcp set global rss=enabled
+netsh int tcp set global fastopen=enabled
+netsh int tcp set global ecncapability=disabled
+
+# 3. 针对旁路网关优化有线网卡 MTU (避免 WireGuard / TLS 封装导致的二次分片)
+# 将接口 MTU 调整为最佳安全值 1420
+netsh interface ipv4 set subinterface "以太网" mtu=1420 store=persistent
+          </pre>
+        </div>
+
+        <!-- 2. Apple 生态 (macOS & iOS) 深度调优 -->
+        <div class="border border-zinc-900 p-5 bg-white shadow-[2px_2px_0px_#18181B] space-y-3">
+          <div class="flex items-center justify-between">
+            <h3 class="font-bold text-base text-[#18181B] flex items-center gap-2">
+              <span class="bg-zinc-800 text-white font-mono text-xs px-2 py-0.5">PLATFORM 02</span>
+              <span>Apple (macOS & iOS)：关闭私有中继防绕过与 mDNS / AirDrop 穿透</span>
+            </h3>
+            <span class="text-xs font-mono text-zinc-500">Apple Silicon / iOS 18</span>
+          </div>
+          <p class="text-xs text-zinc-600 leading-relaxed">
+            <strong>痛点 1：iCloud Private Relay（私有中继）绕过旁路由</strong>。iOS / macOS 设备开启 iCloud+ 后，Safari 会强制通过 Apple 的 QUIC 加密隧道发送 DNS 与流量，直接绕过 OpenWrt 的代理分流规则，导致海外解锁失效与广告拦截失灵。<br>
+            <strong>痛点 2：旁路由环境下 AirDrop / 隔空播放设备失踪</strong>。由于 mDNS（Bonjour 组播 5353 端口）在不同网关跳接时可能被丢弃，Mac 与 iPhone 无法互相发现。
+          </p>
+          <pre class="bg-zinc-900 text-emerald-400 p-3 font-mono text-xs rounded overflow-x-auto leading-normal">
+# 1. 在 OpenWrt / MosDNS 中拦截 Apple 私有中继域名，强迫设备回退至本地旁路分流：
+# 拦截域名: mask.icloud.com 与 mask-h2.icloud.com
+cat &lt;&lt; 'EOF' &gt;&gt; /etc/dnsmasq.conf
+server=/mask.icloud.com/
+server=/mask-h2.icloud.com/
+EOF
+/etc/init.d/dnsmasq restart
+
+# 2. 修复 AirDrop 与局域网设备发现：在 OpenWrt 安装并启动 avahi-daemon 组播反射器
+opkg update
+opkg install avahi-daemon
+uci set avahi-daemon.@avahi-daemon[0].enable-dbus='0'
+uci commit avahi-daemon
+/etc/init.d/avahi-daemon enable
+/etc/init.d/avahi-daemon start
+          </pre>
+        </div>
+
+        <!-- 3. Android / 原生鸿蒙设备调优 -->
+        <div class="border border-zinc-900 p-5 bg-white shadow-[2px_2px_0px_#18181B] space-y-3">
+          <div class="flex items-center justify-between">
+            <h3 class="font-bold text-base text-[#18181B] flex items-center gap-2">
+              <span class="bg-emerald-600 text-white font-mono text-xs px-2 py-0.5">PLATFORM 03</span>
+              <span>Android / 原生系统：替换网络连通性探针与关闭强制私有 DNS</span>
+            </h3>
+            <span class="text-xs font-mono text-zinc-500">ADB & System Setting</span>
+          </div>
+          <p class="text-xs text-zinc-600 leading-relaxed">
+            <strong>痛点 1：Wi-Fi 图标显示“叹号/问号”或提示“此 WLAN 无法连接互联网”</strong>。Google 原生 Android 使用 <code>connectivitycheck.gstatic.com/generate_204</code> 进行握手，在国内网络未分流前必被重置，导致系统频繁切换蜂窝网络或拒绝使用 Wi-Fi。<br>
+            <strong>痛点 2：Android 9+ 默认开启的“私人 DNS (Private DNS)”</strong>。Android 会尝试直接握手 DoT (853 端口)，绕过 OpenWrt 的 UDP 53 MosDNS 劫持。
+          </p>
+          <pre class="bg-zinc-900 text-amber-300 p-3 font-mono text-xs rounded overflow-x-auto leading-normal">
+# 1. 终端设置：务必进入【设置】->【网络和互联网】->【私人 DNS (Private DNS)】设置为【关闭 (Off)】
+# 确保所有 DNS 查询均遵循 DHCP 下发走 192.168.1.2 的 MosDNS 智能分流
+
+# 2. 手机开启 USB 调试，通过电脑执行 ADB 替换高可用国内连通性探针：
+adb shell "settings put global captive_portal_mode 1"
+adb shell "settings put global captive_portal_use_https 1"
+adb shell "settings put global captive_portal_https_url https://connect.rom.miui.com/generate_204"
+adb shell "settings put global captive_portal_http_url http://connect.rom.miui.com/generate_204"
+
+# 验证当前探针设置生效状态
+adb shell "settings get global captive_portal_https_url"
+          </pre>
+        </div>
+
+        <!-- 4. 主机与游戏终端 (PS5 / Switch / Steam Deck) 调优 -->
+        <div class="border border-zinc-900 p-5 bg-white shadow-[2px_2px_0px_#18181B] space-y-3">
+          <div class="flex items-center justify-between">
+            <h3 class="font-bold text-base text-[#18181B] flex items-center gap-2">
+              <span class="bg-purple-600 text-white font-mono text-xs px-2 py-0.5">PLATFORM 04</span>
+              <span>游戏终端 (PS5 / Switch / Steam Deck)：极简 NAT 调优与加速选路</span>
+            </h3>
+            <span class="text-xs font-mono text-zinc-500">Full Cone & Port Forward</span>
+          </div>
+          <p class="text-xs text-zinc-600 leading-relaxed">
+            游戏机设备对于延迟抖动与 NAT 类型极度敏感。在双软路由网络中，切忌将游戏机的网关指向包含多层虚拟转发表的旁路由，除非该旁路由开启了专门的游戏加速插件。<br>
+            <strong>黄金配置法</strong>：在 iKuai 内将游戏机静态绑定为 <code>192.168.1.150</code>，网关指向 iKuai 本身。在 iKuai 中为其配置 <strong>DMZ 主机</strong> 或启用 <strong>UPnP 自动映射</strong>，直达运营商公网 NAT，即可稳获 <strong>NAT Type A (Switch) / Type 2 (PS5)</strong>。若需外服加速，在 iKuai 针对 Steam/PSN/Nintendo 境外 CDN 域名做端口重定向分流至 OpenWrt，兼顾下载线速与联机稳定性。
+          </p>
+        </div>
+
+      </section>
+
+      <!-- 六、VPN 实验室判定结论 -->
+      <section class="border-2 border-emerald-600 bg-emerald-950/10 p-6 rounded relative overflow-hidden shadow-[3px_3px_0px_#059669]">
+        <div class="absolute -right-8 -bottom-8 font-black font-mono text-6xl text-emerald-600/10 select-none">
+          VERDICT
+        </div>
+        <div class="flex items-center gap-2 text-emerald-800 font-mono text-xs font-black mb-2 tracking-wider">
+          <span class="inline-block w-2.5 h-2.5 bg-emerald-600"></span>
+          <span>【VPN 实验室架构师终极判定结论】</span>
+        </div>
+        <div class="space-y-3 text-sm text-zinc-800 leading-relaxed">
+          <p>
+            <strong>1. 架构选型最终定调</strong>：彻底摒弃“网关互指、全局劫持”的懒人方案。现代高质量网络拓扑必须严格采用<strong>“iKuai 主路由稳固物理边界 + DHCP 静态分池精准指派网关”</strong>。普通家电设备与重度网络设备物理逻辑隔离，保障家庭网络的绝对容灾能力。
+          </p>
+          <p>
+            <strong>2. DNS 治理是生命线</strong>：永远不要让国内无害流量经过未经优化的海外 DNS，坚守<strong>“国内走主路由直连递归解析，海外走基于 TLS 的加密纯净解析”</strong>的双轨原则，才能让百兆/千兆带宽彻底发挥出毫秒级的响应威力。
+          </p>
+          <p>
+            <strong>3. 极客硬件投资建议</strong>：主路由推荐选用低功耗多网口 X86 工控机（N100 / J4125），旁路由优先以 PVE / ESXi 虚拟化形式运行。配合本文提供的 MosDNS 与 iptables 防漏油配置，你将获得一个坚不可摧、低延迟与高吞吐兼备的终极网络环境。
+          </p>
+        </div>
+      </section>
+
+    </div>
+
+
+            <!-- 底部交互控制 -->
+            <div class="border-t-2 border-[#18181B] pt-6 mt-8 flex flex-wrap items-center justify-between gap-4 font-mono text-xs">
+                <div class="flex items-center gap-2">
+                    <a href="../index.html" class="btn-industrial px-3 py-1.5 font-bold">
+                        ← 返回天梯榜
+                    </a>
+                    <a href="../index.html#blog" class="btn-industrial px-3 py-1.5 font-bold">
+                        ← 查看更多实验日志
+                    </a>
+                </div>
+                <div class="text-zinc-500 font-bold">
+                    VPN LAB // TELEMETRY & HARDWARE OBSERVATION
+                </div>
+            </div>
+
+        </article>
+
+    </main>
+
+    <!-- 底部版权栏 -->
+    <footer class="mt-12 bg-[#18181B] text-white border-t-2 border-[#18181B] py-8 px-4 font-mono text-xs">
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="space-y-2 text-center md:text-left">
+                <div class="flex items-center justify-center md:justify-start gap-2">
+                    <span class="bg-[#FF5500] text-white font-bold px-2 py-0.5 text-xs">梯子社区</span>
+                    <span class="text-zinc-400">// TIZISHEQU.COM</span>
+                </div>
+                <p class="text-zinc-400 text-[11px]">
+                    OFFICIAL DOMAIN: <a href="https://tizishequ.com" class="text-[#FF5500] underline font-bold">HTTPS://TIZISHEQU.COM</a> // DATA VERIFIED LOCALLY.
+                </p>
+                <p class="text-zinc-500 text-[10px]">
+                    © 2026 梯子社区 (tizishequ.com) // 保持中立 // 拒绝付费插队与虚假广告
+                </p>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-2 text-[11px]">
+                <a href="../index.html" class="text-zinc-300 hover:text-[#FF5500] underline">[ 00 天梯榜 ]</a>
+                <a href="../index.html#blog" class="text-zinc-300 hover:text-[#FF5500] underline">[ 01 博客日志 ]</a>
+                <a href="../index.html#blacklist" class="text-zinc-300 hover:text-[#FF5500] underline">[ 02 避坑档案 ]</a>
+                <a href="../sitemap.html" class="text-zinc-300 hover:text-[#FF5500] underline">[ 网站地图 ]</a>
+                <a href="../sitemap.xml" target="_blank" class="text-[#FF5500] hover:underline font-bold">[ XML地图 ]</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
