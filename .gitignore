@@ -1,0 +1,8 @@
+.DS_Store
+Thumbs.db
+*.tmp
+*.log
+temp_*.js
+node_modules/
+.vscode/
+.idea/
