@@ -1,0 +1,6 @@
+# robots.txt for tizishequ.com
+User-agent: *
+Allow: /
+
+# Sitemap Index
+Sitemap: https://tizishequ.com/sitemap.xml

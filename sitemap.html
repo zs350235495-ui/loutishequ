@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网站地图 (Sitemap) // 梯子社区 (tizishequ.com)</title>
+    <meta name="description" content="梯子社区 (tizishequ.com) 完整网站地图，包含机场测速天梯榜、技术博文日志索引与跑路避坑档案架构图。">
+    <link rel="canonical" href="https://tizishequ.com/sitemap.html">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://tizishequ.com/sitemap.xml">
+    <!-- Google Fonts & Tailwind -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #F8F9FA;
+            background-image: radial-gradient(#18181B 0.75px, transparent 0.75px);
+            background-size: 16px 16px;
+            color: #18181B;
+            font-family: 'Inter', sans-serif;
+        }
+        .industrial-card {
+            background-color: #FFFFFF;
+            border: 2px solid #18181B;
+            box-shadow: 4px 4px 0px #18181B;
+        }
+        .btn-industrial {
+            font-family: 'JetBrains Mono', monospace;
+            background-color: #FFFFFF;
+            color: #18181B;
+            border: 2px solid #18181B;
+            box-shadow: 2px 2px 0px #18181B;
+            font-weight: 700;
+        }
+        .btn-industrial:hover { background-color: #F1F5F9; }
+        .btn-industrial-orange {
+            background-color: #FF5500;
+            color: #FFFFFF;
+            border: 2px solid #18181B;
+            box-shadow: 2px 2px 0px #18181B;
+            font-weight: 700;
+        }
+        .tag-mono {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            padding: 0.125rem 0.375rem;
+            border: 1px solid #18181B;
+            background-color: #F1F5F9;
+            color: #18181B;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between">
+    <!-- Header -->
+    <header class="bg-white border-b-2 border-[#18181B] py-3 px-4 sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto flex items-center justify-between">
+            <a href="/" class="flex items-center gap-2">
+                <div class="bg-[#FF5500] text-white text-lg font-black px-2 py-0.5 border-2 border-[#18181B] shadow-[2px_2px_0px_#18181B]">
+                    梯子
+                </div>
+                <div>
+                    <span class="font-extrabold text-base tracking-tight">梯子社区 · 网站地图</span>
+                    <span class="text-xs font-mono text-zinc-500 block">tizishequ.com // SITEMAP DIRECTORY</span>
+                </div>
+            </a>
+            <a href="/" class="btn-industrial px-3 py-1.5 text-xs flex items-center gap-1">
+                <span>← 返回首页主站</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-6xl mx-auto px-4 py-8 w-full space-y-8">
+        
+        <div class="industrial-card p-6">
+            <div class="flex items-center gap-2 mb-2 font-mono text-xs">
+                <span class="tag-mono bg-[#18181B] text-white">SITEMAP ARCHIVE</span>
+                <span class="text-zinc-500">// 全站索引与拓扑映射</span>
+            </div>
+            <h1 class="text-2xl font-black text-[#18181B] tracking-tight">
+                梯子社区 (tizishequ.com) 完整网站地图
+            </h1>
+            <p class="text-xs font-mono text-zinc-600 mt-2">
+                标准 XML 搜索引擎地图位于：<a href="/sitemap.xml" target="_blank" class="text-[#FF5500] font-bold underline">/sitemap.xml</a> | 爬虫协议：<a href="/robots.txt" target="_blank" class="text-[#FF5500] font-bold underline">/robots.txt</a>
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+            <!-- 模块 00: 天梯榜与核心架构 -->
+            <div class="industrial-card p-5 space-y-3">
+                <div class="flex items-center justify-between border-b-2 border-[#18181B] pb-2">
+                    <h2 class="font-bold text-base flex items-center gap-2">
+                        <span class="bg-[#FF5500] text-white text-xs px-2 py-0.5 font-mono">00</span>
+                        <span>综合天梯榜与避坑档案</span>
+                    </h2>
+                    <span class="font-mono text-xs text-zinc-500">CORE_MODULES</span>
+                </div>
+                <ul class="space-y-2 text-sm font-mono">
+                    <li class="p-2 bg-zinc-50 border border-zinc-200 flex items-center justify-between">
+                        <a href="/#leaderboard" class="font-bold hover:text-[#FF5500] hover:underline">[ 00 天梯榜 ] 21家精选机场性能矩阵</a>
+                        <span class="text-xs text-zinc-400">每日更新</span>
+                    </li>
+                    <li class="p-2 bg-zinc-50 border border-zinc-200 flex items-center justify-between">
+                        <a href="/#blog" class="font-bold hover:text-[#FF5500] hover:underline">[ 01 实验室博客 ] 20篇深度实战长文</a>
+                        <span class="text-xs text-zinc-400">持续入库</span>
+                    </li>
+                    <li class="p-2 bg-zinc-50 border border-zinc-200 flex items-center justify-between">
+                        <a href="/#blacklist" class="font-bold hover:text-[#FF5500] hover:underline">[ 02 避坑档案局 ] 跑路机场黑名单数据库</a>
+                        <span class="text-xs text-zinc-400">高危预警</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 模块 XML 接口与规范 -->
+            <div class="industrial-card p-5 space-y-3">
+                <div class="flex items-center justify-between border-b-2 border-[#18181B] pb-2">
+                    <h2 class="font-bold text-base flex items-center gap-2">
+                        <span class="bg-[#18181B] text-white text-xs px-2 py-0.5 font-mono">SEO</span>
+                        <span>搜索引擎索引端点 (Endpoints)</span>
+                    </h2>
+                    <span class="font-mono text-xs text-zinc-500">ROBOTS & XML</span>
+                </div>
+                <ul class="space-y-2 text-sm font-mono">
+                    <li class="p-2 bg-zinc-50 border border-zinc-200 flex items-center justify-between">
+                        <a href="/sitemap.xml" target="_blank" class="font-bold hover:text-[#FF5500] hover:underline">/sitemap.xml (标准 XML 网站地图)</a>
+                        <span class="text-xs text-emerald-600 font-bold">25+ URLs</span>
+                    </li>
+                    <li class="p-2 bg-zinc-50 border border-zinc-200 flex items-center justify-between">
+                        <a href="/robots.txt" target="_blank" class="font-bold hover:text-[#FF5500] hover:underline">/robots.txt (爬虫引导文件)</a>
+                        <span class="text-xs text-emerald-600 font-bold">Active</span>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- 模块 01: 实验室博客全部文章索引 (20 篇高权重长文) -->
+        <div class="industrial-card p-6 space-y-4">
+            <div class="flex items-center justify-between border-b-2 border-[#18181B] pb-2">
+                <h2 class="font-bold text-lg flex items-center gap-2">
+                    <span class="bg-[#18181B] text-white text-xs px-2 py-0.5 font-mono">DOCS</span>
+                    <span>实验室博客全部深度技术专文索引 (共 20 篇)</span>
+                </h2>
+                <span class="font-mono text-xs text-zinc-500">TECHNICAL_ARCHIVES</span>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                
+                <div class="border border-zinc-300 p-3 bg-white hover:border-[#FF5500] transition-colors">
+                    <div class="flex items-center justify-between font-mono text-xs text-zinc-500 mb-1">
+                        <span class="font-bold text-[#18181B]">DOC-26116</span>
+                        <span>2026-10-11</span>
+                    </div>
+                    <a href="/#blog" class="font-bold text-sm text-[#18181B] hover:text-[#FF5500] block leading-snug">
+                        iKuai + OpenWrt 双软路由分流终极实操：如何实现境内直连低延迟与境外流量智能分流？
+                    </a>
+                    <div class="text-[11px] font-mono text-zinc-500 mt-2 flex flex-wrap gap-1">
+                        <span>#软路由分流</span> <span>#iKuai实操</span> <span>#OpenWrt网关</span>
+                    </div>
+                </div>
+                
+                <div class="border border-zinc-300 p-3 bg-white hover:border-[#FF5500] transition-colors">
+                    <div class="flex items-center justify-between font-mono text-xs text-zinc-500 mb-1">
+                        <span class="font-bold text-[#18181B]">DOC-26123</span>
+                        <span>2026-10-10</span>
+                    </div>
+                    <a href="/#blog" class="font-bold text-sm text-[#18181B] hover:text-[#FF5500] block leading-snug">
+                        2026 最新代理协议抗封锁力综合天梯排行榜：安全性、速度、延迟与稳定性终极测评
+                    </a>
+                    <div class="text-[11px] font-mono text-zinc-500 mt-2 flex flex-wrap gap-1">
+                        <span>#协议天梯榜</span> <span>#2026代理协议</span> <span>#VLESS-Reality</span>
+                    </div>
+                </div>
+                
+                <div class="border border-zinc-300 p-3 bg-white hover:border-[#FF5500] transition-colors">
+                    <div class="flex items-center justify-between font-mono text-xs text-zinc-500 mb-1">
+                        <span class="font-bold text-[#18181B]">DOC-26108</span>
+                        <span>2026-10-09</span>
+                    </div>
+                    <a href="/#blog" class="font-bold text-sm text-[#18181B] hover:text-[#FF5500] block leading-snug">
+                        Hysteria 2 协议深度实测：恶劣网络与高丢包环境下为何能暴力拉满带宽？
+                    </a>
+                    <div class="text-[11px] font-mono text-zinc-500 mt-2 flex flex-wrap gap-1">
+                        <span>#Hysteria2</span> <span>#QUIC协议</span> <span>#Brutal拥塞控制</span>
+                    </div>
+                </div>
+                
+                <div class="border border-zinc-300 p-3 bg-white hover:border-[#FF5500] transition-colors">
+                    <div class="flex items-center justify-between font-mono text-xs text-zinc-500 mb-1">
+                        <span class="font-bold text-[#18181B]">DOC-26107</span>
+                        <span>2026-10-08</span>
+                    </div>
+                    <a href="/#blog" class="font-bold text-sm text-[#18181B] hover:text-[#FF5500] block leading-snug">
+                        直连、中继与 IPLC/IEPL 内网专线到底差在哪？一张表看懂成本与稳定性
+                    </a>
+                    <div class="text-[11px] font-mono text-zinc-500 mt-2 flex flex-wrap gap-1">
+                        <span>#线路对比</span> <span>#IPLC成本</span> <span>#BGP中继</span>
+                    </div>
+                </div>
+                
+                <div class="border border-zinc-300 p-3 bg-white hover:border-[#FF5500] transition-colors">
+                    <div class="flex items-center justify-between font-mono text-xs text-zinc-500 mb-1">
+                        <span class="font-bold text-[#18181B]">DOC-26109</span>
+                        <span>2026-10-07</span>
+                    </div>
+                    <a href="/#blog" class="font-bold text-sm text-[#18181B] hover:text-[#FF5500] block leading-snug">
+                        TUIC v5 协议全解：基于 QUIC 协议的多路复用与 0-RTT 握手性能极致调优
+                    </a>
+                    <div class="text-[11px] font-mono text-zinc-500 mt-2 flex flex-wrap gap-1">
+                        <span>#TUICv5</span> <span>#0-RTT握手</span> <span>#QUIC协议</span>
+                    </div>
+                </div>
+                
+                <div class="border border-zinc-300 p-3 bg-white hover:border-[#FF5500] transition-colors">
+                    <div class="flex items-center justify-between font-mono text-xs text-zinc-500 mb-1">
+                        <span class="font-bold text-[#18181B]">DOC-26110</span>
+                        <span>2026-10-06</span>
+                    </div>
+                    <a href="/#blog" class="font-bold text-sm text-[#18181B] hover:text-[#FF5500] block leading-snug">
+                        2026年 VLESS-Reality 搭建与防封锁全套方案：Vision 传输流控与 SNI 回程安全
+                    </a>
+                    <div class="text-[11px] font-mono text-zinc-500 mt-2 flex flex-wrap gap-1">
+                        <span>#VLESS-Reality</span> <span>#Xray-core</span> <span>#Vision流控</span>
+                    </div>
+                </div>
+                
+                <div class="border border-zinc-300 p-3 bg-white hover:border-[#FF5500] transition-colors">
+                    <div class="flex items-center justify-between font-mono text-xs text-zinc-500 mb-1">
+                        <span class="font-bold text-[#18181B]">DOC-26111</span>
+                        <span>2026-10-05</span>
+                    </div>
+                    <a href="/#blog" class="font-bold text-sm text-[#18181B] hover:text-[#FF5500] block leading-snug">
+                        Shadowsocks 2022 协议重构演练：AEAD 密钥派生与主动探测防护底层解析
+                    </a>
+                    <div class="text-[11px] font-mono text-zinc-500 mt-2 flex flex-wrap gap-1">
+                        <span>#Shadowsocks2022</span> <span>#AEAD加密</span> <span>#防重放攻击</span>
+                    </div>
+                </div>
+                
+                <div class="border border-zinc-300 p-3 bg-white hover:border-[#FF5500] transition-colors">
+                    <div class="flex items-center justify-between font-mono text-xs text-zinc-500 mb-1">
+                        <span class="font-bold text-[#18181B]">DOC-26112</span>
+                        <span>2026-10-04</span>
+                    </div>
+                    <a href="/#blog" class="font-bold text-sm text-[#18181B] hover:text-[#FF5500] block leading-snug">
+                        晚高峰 QOS 限速与 UDP 丢包根治指南：利用端口跳跃 (Port Hopping) 突破运营商封锁
+                    </a>
+                    <div class="text-[11px] font-mono text-zinc-500 mt-2 flex flex-wrap gap-1">
+                        <span>#PortHopping</span> <span>#QoS限速突破</span> <span>#UDP丢包防护</span>
+                    </div>
+                </div>
+                
+                <div class="border border-zinc-300 p-3 bg-white hover:border-[#FF5500] transition-colors">
+                    <div class="flex items-center justify-between font-mono text-xs text-zinc-500 mb-1">
+                        <span class="font-bold text-[#18181B]">DOC-26113</span>
+                        <span>2026-10-03</span>
+                    </div>
+                    <a href="/#blog" class="font-bold text-sm text-[#18181B] hover:text-[#FF5500] block leading-snug">
+                        GFW 主动探测与深度包检测 (DPI) 原理解析：如何构建零特征代理节点
+                    </a>
+                    <div class="text-[11px] font-mono text-zinc-500 mt-2 flex flex-wrap gap-1">
+                        <span>#GFW原理</span> <span>#DPI深度检测</span> <span>#主动探测</span>
+                    </div>
+                </div>
+                
+                <div class="border border-zinc-300 p-3 bg-white hover:border-[#FF5500] transition-colors">
+                    <div class="flex items-center justify-between font-mono text-xs text-zinc-500 mb-1">
+                        <span class="font-bold text-[#18181B]">DOC-26106</span>
+                        <span>2026-10-02</span>
+                    </div>
+                    <a href="/#blog" class="font-bold text-sm text-[#18181B] hover:text-[#FF5500] block leading-snug">
+                        ShadowTLS v3 协议攻防演练：SNI 伪装与 TLS 握手特征消除实战
+                    </a>
+                    <div class="text-[11px] font-mono text-zinc-500 mt-2 flex flex-wrap gap-1">
+                        <span>#ShadowTLS</span> <span>#SNI伪装</span> <span>#主动探测防护</span>
+                    </div>
+                </div>
+                
+                <div class="border border-zinc-300 p-3 bg-white hover:border-[#FF5500] transition-colors">
+                    <div class="flex items-center justify-between font-mono text-xs text-zinc-500 mb-1">
+                        <span class="font-bold text-[#18181B]">DOC-26114</span>
+                        <span>2026-10-01</span>
+                    </div>
+                    <a href="/#blog" class="font-bold text-sm text-[#18181B] hover:text-[#FF5500] block leading-snug">
+                        节点中继与隧道转发协议对比：GOST、Rathole、Stunnel 与 IPLC 转发链路搭建实战
+                    </a>
+                    <div class="text-[11px] font-mono text-zinc-500 mt-2 flex flex-wrap gap-1">
+                        <span>#GOST</span> <span>#Rathole</span> <span>#隧道转发</span>
+                    </div>
+                </div>
+                
+                <div class="border border-zinc-300 p-3 bg-white hover:border-[#FF5500] transition-colors">
+                    <div class="flex items-center justify-between font-mono text-xs text-zinc-500 mb-1">
+                        <span class="font-bold text-[#18181B]">DOC-26105</span>
+                        <span>2026-09-30</span>
+                    </div>
+                    <a href="/#blog" class="font-bold text-sm text-[#18181B] hover:text-[#FF5500] block leading-snug">
+                        BGP 多线中继入口选择指南：如何评估延迟、抖动与晚高峰抗封锁能力
+                    </a>
+                    <div class="text-[11px] font-mono text-zinc-500 mt-2 flex flex-wrap gap-1">
+                        <span>#BGP入口</span> <span>#CN2GIA</span> <span>#联通9929</span>
+                    </div>
+                </div>
+                
+                <div class="border border-zinc-300 p-3 bg-white hover:border-[#FF5500] transition-colors">
+                    <div class="flex items-center justify-between font-mono text-xs text-zinc-500 mb-1">
+                        <span class="font-bold text-[#18181B]">DOC-26104</span>
+                        <span>2026-09-29</span>
+                    </div>
+                    <a href="/#blog" class="font-bold text-sm text-[#18181B] hover:text-[#FF5500] block leading-snug">
+                        跨国企业专线架构解密：IPLC 与 IEPL 转发机制与成本对比
+                    </a>
+                    <div class="text-[11px] font-mono text-zinc-500 mt-2 flex flex-wrap gap-1">
+                        <span>#IPLC专线</span> <span>#IEPL成本</span> <span>#跨国架构</span>
+                    </div>
+                </div>
+                
+                <div class="border border-zinc-300 p-3 bg-white hover:border-[#FF5500] transition-colors">
+                    <div class="flex items-center justify-between font-mono text-xs text-zinc-500 mb-1">
+                        <span class="font-bold text-[#18181B]">DOC-26115</span>
+                        <span>2026-09-28</span>
+                    </div>
+                    <a href="/#blog" class="font-bold text-sm text-[#18181B] hover:text-[#FF5500] block leading-snug">
+                        4K 8K 视频流媒体解锁与 DNS 污染治理：SmartDNS + SNI Proxy 打造零延迟解封方案
+                    </a>
+                    <div class="text-[11px] font-mono text-zinc-500 mt-2 flex flex-wrap gap-1">
+                        <span>#流媒体解锁</span> <span>#SmartDNS</span> <span>#SNIProxy</span>
+                    </div>
+                </div>
+                
+                <div class="border border-zinc-300 p-3 bg-white hover:border-[#FF5500] transition-colors">
+                    <div class="flex items-center justify-between font-mono text-xs text-zinc-500 mb-1">
+                        <span class="font-bold text-[#18181B]">DOC-26117</span>
+                        <span>2026-09-27</span>
+                    </div>
+                    <a href="/#blog" class="font-bold text-sm text-[#18181B] hover:text-[#FF5500] block leading-snug">
+                        VPS 客户端拥塞控制优化实战：TCP BBRv3 编译安装与丢包补偿参数深度调优
+                    </a>
+                    <div class="text-[11px] font-mono text-zinc-500 mt-2 flex flex-wrap gap-1">
+                        <span>#TCPBBRv3</span> <span>#Linux内核优化</span> <span>#sysctl调优</span>
+                    </div>
+                </div>
+                
+                <div class="border border-zinc-300 p-3 bg-white hover:border-[#FF5500] transition-colors">
+                    <div class="flex items-center justify-between font-mono text-xs text-zinc-500 mb-1">
+                        <span class="font-bold text-[#18181B]">DOC-26118</span>
+                        <span>2026-09-26</span>
+                    </div>
+                    <a href="/#blog" class="font-bold text-sm text-[#18181B] hover:text-[#FF5500] block leading-snug">
+                        节点安全防护与防抓包演练：防 CC 攻击、IPTables 规则防扫描与 SSH 密钥硬化
+                    </a>
+                    <div class="text-[11px] font-mono text-zinc-500 mt-2 flex flex-wrap gap-1">
+                        <span>#VPS加固</span> <span>#Fail2ban</span> <span>#IPTables防扫描</span>
+                    </div>
+                </div>
+                
+                <div class="border border-zinc-300 p-3 bg-white hover:border-[#FF5500] transition-colors">
+                    <div class="flex items-center justify-between font-mono text-xs text-zinc-500 mb-1">
+                        <span class="font-bold text-[#18181B]">DOC-26119</span>
+                        <span>2026-09-25</span>
+                    </div>
+                    <a href="/#blog" class="font-bold text-sm text-[#18181B] hover:text-[#FF5500] block leading-snug">
+                        跨境电商与海外外贸独享原生 IP 选型：避免 IP 脏化与风控封号的技术防范
+                    </a>
+                    <div class="text-[11px] font-mono text-zinc-500 mt-2 flex flex-wrap gap-1">
+                        <span>#原生IP</span> <span>#住宅IP</span> <span>#跨境电商风控</span>
+                    </div>
+                </div>
+                
+                <div class="border border-zinc-300 p-3 bg-white hover:border-[#FF5500] transition-colors">
+                    <div class="flex items-center justify-between font-mono text-xs text-zinc-500 mb-1">
+                        <span class="font-bold text-[#18181B]">DOC-26120</span>
+                        <span>2026-09-24</span>
+                    </div>
+                    <a href="/#blog" class="font-bold text-sm text-[#18181B] hover:text-[#FF5500] block leading-snug">
+                        iOS / Android / macOS / Windows 全平台客户端选型评测：Sing-box, Shadowrocket, Clash Meta
+                    </a>
+                    <div class="text-[11px] font-mono text-zinc-500 mt-2 flex flex-wrap gap-1">
+                        <span>#客户端选型</span> <span>#Sing-box</span> <span>#Shadowrocket</span>
+                    </div>
+                </div>
+                
+                <div class="border border-zinc-300 p-3 bg-white hover:border-[#FF5500] transition-colors">
+                    <div class="flex items-center justify-between font-mono text-xs text-zinc-500 mb-1">
+                        <span class="font-bold text-[#18181B]">DOC-26121</span>
+                        <span>2026-09-23</span>
+                    </div>
+                    <a href="/#blog" class="font-bold text-sm text-[#18181B] hover:text-[#FF5500] block leading-snug">
+                        跨国游戏加速与低延迟调优：UDP 转发、多路径 UDP 与链路跳接选路算法
+                    </a>
+                    <div class="text-[11px] font-mono text-zinc-500 mt-2 flex flex-wrap gap-1">
+                        <span>#游戏加速</span> <span>#UDP转发</span> <span>#低延迟调优</span>
+                    </div>
+                </div>
+                
+                <div class="border border-zinc-300 p-3 bg-white hover:border-[#FF5500] transition-colors">
+                    <div class="flex items-center justify-between font-mono text-xs text-zinc-500 mb-1">
+                        <span class="font-bold text-[#18181B]">DOC-26122</span>
+                        <span>2026-09-22</span>
+                    </div>
+                    <a href="/#blog" class="font-bold text-sm text-[#18181B] hover:text-[#FF5500] block leading-snug">
+                        机场与自建节点成本与风险全方位对比：去中心化节点部署与隐蔽运维全流程
+                    </a>
+                    <div class="text-[11px] font-mono text-zinc-500 mt-2 flex flex-wrap gap-1">
+                        <span>#机场对比</span> <span>#自建节点</span> <span>#VPS选购</span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#18181B] text-white py-6 px-4 font-mono text-xs text-center border-t-2 border-[#18181B] mt-12">
+        <div class="max-w-6xl mx-auto space-y-2">
+            <p>© 2026 梯子社区 (<a href="https://tizishequ.com" class="text-[#FF5500] underline font-bold">tizishequ.com</a>) // 网站地图</p>
+            <p class="text-zinc-500 text-[10px]">ALL LOGS VERIFIED & INDEXED LOCALLY.</p>
+        </div>
+    </footer>
+</body>
+</html>
