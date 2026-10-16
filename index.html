@@ -3105,8 +3105,8 @@ const ARTICLES_DATA = articlesData;
             }
         }
 
-        function openArticleDetail(articleId) {
-            const article = ARTICLES_DATA.find(a => a.id === articleId);
+        function openArticleDetail(articleId, updateHistory = true) {
+            const article = ARTICLES_DATA.find(a => a.id.toLowerCase() === articleId.toLowerCase());
             if (!article) return;
 
             const container = document.getElementById('article-detail-content');
@@ -3122,7 +3122,7 @@ const ARTICLES_DATA = articlesData;
                             <span class="text-zinc-500 ml-auto font-mono">${article.readTime}</span>
                         </div>
                         <h2 class="text-2xl md:text-3xl font-black text-[#18181B] leading-tight mb-3 tracking-tight">${article.title}</h2>
-                        <p class="text-xs md:text-sm text-zinc-600 font-mono bg-zinc-50 p-3 border border-zinc-300">${article.summary}</p>
+                        <p class="text-xs md:text-sm text-zinc-600 font-mono bg-zinc-50 p-3 border border-zinc-300">${article.summary || article.desc || ''}</p>
                     </div>
                     <div class="prose max-w-none text-zinc-800 leading-relaxed space-y-6">
                         ${article.content || '<p class="text-zinc-500 font-mono">[ 暂无正文内容 ]</p>'}
@@ -3137,7 +3137,19 @@ const ARTICLES_DATA = articlesData;
                 </article>
             `;
 
-            switchView('article-detail');
+            switchView('article-detail', true);
+
+            if (updateHistory) {
+                try {
+                    const targetHash = `#article/${article.id}`;
+                    if (window.location.hash !== targetHash) {
+                        history.pushState({ articleId: article.id }, '', targetHash);
+                    }
+                } catch (e) {
+                    console.warn('History pushState error bypassed:', e);
+                }
+            }
+
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
@@ -3501,7 +3513,7 @@ const ARTICLES_DATA = articlesData;
         }
 
 
-        function switchView(targetView) {
+        function switchView(targetView, skipHashUpdate = false) {
             if (!VIEWS.includes(targetView)) {
                 targetView = 'leaderboard';
             }
@@ -3555,12 +3567,14 @@ const ARTICLES_DATA = articlesData;
             }
 
             // 3. 容错更新 URL Hash
-            try {
-                if (window.location.hash !== `#${targetView}`) {
-                    history.pushState(null, '', `#${targetView}`);
+            if (!skipHashUpdate) {
+                try {
+                    if (window.location.hash !== `#${targetView}`) {
+                        history.pushState(null, '', `#${targetView}`);
+                    }
+                } catch (e) {
+                    console.warn('History pushState error bypassed:', e);
                 }
-            } catch (e) {
-                console.warn('History pushState error bypassed:', e);
             }
 
             // 4. 平滑置顶
@@ -3605,7 +3619,45 @@ const ARTICLES_DATA = articlesData;
             });
         }
 
-        // 6. 脚本立即执行与事件绑定
+        // 6. 统一路由解析调度引擎
+        function resolveAppRoute() {
+            const rawHash = window.location.hash.replace(/^#/, '').trim();
+            const searchParams = new URLSearchParams(window.location.search);
+            const queryPost = searchParams.get('post') || searchParams.get('id') || searchParams.get('article');
+
+            // 1. 优先读取 URL Query 参数 (?post=DOC-26116)
+            if (queryPost) {
+                const target = ARTICLES_DATA.find(a => a.id.toLowerCase() === queryPost.toLowerCase());
+                if (target) {
+                    openArticleDetail(target.id, false);
+                    return;
+                }
+            }
+
+            // 2. 识别 #article/DOC-XXXXX 或 #DOC-XXXXX 格式
+            if (rawHash.startsWith('article/') || rawHash.startsWith('DOC-')) {
+                const docId = rawHash.replace(/^article\//, '');
+                const target = ARTICLES_DATA.find(a => a.id.toLowerCase() === docId.toLowerCase());
+                if (target) {
+                    openArticleDetail(target.id, false);
+                    return;
+                }
+            }
+
+            // 3. 常规单页视图切换
+            if (rawHash && VIEWS.includes(rawHash)) {
+                if (rawHash === 'article-detail') {
+                    // 防止无上下文单纯访问 #article-detail 时空白，兜底引导至博客列表
+                    switchView('blog', true);
+                } else {
+                    switchView(rawHash, true);
+                }
+            } else {
+                switchView('leaderboard', true);
+            }
+        }
+
+        // 7. 脚本立即执行与事件绑定
         renderBlogArticles();
 
         window.addEventListener('DOMContentLoaded', () => {
@@ -3616,21 +3668,15 @@ const ARTICLES_DATA = articlesData;
                 searchInput.addEventListener('input', applyTableFilters);
             }
 
-            const currentHash = window.location.hash.replace('#', '');
-            if (currentHash && VIEWS.includes(currentHash)) {
-                switchView(currentHash);
-            } else {
-                switchView('leaderboard');
-            }
+            resolveAppRoute();
         });
 
         window.addEventListener('popstate', () => {
-            const currentHash = window.location.hash.replace('#', '');
-            if (currentHash && VIEWS.includes(currentHash)) {
-                switchView(currentHash);
-            } else {
-                switchView('leaderboard');
-            }
+            resolveAppRoute();
+        });
+
+        window.addEventListener('hashchange', () => {
+            resolveAppRoute();
         });
     </script>
 </body>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>正在定位文章正文 - 梯子社区 (tizishequ.com)</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <script>
+        (function() {
+            var params = new URLSearchParams(window.location.search);
+            var post = params.get('post') || params.get('id') || params.get('article');
+            var hash = window.location.hash.replace(/^#/, '');
+
+            if (post) {
+                window.location.replace('/#article/' + encodeURIComponent(post));
+            } else if (hash) {
+                window.location.replace('/#' + hash);
+            } else {
+                window.location.replace('/#blog');
+            }
+        })();
+    </script>
+    <style>
+        body {
+            font-family: monospace;
+            background-color: #FAFAFA;
+            color: #18181B;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .box {
+            padding: 24px;
+            border: 2px solid #18181B;
+            background: #FFFFFF;
+            box-shadow: 4px 4px 0px #18181B;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <p>// ROUTING_DISPATCHER: 正在定位文章正文，请稍候...</p>
+        <p><a href="/#blog" style="color: #FF5500; font-weight: bold;">点击直接返回博客列表 →</a></p>
+    </div>
+</body>
+</html>
