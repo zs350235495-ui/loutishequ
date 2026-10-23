@@ -137,279 +137,187 @@
     
 
 
-    <style>
-        /* ==========================================================================
-           1. 视口与全局重置：铺满整个屏幕
-           ========================================================================== */
-        *, *::before, *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+    
 
-        html, body {
-            width: 100% !important;
-            min-height: 100vh !important;
-            margin: 0 !important;
-            padding: 0 !important;
-            background-color: #f5f5f2 !important; /* 统一为温和硬朗的浅灰底色，彻底消灭外围刺眼黑块 */
-            color: #111 !important;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
-            line-height: 1.5 !important;
-            -webkit-font-smoothing: antialiased !important;
-            display: block !important; /* 彻底杜绝 flex 居中把页面挤成一团 */
-        }
 
-        /* ==========================================================================
-           2. 主内容顶级包裹容器：大屏舒展铺开，水平标准居中
-           ========================================================================== */
-        .container, main, #app, .main-layout, .terminal-window, .page-wrapper, .main-container, .terminal-container, .wrapper {
-            width: 95% !important;
-            max-width: 1360px !important; /* 彻底放开宽度至 1360px，不再是畸形的 600px */
-            min-width: 320px !important;
-            margin: 20px auto !important; /* 左右水平居中，上下留出舒适呼吸间距 */
-            padding: 24px 20px !important;
-            box-sizing: border-box !important;
-            background: #ffffff !important;
-            border: 3px solid #000000 !important; /* 纯正 Neo-brutalism 粗黑框 */
-            box-shadow: 6px 6px 0px #000000 !important; /* 工业厚重立体投影 */
-            display: block !important;
-        }
+<style>
+  /* 基础与全屏重置 */
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    min-height: 100vh !important;
+    background-color: #f0f0eb !important;
+    color: #000 !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+    display: block !important;
+  }
 
-        /* ==========================================================================
-           3. 顶部 Header / 导航条适配容器全宽
-           ========================================================================== */
-        header, .site-header, .top-nav {
-            width: 100% !important;
-            max-width: 100% !important;
-            margin-bottom: 24px !important;
-            box-sizing: border-box !important;
-            display: block !important;
-            background-color: #ffffff;
-            border-bottom: 2px solid #000000;
-        }
+  /* 顶部黑色系统状态条 */
+  .system-log-bar, .system-top-bar {
+    background-color: #000 !important;
+    color: #00ff66 !important;
+    font-family: monospace !important;
+    font-size: 12px !important;
+    padding: 8px 16px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
 
-        header > div, .site-header > div, .top-nav > div {
-            width: 95% !important;
-            max-width: 1360px !important;
-            margin: 0 auto !important;
-            padding: 12px 16px !important;
-            box-sizing: border-box !important;
-            display: flex !important;
-            flex-wrap: wrap !important;
-            align-items: center !important;
-            justify-content: space-between !important;
-            gap: 12px !important;
-        }
+  /* 主容器：强制居中、大屏 1360px、彻底消除黑边虚无 */
+  .container, main, #app, .main-container, .main-layout {
+    width: 95% !important;
+    max-width: 1360px !important;
+    margin: 20px auto !important;
+    padding: 24px !important;
+    background: #fff !important;
+    border: 3px solid #000 !important;
+    box-shadow: 6px 6px 0px #000 !important;
+    box-sizing: border-box !important;
+    display: block !important;
+  }
 
-        .system-top-bar {
-            width: 100% !important;
-            background-color: #18181B !important;
-            color: #FFFFFF !important;
-            border-bottom: 2px solid #000000 !important;
-            padding: 6px 16px !important;
-            font-family: 'JetBrains Mono', monospace, monospace !important;
-            font-size: 0.75rem !important;
-            box-sizing: border-box !important;
-        }
+  /* 标题与文字样式修复（消除紫色下划线与裸奔状态） */
+  h1, h2, h3, h4, h5, h6 { color: #000 !important; margin: 0 0 12px 0 !important; }
+  a { color: #000 !important; text-decoration: none !important; }
+  a:visited { color: #000 !important; }
 
-        footer {
-            width: 100% !important;
-            background-color: #18181B !important;
-            border-top: 3px solid #000000 !important;
-            padding: 2rem 1rem !important;
-            margin-top: 3rem !important;
-            display: block !important;
-            box-sizing: border-box !important;
-        }
+  /* 头部工业卡片排版 */
+  .header-card {
+    display: flex !important;
+    align-items: center !important;
+    gap: 16px !important;
+    margin-bottom: 24px !important;
+    border-bottom: 2px solid #000 !important;
+    padding-bottom: 16px !important;
+  }
+  .header-logo, .site-logo-container {
+    width: 56px !important;
+    height: 56px !important;
+    min-width: 56px !important;
+    max-width: 56px !important;
+    min-height: 56px !important;
+    max-height: 56px !important;
+    border: 2px solid #000 !important;
+    box-shadow: 2px 2px 0px #000 !important;
+    overflow: hidden !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: #ff5722 !important;
+  }
+  .header-logo img, .site-logo-container img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block !important;
+  }
+  .site-title { font-size: 28px !important; font-weight: 900 !important; color: #000 !important; }
 
-        footer > div {
-            width: 95% !important;
-            max-width: 1360px !important;
-            margin: 0 auto !important;
-            display: flex !important;
-            flex-wrap: wrap !important;
-            align-items: center !important;
-            justify-content: space-between !important;
-            gap: 1.5rem !important;
-        }
+  /* 测速表格与卡片自适应 */
+  table, .benchmark-table, .data-table, .tech-table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    margin-top: 16px !important;
+  }
+  th, td {
+    border: 1px solid #000 !important;
+    padding: 10px 12px !important;
+    text-align: left !important;
+  }
+  th { background-color: #000 !important; color: #fff !important; font-weight: 700 !important; }
 
-        /* ==========================================================================
-           4. 节点测速大表格与研报模块：撑满 100% 容器宽度
-           ========================================================================== */
-        table, .benchmark-table, .data-table, .tech-table {
-            width: 100% !important;
-            table-layout: auto !important;
-            border-collapse: collapse !important;
-        }
+  /* 橙色按钮与高亮 */
+  .btn-orange, .btn-industrial-orange {
+    background-color: #ff5722 !important;
+    color: #fff !important;
+    padding: 6px 12px !important;
+    font-weight: bold !important;
+    border: 2px solid #000 !important;
+    box-shadow: 2px 2px 0px #000 !important;
+    display: inline-block !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+  }
+  .btn-orange:hover, .btn-industrial-orange:hover {
+    background-color: #e64a19 !important;
+  }
 
-        .tech-table th, .tech-table td,
-        table th, table td {
-            border: 1px solid #18181B;
-            padding: 10px 12px;
-            font-size: 0.85rem;
-            font-family: 'JetBrains Mono', monospace;
-        }
+  .btn-industrial {
+    background-color: #fff !important;
+    color: #000 !important;
+    border: 2px solid #000 !important;
+    box-shadow: 2px 2px 0px #000 !important;
+    font-weight: bold !important;
+    padding: 6px 12px !important;
+    display: inline-block !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+  }
+  .btn-industrial.active, .btn-industrial:active {
+    background-color: #000 !important;
+    color: #fff !important;
+  }
 
-        .tech-table th, table th {
-            background-color: #18181B;
-            color: #FFFFFF;
-            font-weight: 700;
-            text-align: left;
-        }
+  /* 工业卡片与网格 */
+  .industrial-card {
+    background: #fff !important;
+    border: 2px solid #000 !important;
+    box-shadow: 4px 4px 0px #000 !important;
+    margin-bottom: 20px !important;
+    padding: 16px !important;
+  }
 
-        /* ==========================================================================
-           5. 研报列表、预警档案与文章卡片：自适应撑满
-           ========================================================================== */
-        .card, .module-box, .article-item, .post-container, .industrial-card {
-            width: 100% !important;
-            max-width: 100% !important;
-            box-sizing: border-box !important;
-            background-color: #FFFFFF;
-            border: 2px solid #000000;
-            box-shadow: 4px 4px 0px #000000;
-            margin-bottom: 1.5rem;
-        }
+  .reports-grid {
+    display: grid !important;
+    grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+    gap: 16px !important;
+    width: 100% !important;
+  }
+  @media (min-width: 640px) {
+    .reports-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  }
+  @media (min-width: 1024px) {
+    .reports-grid { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; }
+  }
 
-        .reports-grid, .grid {
-            display: grid !important;
-            grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
-            gap: 16px !important;
-            width: 100% !important;
-        }
+  .report-card, .reports-grid > a {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    background-color: #fff !important;
+    border: 2px solid #000 !important;
+    padding: 14px !important;
+    box-shadow: 3px 3px 0px #000 !important;
+    text-decoration: none !important;
+    color: #000 !important;
+    min-height: 120px !important;
+  }
+  .report-card:hover, .reports-grid > a:hover {
+    background-color: #fff7ed !important;
+    transform: translate(-2px, -2px) !important;
+    box-shadow: 5px 5px 0px #000 !important;
+  }
 
-        @media (min-width: 640px) {
-            .reports-grid, .sm\:grid-cols-2 {
-                grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .reports-grid, .lg\:grid-cols-4 {
-                grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-            }
-        }
-
-        .report-card, .reports-grid > a, .reports-grid > div {
-            display: flex !important;
-            flex-direction: column !important;
-            justify-content: space-between !important;
-            background-color: #FFFFFF !important;
-            border: 2px solid #000000 !important;
-            padding: 14px !important;
-            box-shadow: 3px 3px 0px #000000 !important;
-            text-decoration: none !important;
-            color: #18181B !important;
-            min-height: 120px !important;
-        }
-
-        .report-card:hover, .reports-grid > a:hover {
-            background-color: #FFF7ED !important;
-            transform: translate(-2px, -2px) !important;
-            box-shadow: 5px 5px 0px #000000 !important;
-        }
-
-        /* ==========================================================================
-           6. 文章详情页（如 /posts/doc-*）文字排版宽度优化：保证阅读舒适且不缩水
-           ========================================================================== */
-        .post-content, .article-body, article {
-            width: 100% !important;
-            max-width: 1000px !important; /* 文章正文保持 1000px，既不散也不挤 */
-            margin: 0 auto !important;
-            line-height: 1.7 !important;
-            font-size: 16px !important;
-        }
-
-        /* ==========================================================================
-           7. 实体组件、按钮与 Logo 尺寸防畸变保护
-           ========================================================================== */
-        .site-logo-container {
-            width: 40px !important;
-            height: 40px !important;
-            min-width: 40px !important;
-            max-width: 40px !important;
-            min-height: 40px !important;
-            max-height: 40px !important;
-            display: inline-flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            border: 2px solid #000000 !important;
-            background-color: #FF5500 !important;
-            box-shadow: 2px 2px 0px #000000 !important;
-            overflow: hidden !important;
-            flex-shrink: 0 !important;
-        }
-
-        .site-logo-container img {
-            width: 100% !important;
-            height: 100% !important;
-            object-fit: cover !important;
-            display: block !important;
-        }
-
-        .btn-industrial {
-            font-family: 'JetBrains Mono', monospace !important;
-            background-color: #FFFFFF !important;
-            color: #18181B !important;
-            border: 2px solid #000000 !important;
-            box-shadow: 2px 2px 0px #000000 !important;
-            font-weight: 700 !important;
-            padding: 6px 12px !important;
-            font-size: 0.75rem !important;
-            display: inline-flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            text-decoration: none !important;
-            cursor: pointer !important;
-        }
-
-        .btn-industrial:hover {
-            background-color: #F1F5F9 !important;
-        }
-
-        .btn-industrial.active, .btn-industrial:active {
-            background-color: #000000 !important;
-            color: #FFFFFF !important;
-        }
-
-        .btn-industrial-orange {
-            font-family: 'JetBrains Mono', monospace !important;
-            background-color: #FF5500 !important;
-            color: #FFFFFF !important;
-            border: 2px solid #000000 !important;
-            box-shadow: 2px 2px 0px #000000 !important;
-            font-weight: 700 !important;
-            padding: 6px 12px !important;
-            font-size: 0.75rem !important;
-            display: inline-flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            text-decoration: none !important;
-            cursor: pointer !important;
-        }
-
-        .btn-industrial-orange:hover {
-            background-color: #E04B00 !important;
-        }
-
-        .tag-mono {
-            font-family: 'JetBrains Mono', monospace !important;
-            font-size: 0.75rem !important;
-            padding: 2px 6px !important;
-            border: 1px solid #000000 !important;
-            background-color: #F1F5F9 !important;
-            color: #18181B !important;
-            font-weight: 600 !important;
-            display: inline-flex !important;
-            align-items: center !important;
-        }
-    </style>
+  .tag-mono {
+    font-family: monospace !important;
+    font-size: 12px !important;
+    padding: 2px 6px !important;
+    border: 1px solid #000 !important;
+    background-color: #f1f5f9 !important;
+    color: #000 !important;
+    font-weight: 600 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+  }
+</style>
 
 </head>
 <body class="min-h-screen antialiased">
 
     <!-- 全局状态条 (TOP SYSTEM BAR) -->
-    <div class="system-top-bar bg-[#18181B] text-white py-1 px-4 text-xs font-mono border-b-2 border-[#18181B] flex flex-wrap justify-between items-center z-50">
+    <div class="system-log-bar system-top-bar bg-[#18181B] text-white py-1 px-4 text-xs font-mono border-b-2 border-[#18181B] flex flex-wrap justify-between items-center z-50">
         <div class="flex items-center space-x-4">
             <span class="flex items-center gap-1.5 text-[#4ADE80] font-bold">
                 <span class="inline-block w-2 h-2 rounded-full bg-[#16A34A] animate-pulse"></span>
@@ -429,9 +337,9 @@
         <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
             <!-- 左侧 LOGO 与标牌 -->
             <div class="flex items-center">
-                <a href="/" class="flex items-center gap-3 group">
+                <a href="/" class="header-card flex items-center gap-3 group">
                     <!-- 品牌徽标 Logo 图标 -->
-                    <div class="site-logo-container rounded-full border-2 border-[#18181B] shadow-[2px_2px_0px_#18181B] overflow-hidden bg-white shrink-0 flex items-center justify-center group-hover:scale-105 transition-transform">
+                    <div class="header-logo site-logo-container rounded-full border-2 border-[#18181B] shadow-[2px_2px_0px_#18181B] overflow-hidden bg-white shrink-0 flex items-center justify-center group-hover:scale-105 transition-transform">
                         <img src="/assets/logo.png" width="40" height="40" alt="梯子社区 LOGO" class="w-full h-full object-cover">
                     </div>
 
@@ -439,7 +347,7 @@
                     <div class="flex flex-col justify-center">
                         <!-- 第一行：主品牌与简短定位（加粗单行，不折行） -->
                         <div class="flex items-center gap-2">
-                            <h1 class="font-bold text-base text-zinc-900 tracking-tight whitespace-nowrap">梯子社区</h1>
+                            <h1 class="site-title font-bold text-base text-zinc-900 tracking-tight whitespace-nowrap">梯子社区</h1>
                             <span class="text-zinc-300 font-mono text-xs">/</span>
                             <span class="text-xs font-mono font-medium text-zinc-600 tracking-wide whitespace-nowrap">机场性能观测台</span>
                         </div>
@@ -467,7 +375,7 @@
                 <button id="nav-btn-guides" onclick="switchView('guides')" class="btn-industrial px-3 py-1.5">
                     [04 客户端调优]
                 </button>
-                <a href="/posts/doc-26120.html" class="btn-industrial-orange px-3 py-1.5 flex items-center gap-1 font-bold">
+                <a href="/posts/doc-26120.html" class="btn-orange btn-industrial-orange px-3 py-1.5 flex items-center gap-1 font-bold">
                     <span>年度实测白皮书</span>
                     <span class="text-xs">↗</span>
                 </a>
@@ -599,7 +507,7 @@
                                         <button onclick="switchView('reviews')" class="btn-industrial px-2 py-0.5 text-xs">
                                             [ 档案 ]
                                         </button>
-                                        <a href="/posts/doc-26120.html" class="btn-industrial-orange px-2 py-0.5 text-xs font-bold flex items-center gap-0.5"><span>实测报告</span><span>↗</span></a>
+                                        <a href="/posts/doc-26120.html" class="btn-orange btn-industrial-orange px-2 py-0.5 text-xs font-bold flex items-center gap-0.5"><span>实测报告</span><span>↗</span></a>
                                     </div>
                                 </td>
                             </tr>
@@ -662,7 +570,7 @@
                                         <button onclick="switchView('reviews')" class="btn-industrial px-2 py-0.5 text-xs">
                                             [ 档案 ]
                                         </button>
-                                        <a href="/posts/doc-26120.html" class="btn-industrial-orange px-2 py-0.5 text-xs font-bold flex items-center gap-0.5"><span>实测报告</span><span>↗</span></a>
+                                        <a href="/posts/doc-26120.html" class="btn-orange btn-industrial-orange px-2 py-0.5 text-xs font-bold flex items-center gap-0.5"><span>实测报告</span><span>↗</span></a>
                                     </div>
                                 </td>
                             </tr>
@@ -725,7 +633,7 @@
                                         <button onclick="switchView('reviews')" class="btn-industrial px-2 py-0.5 text-xs">
                                             [ 档案 ]
                                         </button>
-                                        <a href="/posts/doc-26128.html" class="btn-industrial-orange px-2 py-0.5 text-xs font-bold flex items-center gap-0.5"><span>实测报告</span><span>↗</span></a>
+                                        <a href="/posts/doc-26128.html" class="btn-orange btn-industrial-orange px-2 py-0.5 text-xs font-bold flex items-center gap-0.5"><span>实测报告</span><span>↗</span></a>
                                     </div>
                                 </td>
                             </tr>
@@ -788,7 +696,7 @@
                                         <button onclick="switchView('reviews')" class="btn-industrial px-2 py-0.5 text-xs">
                                             [ 档案 ]
                                         </button>
-                                        <a href="/posts/doc-26116.html" class="btn-industrial-orange px-2 py-0.5 text-xs font-bold flex items-center gap-0.5"><span>实测报告</span><span>↗</span></a>
+                                        <a href="/posts/doc-26116.html" class="btn-orange btn-industrial-orange px-2 py-0.5 text-xs font-bold flex items-center gap-0.5"><span>实测报告</span><span>↗</span></a>
                                     </div>
                                 </td>
                             </tr>
@@ -851,7 +759,7 @@
                                         <button onclick="switchView('reviews')" class="btn-industrial px-2 py-0.5 text-xs">
                                             [ 档案 ]
                                         </button>
-                                        <a href="/posts/doc-26124.html" class="btn-industrial-orange px-2 py-0.5 text-xs font-bold flex items-center gap-0.5"><span>实测报告</span><span>↗</span></a>
+                                        <a href="/posts/doc-26124.html" class="btn-orange btn-industrial-orange px-2 py-0.5 text-xs font-bold flex items-center gap-0.5"><span>实测报告</span><span>↗</span></a>
                                     </div>
                                 </td>
                             </tr>
@@ -914,7 +822,7 @@
                                         <button onclick="switchView('reviews')" class="btn-industrial px-2 py-0.5 text-xs">
                                             [ 档案 ]
                                         </button>
-                                        <a href="/posts/doc-26128.html" class="btn-industrial-orange px-2 py-0.5 text-xs font-bold flex items-center gap-0.5"><span>实测报告</span><span>↗</span></a>
+                                        <a href="/posts/doc-26128.html" class="btn-orange btn-industrial-orange px-2 py-0.5 text-xs font-bold flex items-center gap-0.5"><span>实测报告</span><span>↗</span></a>
                                     </div>
                                 </td>
                             </tr>
@@ -2568,7 +2476,7 @@
                     <p class="text-xs text-zinc-600 leading-relaxed font-sans">
                         全线采用真实跨境内网物理专线，晚高峰时段延迟与抖动极低。支持 4K/8K 极速秒开与 OpenAI、Claude 等高风控 AI 业务原生解锁，社区公认全能旗舰标杆。
                     </p>
-                    <a href="/posts/doc-26120.html" class="btn-industrial-orange w-full py-1.5 text-xs text-center block font-bold">
+                    <a href="/posts/doc-26120.html" class="btn-orange btn-industrial-orange w-full py-1.5 text-xs text-center block font-bold">
                         调阅环球梯实验室实测档案与链路成本报告 ↗
                     </a>
                 </div>
@@ -2592,7 +2500,7 @@
                     <p class="text-xs text-zinc-600 leading-relaxed font-sans">
                         沪日与广港双物理冗余专线架构，专线骨干 SLA 达到 99.99%。具备极高抗抖动能力，适合跨境团队协作、海外远程桌面、企业高并发 API 交互等严苛场景。
                     </p>
-                    <a href="/posts/doc-26120.html" class="btn-industrial-orange w-full py-1.5 text-xs text-center block font-bold">
+                    <a href="/posts/doc-26120.html" class="btn-orange btn-industrial-orange w-full py-1.5 text-xs text-center block font-bold">
                         调阅大佬云企业专线评测数据报告 ↗
                     </a>
                 </div>
@@ -2616,7 +2524,7 @@
                     <p class="text-xs text-zinc-600 leading-relaxed font-sans">
                         梯子社区众测打卡高满意度服务商，BGP 入口多线智能负载。支持高并发 Git 代码拉取、Docker 镜像构建与大流量持续传输，无虚标超售，性价比极高。
                     </p>
-                    <a href="/posts/doc-26128.html" class="btn-industrial-orange w-full py-1.5 text-xs text-center block font-bold">
+                    <a href="/posts/doc-26128.html" class="btn-orange btn-industrial-orange w-full py-1.5 text-xs text-center block font-bold">
                         调阅云界线协议吞吐实测与分流方案 ↗
                     </a>
                 </div>
@@ -2640,7 +2548,7 @@
                     <p class="text-xs text-zinc-600 leading-relaxed font-sans">
                         全线 IEPL 智能专线集群，港台日美节点配备原生家庭宽带 IP，彻底告别 Netflix 提示代理或 Disney+ 黑屏。晚高峰带宽充裕，是社区追剧党与长期打卡首选。
                     </p>
-                    <a href="/posts/doc-26124.html" class="btn-industrial-orange w-full py-1.5 text-xs text-center block font-bold">
+                    <a href="/posts/doc-26124.html" class="btn-orange btn-industrial-orange w-full py-1.5 text-xs text-center block font-bold">
                         调阅闪电鼠原生 IP 防污染调优报告 ↗
                     </a>
                 </div>
@@ -2664,7 +2572,7 @@
                     <p class="text-xs text-zinc-600 leading-relaxed font-sans">
                         IEPL 混合专线与轻量化 VLESS-Reality 双轨协议部署，资费门槛极低且文档详尽。深受社区新人互助答疑推崇，亦为资深极客日常防封备用首选。
                     </p>
-                    <a href="/posts/doc-26128.html" class="btn-industrial-orange w-full py-1.5 text-xs text-center block font-bold">
+                    <a href="/posts/doc-26128.html" class="btn-orange btn-industrial-orange w-full py-1.5 text-xs text-center block font-bold">
                         调阅神行加速 VLESS 协议性能报告 ↗
                     </a>
                 </div>
@@ -2688,7 +2596,7 @@
                     <p class="text-xs text-zinc-600 leading-relaxed font-sans">
                         全 IPLC 专线架构与动态多入多出容灾系统，提供丰富的大流量与不限时按量套餐。多端并发连接无阻，满足跨国差旅、Zoom 视频会议与海外业务平稳运行。
                     </p>
-                    <a href="/posts/doc-26116.html" class="btn-industrial-orange w-full py-1.5 text-xs text-center block font-bold">
+                    <a href="/posts/doc-26116.html" class="btn-orange btn-industrial-orange w-full py-1.5 text-xs text-center block font-bold">
                         调阅榴莲云双路由旁路分流拓扑方案 ↗
                     </a>
                 </div>
@@ -3323,7 +3231,7 @@ const ARTICLES_DATA = articlesData;
                     <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t-2 border-[#18181B] font-mono text-xs">
                         <div class="flex items-center gap-2">
                             <button onclick="switchView('blog')" class="btn-industrial px-4 py-2 text-xs font-bold">← 返回博客列表</button>
-                            <button onclick="switchView('leaderboard')" class="btn-industrial-orange px-4 py-2 text-xs font-bold">← 返回天梯榜</button>
+                            <button onclick="switchView('leaderboard')" class="btn-orange btn-industrial-orange px-4 py-2 text-xs font-bold">← 返回天梯榜</button>
                         </div>
                         <div class="text-zinc-500 font-bold">DOC_STATUS: AUDITED_AND_VERIFIED // ${article.id}</div>
                     </div>
