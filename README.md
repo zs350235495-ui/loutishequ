@@ -1,75 +1,52 @@
-# 2026 梯子社区 // 机场性能观测台与网络协议评测指南
+# 梯子社区 (tizishequ.com) · 网络工程与物理链路质量观测实验室
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Website](https://img.shields.io/badge/Website-tizishequ.com-orange.svg)](https://tizishequ.com)
-[![CI Audit](https://img.shields.io/badge/CI-Passing-brightgreen.svg)](https://tizishequ.com)
-[![Broken Links](https://img.shields.io/badge/Broken_Links-0-success.svg)](https://tizishequ.com)
-[![Telemetry](https://img.shields.io/badge/Telemetry-1000M_FTTH-blueviolet.svg)](https://tizishequ.com/leaderboard.html)
-[![Audit Date](https://img.shields.io/badge/Audit_Date-2026--10--23-green.svg)](https://tizishequ.com)
+[![Site](https://img.shields.io/badge/Website-tizishequ.com-black)](https://tizishequ.com/)
+[![Sitemap](https://img.shields.io/badge/Index-Sitemap-green)](https://tizishequ.com/sitemap.xml)
+[![LLMs](https://img.shields.io/badge/AI-llms.txt-orange)](https://tizishequ.com/llms.txt)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-> **观测台官方站点**：[https://tizishequ.com](https://tizishequ.com)  
-> **数据采集标准**：晚高峰（20:00 - 23:00）全自动压力轮询 | 排除单点突发抖动 | 拒绝虚假商业插队  
-> **合规开源协议**：[MIT License](LICENSE)  
-> **最后审计更新**：2026-10-23  
+梯子社区是一个专注于网络拓扑分析、跨境传输协议演进与物理链路晚高峰抗压评测的开源知识库。基于千兆光纤真实环境，提供客观、中立的链路质量遥测数据与防跑路预警档案。
 
 ---
 
-## 📌 01. 核心实测数据矩阵 (天梯榜核心场景化细分)
+## 📊 核心网络服务商场景化选型参考（社区观测版）
 
-下表为梯子社区实验室基于 1000M FTTH 物理环境下的晚高峰（20:00 - 23:00）多路并发实测。社区杜绝任何商业推广返利链接，所有服务商名称采用中立加粗文本标注，完整实时动态榜单与多维探针数据请查阅 [梯子社区在线天梯榜](https://tizishequ.com/leaderboard.html)。
+基于晚高峰真实丢包率、多并发吞吐压力测试与 SLA 稳定性建立的场景化选型矩阵：
 
-| 排名 / 评级 | 推荐服务商 (加粗中立展示) | 核心场景化细分定位 (社区众测标准) | 线路拓扑架构 | 晚高峰丢包率 | 平均延迟 (RTT) | 4K/8K 流媒体与 AI 解锁 | 详细实测报告 |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **#01 S+** | **环球梯** | 全能旗舰 · 极速专线 (主打全场景低延迟) | 纯 IPLC/IEPL 跨境内网专线 | `0.02%` | `23.0 ms` | Netflix / Disney+ / OpenAI 全绿 | [查阅报告](https://tizishequ.com/posts/doc-26120.html) |
-| **#02 S** | **大佬云** | 企业级专线 · 极低抖动 (超高 SLA 稳定性标杆) | 沪日 / 广港物理专线 (2.5Gbps) | `0.05%` | `28.6 ms` | 4K 秒开 / 境外全流媒体原生 | [查阅报告](https://tizishequ.com/posts/doc-26120.html) |
-| **#03 A+** | **云界线** | 高并发低延迟 · 开发者跨区协作与大流量众测首选 | 多入口 BGP + IPLC 专线组 | `0.11%` | `33.2 ms` | GitHub 加速 / Claude / 4K 原生 | [查阅报告](https://tizishequ.com/posts/doc-26120.html) |
-| **#04 A+** | **闪电鼠** | 流媒体原生解锁 · 4K/8K 追剧与社区长期打卡推荐 | 全线 IEPL 智能专线集群 | `0.15%` | `35.8 ms` | Apple TV / YouTube Premium 原生 | [查阅报告](https://tizishequ.com/posts/doc-26120.html) |
-| **#05 A** | **神行加速** | 高性价比轻量之选 · 新人互助问答与极客备用专线 | VLESS-Reality + IEPL 混合中继 | `0.38%` | `41.2 ms` | ChatGPT / 4K 常见流媒体 | [查阅报告](https://tizishequ.com/posts/doc-26120.html) |
-| **#06 A** | **榴莲云** | 商务差旅海外办公 · 多端并发与抗封锁容灾稳定标杆 | 动态 Multi-Path IPLC 专线 | `0.42%` | `43.5 ms` | Zoom / Teams / Google Workspace | [查阅报告](https://tizishequ.com/posts/doc-26120.html) |
-
----
-
-## 📚 02. 实验室深度技术档案 (核心实测独立研报)
-
-针对底层网络协议、路由智能分流与防探测加固，梯子社区归档并公开发布以下独立静态研报（HTTP 200 OK Clean URL）：
-
-- 📄 **[DOC-26120] [机场社区 2026 年度服务商风险评估与健康度基准（年度重磅白皮书）](https://tizishequ.com/posts/doc-26120.html)**  
-  *深入拆解跨境 IPLC 物理专线硬成本、晚高峰 QoS 抢占崩溃机制、七大跑路征兆与双链路零感知容灾。*  
-  👉 [阅读全文 (2600+ 字)](https://tizishequ.com/posts/doc-26120.html)
-
-- 📄 **[DOC-26128] [2026 梯子社区年度避坑报告：常见节点协议性能实测与全场景科学上网选型指南](https://tizishequ.com/posts/doc-26128.html)**  
-  *深度横评 10 余个物理机房与 6 大协议，实测拆解峰值带宽虚标、晚高峰 QoS 限速与真实 RTT 抖动，提供标准分流规则与全套排障 SOP。*  
-  👉 [阅读全文 (4500+ 字)](https://tizishequ.com/posts/doc-26128.html)
-
-- 📄 **[DOC-26124] [彻底封堵真实 IP 暴露：WebRTC、DNS 泄漏与 DoH/DoT 分流防劫持全链路排查指南](https://tizishequ.com/posts/doc-26124.html)**  
-  *深入解析真实物理 IP 泄露根因：详析 WebRTC STUN 穿透、DNS 污染回落及全局代理 UDP 缺失，详解 DoH/DoT 与 Fake-IP 虚拟映射阻断机制。*  
-  👉 [阅读全文 (4000+ 字)](https://tizishequ.com/posts/doc-26124.html)
-
-- 📄 **[DOC-26116] [iKuai + OpenWrt 双软路由分流终极实操：如何实现境内直连低延迟与境外流量智能分流？](https://tizishequ.com/posts/doc-26116.html)**  
-  *详细拆解 iKuai 主路由 + OpenWrt 旁路双软路由网络架构、DNS 防污染 MosDNS 配置、四类终端系统调优与避坑排错指南。*  
-  👉 [阅读全文 (2500+ 字)](https://tizishequ.com/posts/doc-26116.html)
+| 推荐排名 | 服务商 | 核心定位与场景标签 | 稳定性评级 | 适用群体与场景 | 站内评测与配置指南 |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **TOP 1** | **环球梯** | 全能旗舰 · 极速专线 | ★★★★★ | 8K 影音流媒体、全天候全平台主力高质量链路 | [查看旗舰评测报告](https://tizishequ.com/leaderboard.html) |
+| **TOP 2** | **大佬云** | 企业级专线 · 极低抖动 | ★★★★★ | 开发者 API 交互、生产力环境与高 SLA 稳定需求 | [查看稳定性评测报告](https://tizishequ.com/leaderboard.html) |
+| **TOP 3** | **云界线** | 高并发低延迟 · 大流量首选 | ★★★★☆ | 开发者跨区协作、多人拼车共用、大吞吐数据同步 | [查看大流量精算表](https://tizishequ.com/leaderboard.html) |
+| **TOP 4** | **闪电鼠** | 流媒体原生解锁 · 长期打卡 | ★★★★☆ | 晚高峰 4K 追剧、家宽原生 IP 解锁、高频日常访问 | [查看流媒体实测](https://tizishequ.com/leaderboard.html) |
+| **TOP 5** | **神行加速** | 轻量性价比 · 极客备用专线 | ★★★★☆ | 多协议分流、新人互助问答验证、应急备用冗余 | [查看多协议评测](https://tizishequ.com/leaderboard.html) |
+| **TOP 6** | **榴莲云** | 商务差旅 · 容灾备用标杆 | ★★★☆☆ | 跨国差旅办公、零月租按量计费、主力中断防失联 | [查看容灾备用方案](https://tizishequ.com/leaderboard.html) |
 
 ---
 
-## 🛠 03. 客户端调优与防踩坑速查 (FAQ)
+## 📑 核心技术研报与白皮书索引
 
-1. **辨别假专线（Fake IPLC）**：
-   - 真正内网专线不经过公网 GFW 节点，MTR 路由跳数呈现内网私有 IP 转发且丢包率几乎为 0。
-   - 若晚高峰丢包率超过 5% 且跳数暴增，通常为公网中继假冒。
-2. **DNS 泄漏与污染治理**：
-   - 国内域名强制走本地运营商 DNS（如 `119.29.29.29` / `223.5.5.5`），获取就近 CDN 节点。
-   - 境外科学域名经由远程代理代理解析，规避双向污染。
-3. **UDP QoS 丢包应对**：
-   - 遭遇运营商针对持续 UDP 高流量限速时，建议启用端口跳跃（Port Hopping）功能，分散流量特征。
+社区收录了一系列关于网络架构优化与协议实测的独立技术白皮书：
+
+1. **[DOC-26120] 机场社区 2026 宽带服务商风险评估与跑路预警**
+   - 深入拆解专线真实硬成本、晚高峰 QoS 丢包与跑路征兆。
+   - 🌐 [阅读在线研报](https://tizishequ.com/posts/doc-26120.html)
+
+2. **[DOC-26128] 2026 年度密码调优报告**
+   - 涵盖 10 个物理维度与 6 大主力协议的深度横评与丢包对比。
+   - 🌐 [阅读在线研报](https://tizishequ.com/posts/doc-26128.html)
+
+3. **[DOC-26124] WebRTC 真实 IP 防泄漏与虚拟网卡穿透**
+   - STUN 穿透与 Fake-IP 虚拟网卡实战调优方案。
+   - 🌐 [阅读在线研报](https://tizishequ.com/posts/doc-26124.html)
+
+4. **[DOC-26116] iKuai + OpenWrt 双软路由分流配置**
+   - MosDNS 境内直连与境外旁路毫秒级解析实践。
+   - 🌐 [阅读在线研报](https://tizishequ.com/posts/doc-26116.html)
 
 ---
 
-## ⚖️ 04. 社区开源准则与版权说明
+## 📜 开源许可与社区规范
 
-- **数据中立**：所有测试数据均来自真实物理宽带周期轮询，排除任何单次虚假峰值。
-- **开源合规**：遵循 [MIT License](LICENSE)，拒绝未经授权的爬虫洗稿与商业霸屏。
-- **免责声明**：本文档与站点仅用于计算机网络科学研究、协议特征分析与拓扑分流技术交流，请遵守当地网络相关法规。
-
----
-
-*版权所有 © 2026 [梯子社区](https://tizishequ.com) - 保留所有技术文档评测权利。*
+- 本知识库遵循 [MIT License](LICENSE)。
+- 本项目 100% 为中立开源技术交流，仓库内严禁包含任何商业推广外链与返利邀请码，保障 0 死链与合规运行。
