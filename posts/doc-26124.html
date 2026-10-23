@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>彻底封堵真实 IP 暴露：WebRTC、DNS 泄漏与 DoH/DoT 分流防劫持全链路排查指南 - 梯子社区 (tizishequ.com)</title>
+    <link rel="stylesheet" href="/css/styles.css">
     <meta name="description" content="深入解析真实物理 IP 泄露根因：详析 WebRTC STUN 穿透、DNS 污染回落及全局代理 UDP 缺失三大协议漏洞，详解 DoH/DoT 与 Fake-IP 虚拟映射阻断机制，提供完整自查 Checklist、Mihomo/TUN 核心防漏规则与浏览器深度加固方案。">
     <meta name="keywords" content="WebRTC穿透, DNS防泄漏, Fake-IP, DoH/DoT, 网络安全排障, TUN严格路由, Mihomo配置, 梯子社区, tizishequ.com">
     <link rel="icon" type="image/png" href="/assets/favicon.png">
@@ -144,8 +145,8 @@
         <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
             <div class="flex items-center">
                 <a href="/" class="flex items-center gap-3 group">
-                    <div class="w-10 h-10 rounded-full border-2 border-[#18181B] shadow-[2px_2px_0px_#18181B] overflow-hidden bg-white shrink-0 flex items-center justify-center group-hover:scale-105 transition-transform">
-                        <img src="/assets/logo.png" alt="梯子社区 LOGO" class="w-full h-full object-cover">
+                    <div class="site-logo-container rounded-full border-2 border-[#18181B] shadow-[2px_2px_0px_#18181B] overflow-hidden bg-white shrink-0 flex items-center justify-center group-hover:scale-105 transition-transform">
+                        <img src="/assets/logo.png" width="40" height="40" alt="梯子社区 LOGO" class="w-full h-full object-cover">
                     </div>
                     <div class="flex flex-col justify-center">
                         <div class="flex items-center gap-2">

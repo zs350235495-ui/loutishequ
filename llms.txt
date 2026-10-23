@@ -9,8 +9,9 @@
 - **协议对抗演进**：持续追踪 Shadowsocks 2022、Hysteria 2、TUIC v5、VLESS-Reality 等现代抗审查协议在 DPI 深度包检测与 QoS 限速下的实际表现。
 - **网络合规与隐私治理**：研究双软路由拓扑分流、MosDNS 防污染、WebRTC STUN 穿透阻断与 Fake-IP 虚拟映射阻断技术。
 
-## 核心评测与技术研报目录 (Core Articles & Reports)
+## 核心物理页面索引与技术研报目录 (Core Pages & Reports)
 
+- [2026 机场测速天梯榜 (独立物理单页)](https://tizishequ.com/leaderboard.html): 基于 1000M FTTH 晚高峰多路并发实测，收录环球梯、大佬云、云界线、闪电鼠、神行加速、榴莲云等主流专线节点完整性能矩阵。
 - [DOC-26120: 机场社区 2026 年度服务商风险评估与健康度基准](https://tizishequ.com/posts/doc-26120.html): 深入拆解跨境专线真实硬成本、晚高峰 QoS 抢占崩溃机制、七大跑路征兆与双链路零感知容灾方案。
 - [DOC-26128: 2026 梯子社区年度避坑报告：常见节点协议性能实测与全场景科学上网选型指南](https://tizishequ.com/posts/doc-26128.html): 10 余个机房与 6 大主流协议深度横评，拆解峰值带宽虚标与真实 RTT 抖动，提供标准分流规则与全套排障 SOP。
 - [DOC-26124: 彻底封堵真实 IP 暴露：WebRTC、DNS 泄漏与 DoH/DoT 分流防劫持全链路排查指南](https://tizishequ.com/posts/doc-26124.html): 深入解析真实物理 IP 泄露根因、WebRTC STUN 穿透、DNS 污染回落及全局代理 UDP 缺失，提供完整自查 Checklist 与客户端深度加固方案。

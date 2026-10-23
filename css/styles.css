@@ -1,0 +1,209 @@
+/**
+ * tizishequ.com - 梯子社区核心视觉样式表 (Core Neo-Brutalism & Layout Engine)
+ * 纯原生 CSS，无外部网络依赖，采用规范根绝对路径 /css/styles.css 引入
+ * 杜绝在任何子路径或离线环境下的样式裸奔与 CLS 布局偏移
+ */
+
+/* ==========================================================================
+   1. 基础重置与排版规范
+   ========================================================================== */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    background-color: #F8F9FA;
+    background-image: radial-gradient(#18181B 0.75px, transparent 0.75px);
+    background-size: 16px 16px;
+    color: #18181B;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+}
+
+/* ==========================================================================
+   2. 关键组件：Logo 防护机制 (彻底杜绝 Logo 畸大)
+   ========================================================================== */
+.site-logo-container {
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+    max-width: 40px !important;
+    min-height: 40px !important;
+    max-height: 40px !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #18181B;
+    background-color: #FF5500;
+    box-shadow: 2px 2px 0px #18181B;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.site-logo-container img {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    object-fit: cover !important;
+    display: block;
+}
+
+.brand-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ==========================================================================
+   3. 实体工业设计核心组件 (Neo-Brutalism Industrial Elements)
+   ========================================================================== */
+.industrial-card {
+    background-color: #FFFFFF;
+    border: 2px solid #18181B;
+    box-shadow: 4px 4px 0px #18181B;
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.industrial-card-sm {
+    background-color: #FFFFFF;
+    border: 1px solid #18181B;
+    box-shadow: 2px 2px 0px #18181B;
+}
+
+.industrial-card-hover:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px #18181B;
+}
+
+/* 按钮规范 */
+.btn-industrial {
+    font-family: 'JetBrains Mono', monospace;
+    background-color: #FFFFFF;
+    color: #18181B;
+    border: 2px solid #18181B;
+    box-shadow: 2px 2px 0px #18181B;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: all 0.08s ease;
+    user-select: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    padding: 6px 12px;
+    font-size: 0.75rem;
+}
+
+.btn-industrial:hover {
+    background-color: #F1F5F9;
+}
+
+.btn-industrial:active, .btn-industrial.active {
+    background-color: #18181B;
+    color: #FFFFFF;
+    transform: translate(2px, 2px);
+    box-shadow: 0px 0px 0px #18181B;
+}
+
+.btn-industrial-orange {
+    font-family: 'JetBrains Mono', monospace;
+    background-color: #FF5500;
+    color: #FFFFFF;
+    border: 2px solid #18181B;
+    box-shadow: 2px 2px 0px #18181B;
+    font-weight: 700;
+    transition: all 0.08s ease;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    padding: 6px 12px;
+    font-size: 0.75rem;
+}
+
+.btn-industrial-orange:hover {
+    background-color: #E04B00;
+}
+
+.btn-industrial-orange:active {
+    transform: translate(2px, 2px);
+    box-shadow: 0px 0px 0px #18181B;
+}
+
+/* 标签与标牌 */
+.tag-mono {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    padding: 2px 6px;
+    border: 1px solid #18181B;
+    background-color: #F1F5F9;
+    color: #18181B;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+/* 终端代码块 */
+.terminal-block {
+    background-color: #18181B;
+    color: #4ADE80;
+    font-family: 'JetBrains Mono', monospace;
+    border: 2px solid #18181B;
+    box-shadow: 4px 4px 0px #FF5500;
+    padding: 1rem;
+    border-radius: 0;
+    overflow-x: auto;
+}
+
+/* 表格专有样式 */
+.tech-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tech-table th, .tech-table td {
+    border: 1px solid #18181B;
+    padding: 10px 12px;
+    font-size: 0.85rem;
+}
+
+.tech-table th {
+    background-color: #18181B;
+    color: #FFFFFF;
+    font-weight: 700;
+    text-align: left;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+/* 自定义滚动条 */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #F8F9FA;
+    border-left: 1px solid #18181B;
+}
+::-webkit-scrollbar-thumb {
+    background: #18181B;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #FF5500;
+}

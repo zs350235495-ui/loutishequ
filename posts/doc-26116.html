@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>iKuai + OpenWrt 双软路由分流终极实操 - 梯子社区 (tizishequ.com)</title>
+    <link rel="stylesheet" href="/css/styles.css">
     <meta name="description" content="详细拆解 iKuai 主路由 + OpenWrt 旁路双软路由网络架构、DNS 防污染 MosDNS 配置、四类终端系统调优与避坑排错指南。">
     <meta name="keywords" content="iKuai软路由, OpenWrt旁路由, 双软路由分流, MosDNS配置, DNS防污染, 软路由拓扑, 梯子社区, tizishequ.com">
     <link rel="icon" type="image/png" href="/assets/favicon.png">
@@ -156,8 +157,8 @@
             <div class="flex items-center">
                 <a href="/" class="flex items-center gap-3 group">
                     <!-- 品牌徽标 Logo 图标 -->
-                    <div class="w-10 h-10 rounded-full border-2 border-[#18181B] shadow-[2px_2px_0px_#18181B] overflow-hidden bg-white shrink-0 flex items-center justify-center group-hover:scale-105 transition-transform">
-                        <img src="/assets/logo.png" alt="梯子社区 LOGO" class="w-full h-full object-cover">
+                    <div class="site-logo-container rounded-full border-2 border-[#18181B] shadow-[2px_2px_0px_#18181B] overflow-hidden bg-white shrink-0 flex items-center justify-center group-hover:scale-105 transition-transform">
+                        <img src="/assets/logo.png" width="40" height="40" alt="梯子社区 LOGO" class="w-full h-full object-cover">
                     </div>
 
                     <!-- 文字标牌区（彻底精简，单行舒展） -->
@@ -772,9 +773,7 @@ adb shell "settings get global captive_portal_https_url"
             <!-- 底部交互控制 -->
             <div class="border-t-2 border-[#18181B] pt-6 mt-8 flex flex-wrap items-center justify-between gap-4 font-mono text-xs">
                 <div class="flex items-center gap-2">
-                    <a href="/" class="btn-industrial px-3 py-1.5 font-bold">
-                        ← 返回天梯榜
-                    </a>
+                    <a href="/leaderboard.html" class="btn-industrial px-3 py-1.5 font-bold">← 返回天梯榜</a>
                     <a href="/#blog" class="btn-industrial px-3 py-1.5 font-bold">
                         ← 查看更多实验日志
                     </a>
@@ -805,7 +804,7 @@ adb shell "settings get global captive_portal_https_url"
             </div>
 
             <div class="flex flex-wrap justify-center gap-2 text-[11px]">
-                <a href="/" class="text-zinc-300 hover:text-[#FF5500] underline">[ 00 天梯榜 ]</a>
+                <a href="/leaderboard.html" class="text-zinc-300 hover:text-[#FF5500] underline">[ 00 天梯榜 ]</a>
                 <a href="/#blog" class="text-zinc-300 hover:text-[#FF5500] underline">[ 01 博客日志 ]</a>
                 <a href="/#blacklist" class="text-zinc-300 hover:text-[#FF5500] underline">[ 02 避坑档案 ]</a>
                 <a href="/sitemap.html" class="text-zinc-300 hover:text-[#FF5500] underline">[ 网站地图 ]</a>

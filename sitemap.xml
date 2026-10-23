@@ -8,6 +8,12 @@
         <priority>1.0</priority>
     </url>
     <url>
+        <loc>https://tizishequ.com/leaderboard.html</loc>
+        <lastmod>2026-10-23</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.95</priority>
+    </url>
+    <url>
         <loc>https://tizishequ.com/sitemap.html</loc>
         <lastmod>2026-10-23</lastmod>
         <changefreq>weekly</changefreq>

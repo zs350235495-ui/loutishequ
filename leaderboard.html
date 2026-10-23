@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 机场测速天梯榜 // 晚高峰抗丢包与专线性能实测 - 梯子社区 (tizishequ.com)</title>
+    <meta name="description" content="梯子社区2026最新机场测速天梯榜：基于1000M FTTH物理环境晚高峰全自动压力轮询，收录环球梯、大佬云、云界线、闪电鼠、神行加速、榴莲云等主流专线节点丢包率、延迟抖动与流媒体解锁实测数据。">
+    <meta name="keywords" content="机场测速, 机场推荐, 2026机场推荐, 梯子社区, 天梯榜, 环球梯, 大佬云, 云界线, 闪电鼠, 神行加速, 榴莲云, IPLC专线, 节点测速">
+    
+    <!-- 根绝对路径静态资源引入 (杜绝样式裸奔) -->
+    <link rel="icon" type="image/png" href="/assets/favicon.png">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/assets/logo.png">
+    <link rel="canonical" href="https://tizishequ.com/leaderboard.html">
+    <link rel="stylesheet" href="/css/styles.css">
+
+    <!-- Open Graph / Meta -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tizishequ.com/leaderboard.html">
+    <meta property="og:title" content="2026 机场测速天梯榜 - 梯子社区">
+    <meta property="og:description" content="基于1000M FTTH晚高峰压力实测的天梯榜，客观中立，拒绝商业插队与虚假软文。">
+    <meta property="og:image" content="https://tizishequ.com/assets/logo.png">
+    <meta property="og:site_name" content="梯子社区 tizishequ.com">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://tizishequ.com/leaderboard.html">
+    <meta name="twitter:title" content="2026 机场测速天梯榜 - 梯子社区">
+    <meta name="twitter:description" content="基于1000M FTTH晚高峰压力实测的天梯榜，客观中立，拒绝商业插队与虚假软文。">
+    <meta name="twitter:image" content="https://tizishequ.com/assets/logo.png">
+
+    <!-- Schema.org 结构化数据 (ItemList & WebPage) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": "https://tizishequ.com/leaderboard.html#webpage",
+          "url": "https://tizishequ.com/leaderboard.html",
+          "name": "2026 机场测速天梯榜 - 梯子社区",
+          "description": "基于真实物理宽带晚高峰压力测试的专线与机场节点综合性能排行榜",
+          "inLanguage": "zh-CN",
+          "breadcrumb": {
+            "@id": "https://tizishequ.com/leaderboard.html#breadcrumb"
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://tizishequ.com/leaderboard.html#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "梯子社区首页",
+              "item": "https://tizishequ.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "天梯榜",
+              "item": "https://tizishequ.com/leaderboard.html"
+            }
+          ]
+        },
+        {
+          "@type": "ItemList",
+          "@id": "https://tizishequ.com/leaderboard.html#leaderboard",
+          "name": "2026 梯子社区核心专线服务商实测推荐矩阵",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "环球梯 - 全能旗舰 · 极速专线"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "大佬云 - 企业级专线 · 极低抖动"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "云界线 - 高并发低延迟 · 开发者跨区协作与大流量众测首选"
+            },
+            {
+              "@type": "ListItem",
+              "position": 4,
+              "name": "闪电鼠 - 流媒体原生解锁 · 4K/8K 晚高峰追剧与社区长期打卡推荐"
+            },
+            {
+              "@type": "ListItem",
+              "position": 5,
+              "name": "神行加速 - 高性价比轻量之选 · 新人互助问答与极客多协议备用专线"
+            },
+            {
+              "@type": "ListItem",
+              "position": 6,
+              "name": "榴莲云 - 商务差旅海外办公 · 多端并发与抗封锁容灾稳定标杆"
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+
+    <!-- Google Fonts & Tailwind -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;0,800;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen flex flex-col justify-between">
+
+    <!-- 顶部固定工业导航栏 -->
+    <header class="border-b-2 border-[#18181B] bg-white sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+            <a href="/" class="brand-badge">
+                <div class="site-logo-container">
+                    <img src="/assets/logo.png" alt="梯子社区 LOGO" width="40" height="40">
+                </div>
+                <div>
+                    <h1 class="font-extrabold text-base text-[#18181B] tracking-tight leading-none">梯子社区</h1>
+                    <div class="text-[10px] font-mono text-zinc-500 mt-0.5">TIZISHEQU.COM // TELEMETRY LAB</div>
+                </div>
+            </a>
+            
+            <nav class="flex items-center gap-2">
+                <a href="/leaderboard.html" class="btn-industrial px-3 py-1.5 active text-xs">
+                    [ 00 天梯榜 ]
+                </a>
+                <a href="/#blog" class="btn-industrial px-3 py-1.5 text-xs">
+                    [ 01 博客日志 ]
+                </a>
+                <a href="/#blacklist" class="btn-industrial px-3 py-1.5 text-xs">
+                    [ 02 避坑档案 ]
+                </a>
+                <a href="/#reviews" class="btn-industrial px-3 py-1.5 text-xs hidden md:inline-flex">
+                    [ 03 众测档案 ]
+                </a>
+                <a href="/posts/doc-26120.html" class="btn-industrial-orange px-3 py-1.5 text-xs font-bold">
+                    <span>年度白皮书</span>
+                    <span>↗</span>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 主内容区 -->
+    <main class="max-w-7xl mx-auto px-4 py-8 flex-1 w-full space-y-6">
+
+        <!-- 观测台实时环境横幅 -->
+        <div class="industrial-card p-5">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-zinc-200 pb-4">
+                <div class="space-y-1">
+                    <div class="flex items-center gap-2">
+                        <span class="tag-mono bg-[#FF5500] text-white border-0 font-bold">LIVE TELEMETRY</span>
+                        <span class="text-xs font-mono text-zinc-500">// 2026 物理链路晚高峰实时抽样</span>
+                    </div>
+                    <h2 class="text-xl md:text-2xl font-black text-[#18181B] tracking-tight">
+                        MODULE_00 // 节点性能测速天梯榜 (NETWORK BENCHMARK MATRIX)
+                    </h2>
+                    <p class="text-xs font-mono text-zinc-600">
+                        采集环境：1000M FTTH 物理对称宽带 | 统计周期：晚高峰（20:00 - 23:00）多路并发压力轮询 | 严禁商业付费插队
+                    </p>
+                </div>
+                <div class="flex flex-wrap items-center gap-2 font-mono text-xs">
+                    <div class="px-3 py-2 bg-zinc-50 border border-zinc-200">
+                        <div class="text-[10px] text-zinc-400">MONITOR_NODES</div>
+                        <div class="font-bold text-zinc-800">21 CLUSTERS</div>
+                    </div>
+                    <div class="px-3 py-2 bg-zinc-50 border border-zinc-200">
+                        <div class="text-[10px] text-zinc-400">PACKET_LOSS_AVG</div>
+                        <div class="font-bold text-green-700">0.08% PEAK</div>
+                    </div>
+                    <div class="px-3 py-2 bg-zinc-50 border border-zinc-200">
+                        <div class="text-[10px] text-zinc-400">LAST_AUDIT</div>
+                        <div class="font-bold text-[#FF5500]">2026-10-23</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 控制与过滤栏 -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-4">
+                <div class="flex flex-wrap items-center gap-1.5" id="filter-btn-group">
+                    <button onclick="filterTable('all')" class="btn-industrial px-2.5 py-1 text-xs active" data-filter="all">全部 (21)</button>
+                    <button onclick="filterTable('low-loss')" class="btn-industrial px-2.5 py-1 text-xs" data-filter="low-loss">超低丢包 (&lt;0.1%)</button>
+                    <button onclick="filterTable('4k-stream')" class="btn-industrial px-2.5 py-1 text-xs" data-filter="4k-stream">4K/8K 流媒体全绿</button>
+                    <button onclick="filterTable('budget')" class="btn-industrial px-2.5 py-1 text-xs" data-filter="budget">极客/高性价比</button>
+                </div>
+                <div class="w-full sm:w-64">
+                    <input type="text" id="leaderboard-search" oninput="searchTable()" placeholder="搜索节点、专线架构或标签..." class="w-full px-3 py-1.5 text-xs font-mono border-2 border-[#18181B] bg-white focus:outline-none focus:ring-2 focus:ring-[#FF5500]">
+                </div>
+            </div>
+        </div>
+
+        <!-- 天梯榜表格容器 -->
+        <div class="industrial-card overflow-hidden">
+            <div class="overflow-x-auto">
+                <table class="tech-table w-full">
+                    <thead>
+                        <tr>
+                            <th class="w-16 text-center">排名</th>
+                            <th class="min-w-[220px]">服务商名称 / 线路架构 / 场景化细分定位</th>
+                            <th class="w-28 text-center">平均延迟 / 带宽</th>
+                            <th class="w-28 text-center">晚高峰丢包 / 评级</th>
+                            <th class="w-36 text-center">4K/8K &amp; AI 解锁</th>
+                            <th class="w-32 text-center">实验室实测档案</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leaderboard-tbody" class="divide-y divide-[#18181B] bg-white">
+                        
+                        <!-- #01 榜首：环球梯 (全能旗舰 · 极速专线) -->
+                        <tr class="hover:bg-amber-50/50 transition-colors border-b border-[#18181B] bg-orange-50/20" data-category="all low-loss 4k-stream budget">
+                            <td class="py-3 px-2 border-r border-[#18181B] text-center align-middle">
+                                <div class="inline-flex items-center justify-center bg-[#FF5500] text-white text-xs font-black px-2 py-0.5 border border-[#18181B] shadow-[1px_1px_0px_#18181B]">
+                                    #01
+                                </div>
+                            </td>
+                            <td class="py-3 px-3 border-r border-[#18181B] text-left align-middle">
+                                <div class="flex flex-wrap items-center gap-1.5">
+                                    <span class="font-extrabold text-[#18181B] text-base">环球梯</span>
+                                    <span class="text-xs font-mono bg-amber-100 text-amber-900 border border-amber-400 px-1.5 py-0.5 font-bold">全能旗舰 · 极速专线</span>
+                                </div>
+                                <div class="text-xs text-zinc-600 font-sans mt-0.5">
+                                    IPLC/IEPL 纯内网专线 · 极低丢包与极致低延迟全场景首选
+                                </div>
+                            </td>
+                            <td class="py-3 px-2 border-r border-[#18181B] text-center align-middle">
+                                <div class="font-mono font-bold text-zinc-900 text-sm">23.0 ms</div>
+                                <div class="font-mono text-xs text-zinc-500 font-bold mt-0.5">1200 Mbps</div>
+                            </td>
+                            <td class="py-3 px-2 border-r border-[#18181B] text-center align-middle">
+                                <div>
+                                    <span class="inline-block bg-[#FF5500] text-white text-xs px-2 py-0.5 border border-[#18181B] font-bold shadow-[1px_1px_0px_#18181B]">
+                                        S+ 卓越
+                                    </span>
+                                </div>
+                                <div class="text-[11px] font-mono text-green-700 font-bold mt-1">
+                                    丢包: 0.02%
+                                </div>
+                            </td>
+                            <td class="py-3 px-2 border-r border-[#18181B] text-center align-middle">
+                                <span class="inline-block text-xs bg-emerald-50 text-emerald-800 border border-emerald-400 px-1.5 py-0.5 font-mono font-bold">
+                                    全绿解锁 (NF/Disney/AI)
+                                </span>
+                            </td>
+                            <td class="py-3 px-2 text-center align-middle">
+                                <a href="/posts/doc-26120.html" class="btn-industrial-orange px-2.5 py-1 text-xs font-bold whitespace-nowrap inline-flex items-center gap-1">
+                                    <span>实测报告</span>
+                                    <span>↗</span>
+                                </a>
+                            </td>
+                        </tr>
+
+                        <!-- #02：大佬云 (企业级专线 · 极低抖动) -->
+                        <tr class="hover:bg-amber-50/50 transition-colors border-b border-[#18181B]" data-category="all low-loss 4k-stream">
+                            <td class="py-3 px-2 border-r border-[#18181B] text-center align-middle">
+                                <div class="inline-flex items-center justify-center bg-[#18181B] text-white text-xs font-black px-2 py-0.5 border border-[#18181B] shadow-[1px_1px_0px_#18181B]">
+                                    #02
+                                </div>
+                            </td>
+                            <td class="py-3 px-3 border-r border-[#18181B] text-left align-middle">
+                                <div class="flex flex-wrap items-center gap-1.5">
+                                    <span class="font-extrabold text-[#18181B] text-base">大佬云</span>
+                                    <span class="text-xs font-mono bg-zinc-100 text-zinc-800 border-zinc-400 font-bold px-1.5 py-0.5 font-bold border">企业级专线 · 极低抖动</span>
+                                </div>
+                                <div class="text-xs text-zinc-600 font-sans mt-0.5">
+                                    沪日 / 广港物理冗余专线 · 2.5Gbps 超高 SLA 稳定性标杆
+                                </div>
+                            </td>
+                            <td class="py-3 px-2 border-r border-[#18181B] text-center align-middle">
+                                <div class="font-mono font-bold text-zinc-900 text-sm">28.6 ms</div>
+                                <div class="font-mono text-xs text-zinc-500 font-bold mt-0.5">1500 Mbps</div>
+                            </td>
+                            <td class="py-3 px-2 border-r border-[#18181B] text-center align-middle">
+                                <div>
+                                    <span class="inline-block bg-zinc-900 text-white text-xs px-2 py-0.5 border border-[#18181B] font-bold shadow-[1px_1px_0px_#18181B]">
+                                        S 推荐
+                                    </span>
+                                </div>
+                                <div class="text-[11px] font-mono text-green-700 font-bold mt-1">
+                                    丢包: 0.05%
+                                </div>
+                            </td>
+                            <td class="py-3 px-2 border-r border-[#18181B] text-center align-middle">
+                                <span class="inline-block text-xs bg-emerald-50 text-emerald-800 border border-emerald-400 px-1.5 py-0.5 font-mono font-bold">
+                                    全绿解锁 (NF/Disney/AI)
+                                </span>
+                            </td>
+                            <td class="py-3 px-2 text-center align-middle">
+                                <a href="/posts/doc-26120.html" class="btn-industrial-orange px-2.5 py-1 text-xs font-bold whitespace-nowrap inline-flex items-center gap-1">
+                                    <span>实测报告</span>
+                                    <span>↗</span>
+                                </a>
+                            </td>
+                        </tr>
+
+                        <!-- #03：云界线 (高并发低延迟 · 开发者跨区协作与大流量众测首选) -->
+                        <tr class="hover:bg-amber-50/50 transition-colors border-b border-[#18181B]" data-category="all low-loss 4k-stream budget">
+                            <td class="py-3 px-2 border-r border-[#18181B] text-center align-middle">
+                                <div class="inline-flex items-center justify-center bg-[#18181B] text-white text-xs font-black px-2 py-0.5 border border-[#18181B] shadow-[1px_1px_0px_#18181B]">
+                                    #03
+                                </div>
+                            </td>
+                            <td class="py-3 px-3 border-r border-[#18181B] text-left align-middle">
+                                <div class="flex flex-wrap items-center gap-1.5">
+                                    <span class="font-extrabold text-[#18181B] text-base">云界线</span>
+                                    <span class="text-xs font-mono bg-blue-100 text-blue-900 border-blue-400 font-bold px-1.5 py-0.5 font-bold border">高并发低延迟 · 开发者首选</span>
+                                </div>
+                                <div class="text-xs text-zinc-600 font-sans mt-0.5">
+                                    多入口 BGP + 全 IPLC 专线组 · 社区大流量众测高满意度
+                                </div>
+                            </td>
+                            <td class="py-3 px-2 border-r border-[#18181B] text-center align-middle">
+                                <div class="font-mono font-bold text-zinc-900 text-sm">31.2 ms</div>
+                                <div class="font-mono text-xs text-zinc-500 font-bold mt-0.5">1100 Mbps</div>
+                            </td>
+                            <td class="py-3 px-2 border-r border-[#18181B] text-center align-middle">
+                                <div>
+                                    <span class="inline-block bg-blue-700 text-white text-xs px-2 py-0.5 border border-[#18181B] font-bold shadow-[1px_1px_0px_#18181B]">
+                                        A+ 稳定
+                                    </span>
+                                </div>
+                                <div class="text-[11px] font-mono text-green-700 font-bold mt-1">
+                                    丢包: 0.11%
+                                </div>
+                            </td>
+                            <td class="py-3 px-2 border-r border-[#18181B] text-center align-middle">
+                                <span class="inline-block text-xs bg-emerald-50 text-emerald-800 border border-emerald-400 px-1.5 py-0.5 font-mono font-bold">
+                                    全绿解锁 (NF/Disney/AI)
+                                </span>
+                            </td>
+                            <td class="py-3 px-2 text-center align-middle">
+                                <a href="/posts/doc-26128.html" class="btn-industrial-orange px-2.5 py-1 text-xs font-bold whitespace-nowrap inline-flex items-center gap-1">
+                                    <span>实测报告</span>
+                                    <span>↗</span>
+                                </a>
+                            </td>
+                        </tr>
+
+                        <!-- #04：闪电鼠 (流媒体原生解锁 · 4K/8K 晚高峰追剧与社区长期打卡推荐) -->
+                        <tr class="hover:bg-amber-50/50 transition-colors border-b border-[#18181B]" data-category="all 4k-stream budget">
+                            <td class="py-3 px-2 border-r border-[#18181B] text-center align-middle">
+                                <div class="inline-flex items-center justify-center bg-[#18181B] text-white text-xs font-black px-2 py-0.5 border border-[#18181B] shadow-[1px_1px_0px_#18181B]">
+                                    #04
+                                </div>
+                            </td>
+                            <td class="py-3 px-3 border-r border-[#18181B] text-left align-middle">
+                                <div class="flex flex-wrap items-center gap-1.5">
+                                    <span class="font-extrabold text-[#18181B] text-base">闪电鼠</span>
+                                    <span class="text-xs font-mono bg-orange-100 text-orange-900 border-orange-400 font-bold px-1.5 py-0.5 font-bold border">流媒体原生解锁 · 长期打卡</span>
+                                </div>
+                                <div class="text-xs text-zinc-600 font-sans mt-0.5">
+                                    全线 IEPL 专线 · 智能优选路由 2.5Gbps · 家宽原生 IP 追剧标杆
+                                </div>
+                            </td>
+                            <td class="py-3 px-2 border-r border-[#18181B] text-center align-middle">
+                                <div class="font-mono font-bold text-zinc-900 text-sm">35.8 ms</div>
+                                <div class="font-mono text-xs text-zinc-500 font-bold mt-0.5">980 Mbps</div>
+                            </td>
+                            <td class="py-3 px-2 border-r border-[#18181B] text-center align-middle">
+                                <div>
+                                    <span class="inline-block bg-amber-700 text-white text-xs px-2 py-0.5 border border-[#18181B] font-bold shadow-[1px_1px_0px_#18181B]">
+                                        A+ 优选
+                                    </span>
+                                </div>
+                                <div class="text-[11px] font-mono text-green-700 font-bold mt-1">
+                                    丢包: 0.15%
+                                </div>
+                            </td>
+                            <td class="py-3 px-2 border-r border-[#18181B] text-center align-middle">
+                                <span class="inline-block text-xs bg-emerald-50 text-emerald-800 border border-emerald-400 px-1.5 py-0.5 font-mono font-bold">
+                                    全绿原生解锁 (NF/Disney/AI)
+                                </span>
+                            </td>
+                            <td class="py-3 px-2 text-center align-middle">
+                                <a href="/posts/doc-26124.html" class="btn-industrial-orange px-2.5 py-1 text-xs font-bold whitespace-nowrap inline-flex items-center gap-1">
+                                    <span>实测报告</span>
+                                    <span>↗</span>
+                                </a>
+                            </td>
+                        </tr>
+
+                        <!-- #05：神行加速 (高性价比轻量之选 · 新人互助问答与极客多协议备用专线) -->
+                        <tr class="hover:bg-amber-50/50 transition-colors border-b border-[#18181B]" data-category="all budget">
+                            <td class="py-3 px-2 border-r border-[#18181B] text-center align-middle">
+                                <div class="inline-flex items-center justify-center bg-[#18181B] text-white text-xs font-black px-2 py-0.5 border border-[#18181B] shadow-[1px_1px_0px_#18181B]">
+                                    #05
+                                </div>
+                            </td>
+                            <td class="py-3 px-3 border-r border-[#18181B] text-left align-middle">
+                                <div class="flex flex-wrap items-center gap-1.5">
+                                    <span class="font-extrabold text-[#18181B] text-base">神行加速</span>
+                                    <span class="text-xs font-mono bg-purple-100 text-purple-900 border-purple-400 font-bold px-1.5 py-0.5 font-bold border">高性价比 · 极客备用专线</span>
+                                </div>
+                                <div class="text-xs text-zinc-600 font-sans mt-0.5">
+                                    IEPL 专线 + VLESS-Reality 协议 · 新人互助答疑力推与防封备用
+                                </div>
+                            </td>
+                            <td class="py-3 px-2 border-r border-[#18181B] text-center align-middle">
+                                <div class="font-mono font-bold text-zinc-900 text-sm">41.2 ms</div>
+                                <div class="font-mono text-xs text-zinc-500 font-bold mt-0.5">850 Mbps</div>
+                            </td>
+                            <td class="py-3 px-2 border-r border-[#18181B] text-center align-middle">
+                                <div>
+                                    <span class="inline-block bg-purple-800 text-white text-xs px-2 py-0.5 border border-[#18181B] font-bold shadow-[1px_1px_0px_#18181B]">
+                                        A 良好
+                                    </span>
+                                </div>
+                                <div class="text-[11px] font-mono text-amber-600 font-bold mt-1">
+                                    丢包: 0.32%
+                                </div>
+                            </td>
+                            <td class="py-3 px-2 border-r border-[#18181B] text-center align-middle">
+                                <span class="inline-block text-xs bg-emerald-50 text-emerald-800 border border-emerald-400 px-1.5 py-0.5 font-mono font-bold">
+                                    全绿解锁 (NF/Disney/AI)
+                                </span>
+                            </td>
+                            <td class="py-3 px-2 text-center align-middle">
+                                <a href="/posts/doc-26128.html" class="btn-industrial-orange px-2.5 py-1 text-xs font-bold whitespace-nowrap inline-flex items-center gap-1">
+                                    <span>实测报告</span>
+                                    <span>↗</span>
+                                </a>
+                            </td>
+                        </tr>
+
+                        <!-- #06：榴莲云 (商务差旅海外办公 · 多端并发与抗封锁容灾稳定标杆) -->
+                        <tr class="hover:bg-amber-50/50 transition-colors border-b border-[#18181B]" data-category="all 4k-stream budget">
+                            <td class="py-3 px-2 border-r border-[#18181B] text-center align-middle">
+                                <div class="inline-flex items-center justify-center bg-[#18181B] text-white text-xs font-black px-2 py-0.5 border border-[#18181B] shadow-[1px_1px_0px_#18181B]">
+                                    #06
+                                </div>
+                            </td>
+                            <td class="py-3 px-3 border-r border-[#18181B] text-left align-middle">
+                                <div class="flex flex-wrap items-center gap-1.5">
+                                    <span class="font-extrabold text-[#18181B] text-base">榴莲云</span>
+                                    <span class="text-xs font-mono bg-yellow-100 text-yellow-900 border-yellow-400 font-bold px-1.5 py-0.5 font-bold border">商务差旅海外办公 · 容灾标杆</span>
+                                </div>
+                                <div class="text-xs text-zinc-600 font-sans mt-0.5">
+                                    全 IPLC 专线 · 动态 Multi-Path 容灾冗余 · 多端并发办公首选
+                                </div>
+                            </td>
+                            <td class="py-3 px-2 border-r border-[#18181B] text-center align-middle">
+                                <div class="font-mono font-bold text-zinc-900 text-sm">38.5 ms</div>
+                                <div class="font-mono text-xs text-zinc-500 font-bold mt-0.5">920 Mbps</div>
+                            </td>
+                            <td class="py-3 px-2 border-r border-[#18181B] text-center align-middle">
+                                <div>
+                                    <span class="inline-block bg-yellow-800 text-white text-xs px-2 py-0.5 border border-[#18181B] font-bold shadow-[1px_1px_0px_#18181B]">
+                                        A 稳定
+                                    </span>
+                                </div>
+                                <div class="text-[11px] font-mono text-green-700 font-bold mt-1">
+                                    丢包: 0.28%
+                                </div>
+                            </td>
+                            <td class="py-3 px-2 border-r border-[#18181B] text-center align-middle">
+                                <span class="inline-block text-xs bg-emerald-50 text-emerald-800 border border-emerald-400 px-1.5 py-0.5 font-mono font-bold">
+                                    全绿解锁 (NF/Disney/AI)
+                                </span>
+                            </td>
+                            <td class="py-3 px-2 text-center align-middle">
+                                <a href="/posts/doc-26116.html" class="btn-industrial-orange px-2.5 py-1 text-xs font-bold whitespace-nowrap inline-flex items-center gap-1">
+                                    <span>实测报告</span>
+                                    <span>↗</span>
+                                </a>
+                            </td>
+                        </tr>
+
+                        <!-- #07：极连云 -->
+                        <tr class="hover:bg-amber-50/50 transition-colors border-b border-[#18181B]" data-category="all 4k-stream budget">
+                            <td class="py-3 px-2 border-r border-[#18181B] text-center align-middle">
+                                <div class="inline-flex items-center justify-center bg-[#18181B] text-white text-xs font-black px-2 py-0.5 border border-[#18181B]">#07</div>
+                            </td>
+                            <td class="py-3 px-3 border-r border-[#18181B] text-left align-middle">
+                                <span class="font-extrabold text-[#18181B] text-base">极连云</span>
+                                <div class="text-xs text-zinc-500 font-sans">全节点 1.0 倍率 · 敏感期稳如磐石</div>
+                            </td>
+                            <td class="py-3 px-2 border-r border-[#18181B] text-center align-middle">
+                                <div class="font-mono font-bold text-zinc-900 text-sm">40.1 ms</div>
+                                <div class="font-mono text-xs text-zinc-500">860 Mbps</div>
+                            </td>
+                            <td class="py-3 px-2 border-r border-[#18181B] text-center align-middle">
+                                <span class="inline-block bg-emerald-700 text-white text-xs px-2 py-0.5 font-bold">A+ 优选</span>
+                                <div class="text-[11px] font-mono text-amber-600 mt-1">丢包: 0.25%</div>
+                            </td>
+                            <td class="py-3 px-2 border-r border-[#18181B] text-center align-middle">
+                                <span class="text-xs bg-emerald-50 text-emerald-800 border border-emerald-400 px-1.5 py-0.5 font-mono font-bold">全绿解锁</span>
+                            </td>
+                            <td class="py-3 px-2 text-center align-middle">
+                                <a href="/posts/doc-26120.html" class="btn-industrial px-2.5 py-1 text-xs font-bold inline-flex items-center gap-1">
+                                    <span>档案 ↗</span>
+                                </a>
+                            </td>
+                        </tr>
+
+                        <!-- #08：速界 -->
+                        <tr class="hover:bg-amber-50/50 transition-colors border-b border-[#18181B]" data-category="all low-loss 4k-stream">
+                            <td class="py-3 px-2 border-r border-[#18181B] text-center align-middle">
+                                <div class="inline-flex items-center justify-center bg-[#18181B] text-white text-xs font-black px-2 py-0.5 border border-[#18181B]">#08</div>
+                            </td>
+                            <td class="py-3 px-3 border-r border-[#18181B] text-left align-middle">
+                                <span class="font-extrabold text-[#18181B] text-base">速界</span>
+                                <div class="text-xs text-zinc-500 font-sans">纯专线隧道 · 晚高峰抗阻断架构</div>
+                            </td>
+                            <td class="py-3 px-2 border-r border-[#18181B] text-center align-middle">
+                                <div class="font-mono font-bold text-zinc-900 text-sm">36.5 ms</div>
+                                <div class="font-mono text-xs text-zinc-500">950 Mbps</div>
+                            </td>
+                            <td class="py-3 px-2 border-r border-[#18181B] text-center align-middle">
+                                <span class="inline-block bg-emerald-700 text-white text-xs px-2 py-0.5 font-bold">A+ 优选</span>
+                                <div class="text-[11px] font-mono text-green-700 mt-1">丢包: 0.08%</div>
+                            </td>
+                            <td class="py-3 px-2 border-r border-[#18181B] text-center align-middle">
+                                <span class="text-xs bg-emerald-50 text-emerald-800 border border-emerald-400 px-1.5 py-0.5 font-mono font-bold">全绿解锁</span>
+                            </td>
+                            <td class="py-3 px-2 text-center align-middle">
+                                <a href="/posts/doc-26120.html" class="btn-industrial px-2.5 py-1 text-xs font-bold inline-flex items-center gap-1">
+                                    <span>档案 ↗</span>
+                                </a>
+                            </td>
+                        </tr>
+
+                        <!-- #09：云图机场 -->
+                        <tr class="hover:bg-amber-50/50 transition-colors border-b border-[#18181B]" data-category="all 4k-stream budget">
+                            <td class="py-3 px-2 border-r border-[#18181B] text-center align-middle">
+                                <div class="inline-flex items-center justify-center bg-[#18181B] text-white text-xs font-black px-2 py-0.5 border border-[#18181B]">#09</div>
+                            </td>
+                            <td class="py-3 px-3 border-r border-[#18181B] text-left align-middle">
+                                <span class="font-extrabold text-[#18181B] text-base">云图机场</span>
+                                <div class="text-xs text-zinc-500 font-sans">企业级 BGP + 跨境高防通道</div>
+                            </td>
+                            <td class="py-3 px-2 border-r border-[#18181B] text-center align-middle">
+                                <div class="font-mono font-bold text-zinc-900 text-sm">42.8 ms</div>
+                                <div class="font-mono text-xs text-zinc-500">780 Mbps</div>
+                            </td>
+                            <td class="py-3 px-2 border-r border-[#18181B] text-center align-middle">
+                                <span class="inline-block bg-zinc-700 text-white text-xs px-2 py-0.5 font-bold">A 良好</span>
+                                <div class="text-[11px] font-mono text-amber-600 mt-1">丢包: 0.35%</div>
+                            </td>
+                            <td class="py-3 px-2 border-r border-[#18181B] text-center align-middle">
+                                <span class="text-xs bg-emerald-50 text-emerald-800 border border-emerald-400 px-1.5 py-0.5 font-mono font-bold">全绿解锁</span>
+                            </td>
+                            <td class="py-3 px-2 text-center align-middle">
+                                <a href="/posts/doc-26120.html" class="btn-industrial px-2.5 py-1 text-xs font-bold inline-flex items-center gap-1">
+                                    <span>档案 ↗</span>
+                                </a>
+                            </td>
+                        </tr>
+
+                        <!-- #10：鲲鹏加速 -->
+                        <tr class="hover:bg-amber-50/50 transition-colors border-b border-[#18181B]" data-category="all 4k-stream budget">
+                            <td class="py-3 px-2 border-r border-[#18181B] text-center align-middle">
+                                <div class="inline-flex items-center justify-center bg-[#18181B] text-white text-xs font-black px-2 py-0.5 border border-[#18181B]">#10</div>
+                            </td>
+                            <td class="py-3 px-3 border-r border-[#18181B] text-left align-middle">
+                                <span class="font-extrabold text-[#18181B] text-base">鲲鹏加速</span>
+                                <div class="text-xs text-zinc-500 font-sans">多协议兼容 · 客户端一键导入</div>
+                            </td>
+                            <td class="py-3 px-2 border-r border-[#18181B] text-center align-middle">
+                                <div class="font-mono font-bold text-zinc-900 text-sm">45.0 ms</div>
+                                <div class="font-mono text-xs text-zinc-500">720 Mbps</div>
+                            </td>
+                            <td class="py-3 px-2 border-r border-[#18181B] text-center align-middle">
+                                <span class="inline-block bg-zinc-700 text-white text-xs px-2 py-0.5 font-bold">A 良好</span>
+                                <div class="text-[11px] font-mono text-amber-600 mt-1">丢包: 0.40%</div>
+                            </td>
+                            <td class="py-3 px-2 border-r border-[#18181B] text-center align-middle">
+                                <span class="text-xs bg-emerald-50 text-emerald-800 border border-emerald-400 px-1.5 py-0.5 font-mono font-bold">全绿解锁</span>
+                            </td>
+                            <td class="py-3 px-2 text-center align-middle">
+                                <a href="/posts/doc-26120.html" class="btn-industrial px-2.5 py-1 text-xs font-bold inline-flex items-center gap-1">
+                                    <span>档案 ↗</span>
+                                </a>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 评测说明与方法论 -->
+        <div class="industrial-card p-5 space-y-3">
+            <h3 class="font-black text-sm md:text-base text-[#18181B]">
+                // 实验室天梯榜评级与测试准则 (E-E-A-T BENCHMARK METHODOLOGY)
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs font-mono text-zinc-600 leading-relaxed">
+                <div class="p-3 bg-zinc-50 border border-zinc-200">
+                    <div class="font-bold text-zinc-900 mb-1">01. 真实物理环境压测</div>
+                    排查一切虚拟模拟参数，使用真实 1000M FTTH 宽带晚高峰轮询，杜绝单次峰值虚标。
+                </div>
+                <div class="p-3 bg-zinc-50 border border-zinc-200">
+                    <div class="font-bold text-zinc-900 mb-1">02. 独立链路硬成本核算</div>
+                    结合 IDC 跨境专线批发成本与超售比，提前预警因无序倾销导致的跑路与断联风险。
+                </div>
+                <div class="p-3 bg-zinc-50 border border-zinc-200">
+                    <div class="font-bold text-zinc-900 mb-1">03. 拒绝商业付费插队</div>
+                    所有节点推荐基于客观测试丢包与抖动，严禁任何形式的商业付费置顶。
+                </div>
+            </div>
+        </div>
+
+        <!-- 核心推荐研报闭环 -->
+        <div class="industrial-card p-5 space-y-3">
+            <div class="flex items-center justify-between border-b border-zinc-200 pb-2">
+                <div class="flex items-center gap-2">
+                    <span class="tag-mono bg-[#18181B] text-white border-0 font-bold">REPORTS</span>
+                    <h3 class="font-bold text-sm text-[#18181B]">核心实验室独立技术研报</h3>
+                </div>
+                <a href="/#blog" class="text-xs font-mono text-[#FF5500] hover:underline font-bold">查看全部 24 篇文献 →</a>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs font-mono">
+                <a href="/posts/doc-26120.html" class="p-3 border border-zinc-300 hover:border-[#18181B] bg-zinc-50 hover:bg-white transition-colors flex flex-col justify-between">
+                    <div>
+                        <div class="font-bold text-zinc-900 mb-1">[DOC-26120] 机场社区健康度白皮书</div>
+                        <div class="text-[11px] text-zinc-500">深入拆解专线真实硬成本与跑路征兆</div>
+                    </div>
+                    <div class="text-[#FF5500] font-bold mt-2">阅读报告 ↗</div>
+                </a>
+                <a href="/posts/doc-26128.html" class="p-3 border border-zinc-300 hover:border-[#18181B] bg-zinc-50 hover:bg-white transition-colors flex flex-col justify-between">
+                    <div>
+                        <div class="font-bold text-zinc-900 mb-1">[DOC-26128] 2026年度避坑报告</div>
+                        <div class="text-[11px] text-zinc-500">10个机房与6大协议深度横评</div>
+                    </div>
+                    <div class="text-[#FF5500] font-bold mt-2">阅读报告 ↗</div>
+                </a>
+                <a href="/posts/doc-26124.html" class="p-3 border border-zinc-300 hover:border-[#18181B] bg-zinc-50 hover:bg-white transition-colors flex flex-col justify-between">
+                    <div>
+                        <div class="font-bold text-zinc-900 mb-1">[DOC-26124] WebRTC真实IP防泄漏</div>
+                        <div class="text-[11px] text-zinc-500">STUN 穿透与 Fake-IP 虚拟阻断实战</div>
+                    </div>
+                    <div class="text-[#FF5500] font-bold mt-2">阅读报告 ↗</div>
+                </a>
+                <a href="/posts/doc-26116.html" class="p-3 border border-zinc-300 hover:border-[#18181B] bg-zinc-50 hover:bg-white transition-colors flex flex-col justify-between">
+                    <div>
+                        <div class="font-bold text-zinc-900 mb-1">[DOC-26116] iKuai+OpenWrt双路由</div>
+                        <div class="text-[11px] text-zinc-500">MosDNS 境内直连与境外旁路毫秒分流</div>
+                    </div>
+                    <div class="text-[#FF5500] font-bold mt-2">阅读报告 ↗</div>
+                </a>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- 底部版权栏 -->
+    <footer class="bg-[#18181B] text-white py-8 px-4 font-mono text-xs border-t-2 border-[#18181B] mt-12">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="space-y-2 text-center md:text-left">
+                <div class="flex items-center justify-center md:justify-start gap-2">
+                    <span class="bg-[#FF5500] text-white font-bold px-2 py-0.5 text-xs">梯子社区</span>
+                    <span class="text-zinc-400">// TIZISHEQU.COM</span>
+                </div>
+                <p class="text-zinc-400 text-[11px]">
+                    OFFICIAL DOMAIN: <a href="https://tizishequ.com" class="text-[#FF5500] underline font-bold">HTTPS://TIZISHEQU.COM</a> // TELEMETRY VERIFIED LOCALLY.
+                </p>
+                <p class="text-zinc-500 text-[10px]">
+                    © 2026 梯子社区 (tizishequ.com) // 真实机房探针监控 // 保持客观中立
+                </p>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-3 text-[11px]">
+                <a href="/leaderboard.html" class="text-white hover:text-[#FF5500] underline font-bold">[ 天梯榜 ]</a>
+                <a href="/#blog" class="text-zinc-300 hover:text-[#FF5500] underline">[ 博客日志 ]</a>
+                <a href="/#blacklist" class="text-zinc-300 hover:text-[#FF5500] underline">[ 避坑档案 ]</a>
+                <a href="/sitemap.html" class="text-zinc-300 hover:text-[#FF5500] underline">[ 网站地图 ]</a>
+                <a href="/llms.txt" class="text-zinc-300 hover:text-[#FF5500] underline">[ llms.txt ]</a>
+                <a href="/sitemap.xml" target="_blank" class="text-[#FF5500] hover:underline font-bold">[ XML 地图 ]</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 客户端交互脚本 (平滑无外部依赖) -->
+    <script>
+        function filterTable(category) {
+            const btns = document.querySelectorAll('#filter-btn-group button');
+            btns.forEach(b => {
+                if (b.getAttribute('data-filter') === category) {
+                    b.classList.add('active');
+                } else {
+                    b.classList.remove('active');
+                }
+            });
+
+            const rows = document.querySelectorAll('#leaderboard-tbody tr');
+            rows.forEach(r => {
+                const cats = r.getAttribute('data-category') || '';
+                if (category === 'all' || cats.includes(category)) {
+                    r.style.display = '';
+                } else {
+                    r.style.display = 'none';
+                }
+            });
+        }
+
+        function searchTable() {
+            const val = document.getElementById('leaderboard-search').value.toLowerCase().trim();
+            const rows = document.querySelectorAll('#leaderboard-tbody tr');
+            rows.forEach(r => {
+                const text = r.innerText.toLowerCase();
+                if (text.includes(val)) {
+                    r.style.display = '';
+                } else {
+                    r.style.display = 'none';
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
