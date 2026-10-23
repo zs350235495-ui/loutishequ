@@ -262,6 +262,7 @@ server.listen(8999, '127.0.0.1', async () => {
         '/doc-26120.html',
         '/doc-26124.html',
         '/doc-26128.html',
+        '/doc-26130.html',
         '/css/styles.css',
         '/assets/logo.png',
         '/assets/favicon.png',
