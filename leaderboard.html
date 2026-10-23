@@ -109,35 +109,225 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;0,800;1,400&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    
+
     <style>
-        /* 确保 html/body 填满屏幕，严禁外层 body 用居中把页面挤成一团 */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         html, body {
             width: 100% !important;
             min-height: 100vh !important;
             margin: 0 !important;
             padding: 0 !important;
             background-color: #F8F9FA !important;
+            background-image: radial-gradient(#18181B 0.75px, transparent 0.75px) !important;
+            background-size: 16px 16px !important;
+            color: #18181B !important;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+            line-height: 1.5 !important;
+            -webkit-font-smoothing: antialiased !important;
             display: block !important;
         }
 
-        /* 主内容容器：自然撑满，大屏居中展示 */
+        header {
+            width: 100% !important;
+            background-color: #FFFFFF !important;
+            border-bottom: 2px solid #18181B !important;
+            display: block !important;
+        }
+
+        header > div {
+            width: 96% !important;
+            max-width: 1400px !important;
+            margin: 0 auto !important;
+            padding: 12px 16px !important;
+            display: flex !important;
+            flex-wrap: wrap !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            gap: 12px !important;
+        }
+
         .container, main, #app, .main-layout, .main-container {
             width: 96% !important;
             max-width: 1400px !important;
             margin: 0 auto !important;
             padding: 24px 16px !important;
             box-sizing: border-box !important;
+            display: block !important;
         }
 
-        /* 节点测速表格：允许 100% 充满容器，字体自适应 */
         table, .benchmark-table, .tech-table {
             width: 100% !important;
             table-layout: auto !important;
             border-collapse: collapse !important;
         }
+
+        .tech-table th, .tech-table td {
+            border: 1px solid #18181B !important;
+            padding: 10px 12px !important;
+            font-size: 0.85rem !important;
+            font-family: 'JetBrains Mono', monospace !important;
+        }
+
+        .tech-table th {
+            background-color: #18181B !important;
+            color: #FFFFFF !important;
+            font-weight: 700 !important;
+            text-align: left !important;
+        }
+
+        footer {
+            width: 100% !important;
+            background-color: #18181B !important;
+            border-top: 2px solid #18181B !important;
+            padding: 2rem 1rem !important;
+            margin-top: 3rem !important;
+            display: block !important;
+        }
+
+        footer > div {
+            width: 96% !important;
+            max-width: 1400px !important;
+            margin: 0 auto !important;
+            display: flex !important;
+            flex-wrap: wrap !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            gap: 1.5rem !important;
+        }
+
+        .industrial-card {
+            background-color: #FFFFFF !important;
+            border: 2px solid #18181B !important;
+            box-shadow: 4px 4px 0px #18181B !important;
+            margin-bottom: 1.5rem !important;
+        }
+
+        .btn-industrial {
+            font-family: 'JetBrains Mono', monospace !important;
+            background-color: #FFFFFF !important;
+            color: #18181B !important;
+            border: 2px solid #18181B !important;
+            box-shadow: 2px 2px 0px #18181B !important;
+            font-weight: 700 !important;
+            padding: 6px 12px !important;
+            font-size: 0.75rem !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            text-decoration: none !important;
+            cursor: pointer !important;
+        }
+
+        .btn-industrial:hover {
+            background-color: #F1F5F9 !important;
+        }
+
+        .btn-industrial.active {
+            background-color: #18181B !important;
+            color: #FFFFFF !important;
+        }
+
+        .btn-industrial-orange {
+            font-family: 'JetBrains Mono', monospace !important;
+            background-color: #FF5500 !important;
+            color: #FFFFFF !important;
+            border: 2px solid #18181B !important;
+            box-shadow: 2px 2px 0px #18181B !important;
+            font-weight: 700 !important;
+            padding: 6px 12px !important;
+            font-size: 0.75rem !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            text-decoration: none !important;
+            cursor: pointer !important;
+        }
+
+        .tag-mono {
+            font-family: 'JetBrains Mono', monospace !important;
+            font-size: 0.75rem !important;
+            padding: 2px 6px !important;
+            border: 1px solid #18181B !important;
+            background-color: #F1F5F9 !important;
+            color: #18181B !important;
+            font-weight: 600 !important;
+            display: inline-flex !important;
+            align-items: center !important;
+        }
+
+        .site-logo-container {
+            width: 40px !important;
+            height: 40px !important;
+            min-width: 40px !important;
+            max-width: 40px !important;
+            min-height: 40px !important;
+            max-height: 40px !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            border: 2px solid #18181B !important;
+            background-color: #FF5500 !important;
+            box-shadow: 2px 2px 0px #18181B !important;
+            overflow: hidden !important;
+            flex-shrink: 0 !important;
+        }
+
+        .site-logo-container img {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+            display: block !important;
+        }
+
+        .reports-grid {
+            display: grid !important;
+            grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+            gap: 16px !important;
+            width: 100% !important;
+        }
+
+        @media (min-width: 640px) {
+            .reports-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .reports-grid {
+                grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+            }
+        }
+
+        .report-card,
+        .reports-grid > a {
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: space-between !important;
+            background-color: #FFFFFF !important;
+            border: 2px solid #18181B !important;
+            padding: 14px !important;
+            box-shadow: 3px 3px 0px #18181B !important;
+            text-decoration: none !important;
+            color: #18181B !important;
+            min-height: 120px !important;
+        }
+
+        .report-card:hover,
+        .reports-grid > a:hover {
+            background-color: #FFF7ED !important;
+            transform: translate(-2px, -2px) !important;
+            box-shadow: 5px 5px 0px #18181B !important;
+        }
     </style>
+
 </head>
-<body class="min-h-screen flex flex-col justify-between">
+<body class="min-h-screen antialiased">
 
     <!-- 顶部固定工业导航栏 -->
     <header class="border-b-2 border-[#18181B] bg-white sticky top-0 z-50">
