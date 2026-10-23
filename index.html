@@ -2864,37 +2864,55 @@ tun:
 
     </main>
 
-    <!-- 6. FOOTER 工业注脚 -->
+        <!-- 6. FOOTER 工业注脚 (工整双层全宽自适应布局) -->
     <footer class="mt-12 bg-[#18181B] text-white border-t-2 border-[#18181B] py-8 px-4 font-mono text-xs">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="max-w-7xl mx-auto space-y-5">
             
-            <div class="space-y-2 text-center md:text-left">
-                <div class="flex items-center justify-center md:justify-start gap-2">
-                    <span class="bg-[#FF5500] text-white font-bold px-2 py-0.5 text-xs">梯子社区</span>
-                    <span class="text-zinc-400">// TIZISHEQU.COM</span>
+            <!-- 上层：品牌身份、官方域名与版权声明 (左右两端对齐) -->
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pb-5 border-b border-zinc-800">
+                <div class="space-y-1.5 text-left">
+                    <div class="flex items-center gap-2">
+                        <span class="bg-[#FF5500] text-white font-bold px-2 py-0.5 text-xs">梯子社区</span>
+                        <span class="text-zinc-400 font-bold">// TIZISHEQU.COM</span>
+                        <span class="text-zinc-600 hidden sm:inline">|</span>
+                        <span class="text-zinc-400 text-[11px]">
+                            OFFICIAL DOMAIN: <a href="https://tizishequ.com" target="_blank" rel="noopener" class="text-[#FF5500] hover:underline font-bold">https://tizishequ.com</a>
+                        </span>
+                    </div>
+                    <p class="text-zinc-400 text-[11px]">
+                        © 2026 梯子社区 (tizishequ.com) // 第三方中立评测 // 拒绝商业插队与虚假软文
+                    </p>
                 </div>
-                <p class="text-zinc-400 text-[11px]">
-                    OFFICIAL DOMAIN: <a href="https://tizishequ.com" target="_blank" rel="noopener" class="text-[#FF5500] hover:underline font-bold">HTTPS://TIZISHEQU.COM</a> // DATA VERIFIED LOCALLY.
-                </p>
-                <p class="text-zinc-500 text-[10px]">
-                    © 2026 梯子社区 (tizishequ.com) // 保持中立 // 拒绝付费插队与虚假广告
-                </p>
+
+                <div class="text-zinc-500 text-[10px] text-left md:text-right space-y-1">
+                    <div>SWISS INDUSTRIAL STYLE // FRONTEND ENGINE V2.4</div>
+                    <div>DATA VERIFIED LOCALLY // ALL RIGHTS RESERVED.</div>
+                </div>
             </div>
 
-            <div class="flex flex-wrap justify-center gap-2 text-[11px]">
-                <button onclick="switchView('leaderboard')" class="text-zinc-300 hover:text-[#FF5500] underline">[ 00 天梯榜 ]</button>
-                <button onclick="switchView('blog')" class="text-zinc-300 hover:text-[#FF5500] underline">[ 01 博客日志 ]</button>
-                <button onclick="switchView('blacklist')" class="text-zinc-300 hover:text-[#FF5500] underline">[ 02 避坑档案 ]</button>
-                <a href="/sitemap.html" class="text-zinc-300 hover:text-[#FF5500] underline font-bold">[ 网站地图 (Sitemap) ]</a>
-                <a href="/sitemap.xml" target="_blank" class="text-[#FF5500] hover:underline font-bold">[ XML地图 ]</a>
-                <button onclick="switchView('reviews')" class="text-zinc-300 hover:text-[#FF5500] underline">[ 03 测评库 ]</button>
-                <button onclick="switchView('guides')" class="text-zinc-300 hover:text-[#FF5500] underline">[ 04 调优指南 ]</button>
-                <a href="/posts/doc-26120.html" target="_blank" rel="noopener noreferrer" class="text-[#FF5500] hover:underline font-bold">[ TG 官方频道 ↗ ]</a>
-            </div>
+            <!-- 下层：导航按钮连贯排列在一行 (横向自适应舒展，杜绝断行与大面积空白) -->
+            <div class="flex flex-wrap items-center justify-between gap-y-2 gap-x-4 text-[11px] pt-1">
+                <div class="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-zinc-300">
+                    <button onclick="switchView('leaderboard')" class="hover:text-[#FF5500] transition-colors cursor-pointer bg-transparent border-0 p-0 text-zinc-300">[ 00 天梯榜 ]</button>
+                    <span class="text-zinc-700">·</span>
+                    <button onclick="switchView('blog')" class="hover:text-[#FF5500] transition-colors cursor-pointer bg-transparent border-0 p-0 text-zinc-300">[ 01 博客日志 ]</button>
+                    <span class="text-zinc-700">·</span>
+                    <button onclick="switchView('blacklist')" class="hover:text-[#FF5500] transition-colors cursor-pointer bg-transparent border-0 p-0 text-zinc-300">[ 02 避坑档案 ]</button>
+                    <span class="text-zinc-700">·</span>
+                    <button onclick="switchView('reviews')" class="hover:text-[#FF5500] transition-colors cursor-pointer bg-transparent border-0 p-0 text-zinc-300">[ 03 测评档案库 ]</button>
+                    <span class="text-zinc-700">·</span>
+                    <button onclick="switchView('guides')" class="hover:text-[#FF5500] transition-colors cursor-pointer bg-transparent border-0 p-0 text-zinc-300">[ 04 调优指南 ]</button>
+                    <span class="text-zinc-700">·</span>
+                    <a href="/sitemap.html" class="hover:text-[#FF5500] transition-colors text-zinc-300 font-bold">[ 网站地图 (Sitemap) ]</a>
+                    <span class="text-zinc-700">·</span>
+                    <a href="/sitemap.xml" target="_blank" class="hover:text-[#FF5500] transition-colors text-zinc-300 font-bold">[ XML地图 ]</a>
+                </div>
 
-            <div class="text-zinc-500 text-[10px] text-center md:text-right space-y-1">
-                <div>SWISS INDUSTRIAL STYLE // FRONTEND ENGINE V2.4</div>
-                <div>© 2026 VPN LAB. ALL RIGHTS RESERVED.</div>
+                <div class="flex items-center gap-2">
+                    <a href="/posts/doc-26120.html" class="text-[#FF5500] hover:underline font-bold flex items-center gap-1">
+                        <span>[ 2026 年度白皮书 ↗ ]</span>
+                    </a>
+                </div>
             </div>
 
         </div>

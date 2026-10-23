@@ -741,27 +741,48 @@ proxy-groups:
     </main>
 
     <!-- 底部版权栏 -->
+        <!-- 底部版权栏 (工整双层全宽自适应布局) -->
     <footer class="mt-12 bg-[#18181B] text-white border-t-2 border-[#18181B] py-8 px-4 font-mono text-xs">
-        <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-            <div class="space-y-2 text-center md:text-left">
-                <div class="flex items-center justify-center md:justify-start gap-2">
-                    <span class="bg-[#FF5500] text-white font-bold px-2 py-0.5 text-xs">梯子社区</span>
-                    <span class="text-zinc-400">// TIZISHEQU.COM</span>
+        <div class="max-w-7xl mx-auto space-y-5">
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pb-5 border-b border-zinc-800">
+                <div class="space-y-1.5 text-left">
+                    <div class="flex items-center gap-2">
+                        <span class="bg-[#FF5500] text-white font-bold px-2 py-0.5 text-xs">梯子社区</span>
+                        <span class="text-zinc-400 font-bold">// TIZISHEQU.COM</span>
+                        <span class="text-zinc-600 hidden sm:inline">|</span>
+                        <span class="text-zinc-400 text-[11px]">
+                            OFFICIAL DOMAIN: <a href="https://tizishequ.com" target="_blank" rel="noopener" class="text-[#FF5500] hover:underline font-bold">https://tizishequ.com</a>
+                        </span>
+                    </div>
+                    <p class="text-zinc-400 text-[11px]">
+                        © 2026 梯子社区 (tizishequ.com) // 第三方中立评测 // 拒绝商业插队与虚假软文
+                    </p>
                 </div>
-                <p class="text-zinc-400 text-[11px]">
-                    OFFICIAL DOMAIN: <a href="https://tizishequ.com" class="text-[#FF5500] underline font-bold">HTTPS://TIZISHEQU.COM</a> // DATA VERIFIED LOCALLY.
-                </p>
-                <p class="text-zinc-500 text-[10px]">
-                    © 2026 梯子社区 (tizishequ.com) // 保持中立 // 拒绝付费插队与虚假广告
-                </p>
+
+                <div class="text-zinc-500 text-[10px] text-left md:text-right space-y-1">
+                    <div>SWISS INDUSTRIAL STYLE // FRONTEND ENGINE V2.4</div>
+                    <div>DATA VERIFIED LOCALLY // ALL RIGHTS RESERVED.</div>
+                </div>
             </div>
 
-            <div class="flex flex-wrap justify-center gap-2 text-[11px]">
-                <a href="/leaderboard.html" class="text-zinc-300 hover:text-[#FF5500] underline">[ 00 天梯榜 ]</a>
-                <a href="/#blog" class="text-zinc-300 hover:text-[#FF5500] underline">[ 01 博客日志 ]</a>
-                <a href="/#blacklist" class="text-zinc-300 hover:text-[#FF5500] underline">[ 02 避坑档案 ]</a>
-                <a href="/sitemap.html" class="text-zinc-300 hover:text-[#FF5500] underline">[ 网站地图 ]</a>
-                <a href="/sitemap.xml" target="_blank" class="text-[#FF5500] hover:underline font-bold">[ XML地图 ]</a>
+            <div class="flex flex-wrap items-center justify-between gap-y-2 gap-x-4 text-[11px] pt-1">
+                <div class="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-zinc-300">
+                    <a href="/" class="hover:text-[#FF5500] transition-colors text-zinc-300">[ 00 天梯榜 ]</a>
+                    <span class="text-zinc-700">·</span>
+                    <a href="/#blog" class="hover:text-[#FF5500] transition-colors text-zinc-300">[ 01 博客日志 ]</a>
+                    <span class="text-zinc-700">·</span>
+                    <a href="/#blacklist" class="hover:text-[#FF5500] transition-colors text-zinc-300">[ 02 避坑档案 ]</a>
+                    <span class="text-zinc-700">·</span>
+                    <a href="/sitemap.html" class="hover:text-[#FF5500] transition-colors text-zinc-300 font-bold">[ 网站地图 (Sitemap) ]</a>
+                    <span class="text-zinc-700">·</span>
+                    <a href="/sitemap.xml" target="_blank" class="hover:text-[#FF5500] transition-colors text-zinc-300 font-bold">[ XML地图 ]</a>
+                </div>
+
+                <div class="flex items-center gap-2">
+                    <a href="/posts/doc-26120.html" class="text-[#FF5500] hover:underline font-bold flex items-center gap-1">
+                        <span>[ 2026 年度白皮书 ↗ ]</span>
+                    </a>
+                </div>
             </div>
         </div>
     </footer>
