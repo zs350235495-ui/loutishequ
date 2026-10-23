@@ -9,8 +9,8 @@ Allow: /*.png$
 Allow: /*.jpg$
 Allow: /*.jpeg$
 Allow: /*.webp$
-Allow: /*.ico$
 Allow: /assets/
+Allow: /css/
 Allow: /posts/
 Disallow: /scratch/
 

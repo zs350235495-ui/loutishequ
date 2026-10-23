@@ -19,22 +19,88 @@
     <meta property="og:title" content="梯子社区 - 机场测速天梯榜与网络协议观测台">
     <meta property="og:description" content="梯子社区 (tizishequ.com) - 拒绝商业软文，基于72小时网络抓包与物理路由追踪的去伪存真观测台。">
     <meta property="og:site_name" content="梯子社区 tizishequ.com">
+    <meta property="og:image" content="https://tizishequ.com/assets/logo.png">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://tizishequ.com/">
     <meta name="twitter:title" content="梯子社区 - 机场测速天梯榜与网络协议观测台">
     <meta name="twitter:description" content="梯子社区 (tizishequ.com) - 专注去伪存真的网络代理硬件与专线节点测速观测台。">
+    <meta name="twitter:image" content="https://tizishequ.com/assets/logo.png">
 
-    <!-- Schema.org 结构化数据 (SEO 权重增强) -->
+    <!-- Schema.org 结构化数据 (E-E-A-T 实体权重与富媒体问答增强) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "梯子社区",
-      "alternateName": ["tizishequ.com", "梯子社区官网", "VPN LAB"],
-      "url": "https://tizishequ.com/",
-      "description": "2026 机场推荐·节点测速天梯榜 & 跑路避坑档案"
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://tizishequ.com/#website",
+          "name": "梯子社区",
+          "alternateName": ["tizishequ.com", "梯子社区官网", "TIZISHEQU LAB"],
+          "url": "https://tizishequ.com/",
+          "inLanguage": "zh-CN",
+          "description": "2026 机场推荐·节点测速天梯榜 & 跑路避坑档案与工业级代理技术博客",
+          "publisher": {
+            "@id": "https://tizishequ.com/#organization"
+          }
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://tizishequ.com/#organization",
+          "name": "梯子社区网络遥测实验室",
+          "alternateName": "TIZISHEQU.COM TELEMETRY LAB",
+          "url": "https://tizishequ.com/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://tizishequ.com/assets/logo.png"
+          },
+          "sameAs": [
+            "https://github.com/zs350235495-ui/tizishequ"
+          ],
+          "description": "专注去伪存真的网络代理硬件与专线节点测速观测台，提供客观中立的晚高峰抗丢包性能监测与网络协议技术研报。"
+        },
+        {
+          "@type": "Person",
+          "@id": "https://tizishequ.com/#author",
+          "name": "梯子社区首席网络工程师与专线巡检员",
+          "jobTitle": "Chief Network Telemetry Architect",
+          "worksFor": {
+            "@id": "https://tizishequ.com/#organization"
+          },
+          "description": "专注于跨境 IPLC/IEPL 物理专线架构、BGP 路由调优、QoS 队列抗丢包算法及现代抗审查代理协议深度测评。"
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://tizishequ.com/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "如何准确辨别真正的跨境内网专线（IPLC/IEPL）与假专线？",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "真正的 IPLC/IEPL 跨境专线直接通过物理内网专线光纤传输，不经过公网 GFW 节点，MTR 路由跳数呈现内网私有 IP 转发，晚高峰丢包率接近 0%。而通过公网中继或普通隧道假冒的专线，晚高峰时通常丢包率严重飙升且延迟剧烈抖动。"
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "晚高峰（20:00 - 23:00）代理节点出现严重丢包与卡顿的根本原因是什么？",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "根本原因是服务商在带宽资源上的超售倍率过高，导致晚高峰骨干网国际出口拥堵时触发运营商 QoS 限速丢包机制。梯子社区建议优先选用具备多入口容灾调度和带宽冗余保障的高评级服务商。"
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "如何避免在科学上网过程中出现真实物理 IP 与 DNS 泄漏？",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "需全面封堵 WebRTC STUN 穿透、启用客户端 Fake-IP 或全局代理 UDP 转发，并确保境内域名由本地无污染 DNS 解析、境外域名由远程代理解析，规避双向污染。"
+              }
+            }
+          ]
+        }
+      ]
     }
     </script>
     <!-- Google Fonts -->
@@ -2554,7 +2620,7 @@ header img, .site-logo, .header-logo, .header-logo img {
                                 <span class="hover:text-zinc-900">#机场跑路预警</span><span class="hover:text-zinc-900">#SLA服务质量监测</span><span class="hover:text-zinc-900">#链路成本核算</span><span class="hover:text-zinc-900">#机场社区观测档案</span>
                             </div>
                             <div class="flex items-center gap-3">
-                                <a href="posts/doc-26120.html" class="font-mono text-xs font-bold text-zinc-600 hover:text-zinc-900 hover:underline">
+                                <a href="/posts/doc-26120.html" class="font-mono text-xs font-bold text-zinc-600 hover:text-zinc-900 hover:underline">
                                     [ 独立单页 ↗ ]
                                 </a>
                                 <button onclick="openArticleDetail('DOC-26120')" class="font-mono text-xs font-bold text-[#FF5500] hover:underline flex items-center gap-1">

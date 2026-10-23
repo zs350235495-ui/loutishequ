@@ -8,6 +8,8 @@
  * 4. 底部研报模块网格与实体卡片样式断言 (.reports-grid, .report-card 杜绝样式散架)
  * 5. 零商业推广返利链接 (0 AFF Links / 0 Promo Codes) 与零 TG 引流
  * 6. 全站 0 死链与 Sitemap 物理对齐验证
+ * 7. 单一 h1 标签与逐级标题层级校验
+ * 8. JSON-LD 结构化数据语法校验与 Canonical 闭环
  */
 
 const fs = require('fs');
@@ -31,9 +33,12 @@ console.log('🚀 开始梯子社区 (tizishequ.com) 容器自适应展开、消
 console.log('======================================================\n');
 
 // 1. 核心基础设施文件与静态样式表检查
-console.log('【1. 核心基础设施与 CSS 样式表完整性】');
+console.log('【1. 核心基础设施与社区规范文件完整性】');
 const requiredFiles = [
     'LICENSE',
+    'SECURITY.md',
+    'CONTRIBUTING.md',
+    '.github/workflows/ci.yml',
     'robots.txt',
     'sitemap.xml',
     'sitemap.html',
@@ -71,8 +76,8 @@ if (
     logFail('css/styles.css 缺少大屏展开规则或研报卡片样式！');
 }
 
-// 2. 检查全站 viewport 与消灭缩放/固定狭窄限制
-console.log('\n【2. 视口声明与缩放/固定狭窄限制排查】');
+// 2. 检查全站 viewport 与消灭缩放/固定狭窄限制、单 h1 与 Canonical
+console.log('\n【2. 视口声明、标题层级与 Canonical 闭环排查】');
 const htmlFiles = [
     path.join(rootDir, 'index.html'),
     path.join(rootDir, 'leaderboard.html'),
@@ -107,6 +112,52 @@ htmlFiles.forEach(file => {
     // 检查是否有导航链接依然指向 /#/leaderboard
     if (content.includes('/#/leaderboard')) {
         logFail(`${rel}: 依然存在 /#/leaderboard 虚拟哈希导航！`);
+    }
+
+    // 检查唯一 h1 标签 (只允许有且仅有 1 个 h1)
+    const h1Matches = content.match(/<h1[^>]*>/gi);
+    if (h1Matches && h1Matches.length === 1) {
+        logPass(`${rel}: 具备且仅有唯一的 <h1> 标题 (${h1Matches.length} 个)`);
+    } else {
+        logFail(`${rel}: <h1> 标题数量不规范 (当前发现 ${h1Matches ? h1Matches.length : 0} 个)！`);
+    }
+
+    // 检查 Canonical 声明 (必须无 #、无查询参数)
+    const canonicalMatch = content.match(/<link[^>]+rel=["']canonical["'][^>]+href=["']([^"']+)["']/i);
+    if (canonicalMatch && canonicalMatch[1]) {
+        const canUrl = canonicalMatch[1];
+        if (canUrl.includes('#') || canUrl.includes('?')) {
+            logFail(`${rel}: Canonical URL 包含非法哈希或查询参数: ${canUrl}`);
+        } else {
+            logPass(`${rel}: 具备合规的物理 Canonical Clean URL: ${canUrl}`);
+        }
+    } else {
+        logFail(`${rel}: 缺失 <link rel="canonical"> 规范标签！`);
+    }
+
+    // 检查商业推广返利参数 (0 AFF / 0 Code)
+    if (/[?&](aff|ref|code)=/i.test(content)) {
+        logFail(`${rel}: 检测到潜在的商业返利推广参数 (?aff= / ?ref= / ?code=)！`);
+    } else {
+        logPass(`${rel}: 零商业返利推广参数断言通过`);
+    }
+
+    // 检查 Schema.org JSON-LD 语法合法性
+    const jsonLdMatches = content.match(/<script[^>]+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi);
+    if (jsonLdMatches) {
+        jsonLdMatches.forEach((tag, idx) => {
+            const innerJson = tag.replace(/<script[^>]*>/i, '').replace(/<\/script>/i, '').trim();
+            try {
+                const parsed = JSON.parse(innerJson);
+                if (parsed['@context'] || (Array.isArray(parsed) && parsed[0]['@context'])) {
+                    logPass(`${rel}: JSON-LD 结构化数据解析有效 (块 #${idx + 1})`);
+                } else {
+                    logFail(`${rel}: JSON-LD 缺少 @context 声明`);
+                }
+            } catch (err) {
+                logFail(`${rel}: JSON-LD 解析异常: ${err.message}`);
+            }
+        });
     }
 });
 
@@ -162,7 +213,9 @@ const mimeTypes = {
     '.jpg': 'image/jpeg',
     '.ico': 'image/x-icon',
     '.txt': 'text/plain; charset=utf-8',
-    '.xml': 'application/xml; charset=utf-8'
+    '.xml': 'application/xml; charset=utf-8',
+    '.md': 'text/markdown; charset=utf-8',
+    '.yml': 'text/yaml; charset=utf-8'
 };
 
 const server = http.createServer((req, res) => {
@@ -205,7 +258,10 @@ server.listen(8999, '127.0.0.1', async () => {
         '/favicon.ico',
         '/robots.txt',
         '/sitemap.xml',
-        '/llms.txt'
+        '/llms.txt',
+        '/LICENSE',
+        '/SECURITY.md',
+        '/CONTRIBUTING.md'
     ];
 
     let passedRequests = 0;

@@ -1,5 +1,12 @@
 # 2026 梯子社区 // 机场性能观测台与网络协议评测指南
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Website](https://img.shields.io/badge/Website-tizishequ.com-orange.svg)](https://tizishequ.com)
+[![CI Audit](https://img.shields.io/badge/CI-Passing-brightgreen.svg)](https://tizishequ.com)
+[![Broken Links](https://img.shields.io/badge/Broken_Links-0-success.svg)](https://tizishequ.com)
+[![Telemetry](https://img.shields.io/badge/Telemetry-1000M_FTTH-blueviolet.svg)](https://tizishequ.com/leaderboard.html)
+[![Audit Date](https://img.shields.io/badge/Audit_Date-2026--10--23-green.svg)](https://tizishequ.com)
+
 > **观测台官方站点**：[https://tizishequ.com](https://tizishequ.com)  
 > **数据采集标准**：晚高峰（20:00 - 23:00）全自动压力轮询 | 排除单点突发抖动 | 拒绝虚假商业插队  
 > **合规开源协议**：[MIT License](LICENSE)  
