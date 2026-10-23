@@ -75,6 +75,94 @@
     
 
     <style>
+
+/* ==========================================================================
+   Header 紧凑横向对齐优化 (左 Logo 右标题，垂直居中对齐)
+   ========================================================================== */
+header, .site-header {
+  width: 100% !important;
+  background-color: #FFFFFF !important;
+  border-bottom: 2px solid #000 !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 50 !important;
+  display: block !important;
+}
+
+header > div {
+  width: 96% !important;
+  max-width: 1280px !important;
+  margin: 0 auto !important;
+  padding: 8px 16px !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  flex-wrap: wrap !important;
+  gap: 16px !important;
+  box-sizing: border-box !important;
+}
+
+.header-card {
+  display: flex !important;
+  flex-direction: row !important; /* 强制水平排列 */
+  align-items: center !important;  /* 垂直居中对齐 */
+  justify-content: flex-start !important; /* 靠左排列 */
+  gap: 16px !important;            /* Logo 与文字间距 */
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+}
+
+/* 控制 Logo 尺寸精致紧凑 (48px) */
+header img, .site-logo, .header-logo, .header-logo img {
+  width: 48px !important;
+  height: 48px !important;
+  min-width: 48px !important;
+  min-height: 48px !important;
+  max-width: 48px !important;
+  max-height: 48px !important;
+  object-fit: contain !important;
+  display: block !important;
+  margin: 0 !important;
+  border-radius: 9999px !important;
+  overflow: hidden !important;
+}
+
+.header-logo {
+  border: 2px solid #000 !important;
+  box-shadow: 2px 2px 0px #000 !important;
+  background: #ffffff !important;
+  flex-shrink: 0 !important;
+}
+
+/* 标题文字区域 */
+.header-text, .brand-info {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  text-align: left !important;
+}
+
+/* 主标题文字 */
+.header-text h1, .site-title, h1.site-title {
+  font-size: 24px !important;
+  font-weight: 900 !important;
+  margin: 0 !important;
+  line-height: 1.2 !important;
+  letter-spacing: -0.5px !important;
+  color: #000000 !important;
+}
+
+/* 副标题小字 */
+.header-text p, .site-subtitle, .sub-desc {
+  font-size: 13px !important;
+  color: #555555 !important;
+  margin: 4px 0 0 0 !important;
+  font-family: monospace, sans-serif !important;
+}
+
+
         /* ==========================================================================
            全站纯原生核心样式 (100% 离线自闭环，杜绝 CDN 丢失导致样式裸奔与 Logo 畸大)
            ========================================================================== */
@@ -340,7 +428,7 @@
     </style>
 
 </head>
-<body class="min-h-screen antialiased">>
+<body class="min-h-screen antialiased">
 
     <!-- 全局状态条 (TOP SYSTEM BAR) -->
     <div class="bg-[#18181B] text-white py-1 px-4 text-xs font-mono border-b-2 border-[#18181B] flex flex-wrap justify-between items-center z-50">
@@ -358,30 +446,21 @@
         </div>
     </div>
 
-    <!-- 1. HEADER 全局工业标牌 -->
-    <header class="sticky top-0 bg-[#FFFFFF] border-b-2 border-[#18181B] z-40 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
-            <!-- 左侧 LOGO 与标牌 -->
-            <div class="flex items-center">
-                <a href="#leaderboard" onclick="switchView('leaderboard')" class="flex items-center gap-3 group">
-                    <!-- 品牌徽标 Logo 图标 -->
-                    <div class="w-10 h-10 rounded-full border-2 border-[#18181B] shadow-[2px_2px_0px_#18181B] overflow-hidden bg-white shrink-0 flex items-center justify-center" style="width:40px !important;height:40px !important;min-width:40px !important;min-height:40px !important;max-width:40px !important;max-height:40px !important;border-radius:9999px !important;overflow:hidden !important;border:2px solid #18181B !important;box-shadow:2px 2px 0px #18181B !important;display:inline-flex !important;align-items:center !important;justify-content:center !important;background:#fff !important;flex-shrink:0 !important;">
-                        <img src="/assets/logo.png" alt="梯子社区 LOGO" width="40" height="40" style="width:40px !important;height:40px !important;max-width:40px !important;max-height:40px !important;object-fit:cover;display:block;">
+    <!-- 1. HEADER 全局工业标牌 (左 Logo 右标题横向紧凑排列) -->
+    <header class="site-header sticky top-0 bg-[#FFFFFF] border-b-2 border-[#18181B] z-40 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 py-2.5 flex items-center justify-between gap-4">
+            <!-- 左侧 LOGO 与标牌 (横向对齐) -->
+            <div class="header-card flex items-center">
+                <a href="#leaderboard" onclick="switchView('leaderboard')" class="flex items-center gap-3 group text-decoration-none" style="text-decoration:none !important;">
+                    <!-- 品牌徽标 Logo 图标 (48px) -->
+                    <div class="header-logo rounded-full overflow-hidden shrink-0 flex items-center justify-center">
+                        <img src="/assets/logo.png" alt="梯子社区 LOGO" width="48" height="48" class="site-logo">
                     </div>
 
-                    <!-- 文字标牌区（彻底精简，单行舒展） -->
-                    <div class="flex flex-col justify-center">
-                        <!-- 第一行：主品牌与简短定位（加粗单行，不折行） -->
-                        <div class="flex items-center gap-2">
-                            <h1 class="font-bold text-base text-zinc-900 tracking-tight whitespace-nowrap">梯子社区</h1>
-                            <span class="text-zinc-300 font-mono text-xs">/</span>
-                            <span class="text-xs font-mono font-medium text-zinc-600 tracking-wide whitespace-nowrap">机场性能观测台</span>
-                        </div>
-
-                        <!-- 第二行：极简等宽副标（提供干净的工程代号与域名） -->
-                        <div class="text-[11px] font-mono text-zinc-400 mt-0.5 whitespace-nowrap">
-                            tizishequ.com <span class="text-zinc-300">·</span> LAB_AUDIT_CONSOLE
-                        </div>
+                    <!-- 标题文字区域 -->
+                    <div class="header-text brand-info flex flex-col justify-center">
+                        <h1 class="site-title font-black text-zinc-900 tracking-tight leading-tight">梯子社区</h1>
+                        <p class="site-subtitle sub-desc font-mono text-zinc-500 text-xs">tizishequ.com · 机场性能观测台</p>
                     </div>
                 </a>
             </div>
@@ -403,7 +482,7 @@
                 <button id="nav-btn-guides" onclick="switchView('guides')" class="btn-industrial px-3 py-1.5">
                     [04 客户端调优]
                 </button>
-                <a href="/posts/doc-26120.html" target="_blank" rel="noopener noreferrer" class="btn-industrial-orange px-3 py-1.5 flex items-center gap-1">
+                <a href="/posts/doc-26120.html" class="btn-industrial-orange px-3 py-1.5 flex items-center gap-1 font-bold">
                     <span>年度实测白皮书</span>
                     <span class="text-xs">↗</span>
                 </a>
