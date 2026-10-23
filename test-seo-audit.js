@@ -2,9 +2,9 @@
  * test-seo-audit.js - 梯子社区 (tizishequ.com) 自动化门禁断言与 0 死链测试脚本
  * 
  * 包含：
- * 1. 本地真实 HTTP Server 挂载与网络请求断言 (HTTP 200 OK)
- * 2. 核心 CSS (/css/styles.css) 与静态资源完整性验证 (杜绝样式裸奔)
- * 3. 独立物理单页 /leaderboard.html 结构与场景化细分验证
+ * 1. 本地真实 HTTP Server 挂载与网络请求断言 (HTTP 200 OK，支持 /leaderboard 与 /leaderboard.html 双重物理路由)
+ * 2. 核心 CSS (/css/styles.css) 全局严格居中 (margin: 0 auto !important) 与排版断言 (杜绝左侧留白与样式裸奔)
+ * 3. 独立物理单页 /leaderboard.html 与 /leaderboard/index.html 结构与场景化细分验证
  * 4. 零商业推广返利链接 (0 AFF Links / 0 Promo Codes) 与零 TG 引流
  * 5. 全站 0 死链与 Sitemap 物理对齐验证
  */
@@ -26,7 +26,7 @@ function logFail(msg) {
 }
 
 console.log('\n======================================================');
-console.log('🚀 开始梯子社区 (tizishequ.com) 本地网络断言与架构审计');
+console.log('🚀 开始梯子社区 (tizishequ.com) 全局居中、路由静态化与 0 死链门禁审计');
 console.log('======================================================\n');
 
 // 1. 核心基础设施文件与静态样式表检查
@@ -39,6 +39,7 @@ const requiredFiles = [
     'llms.txt',
     '404.html',
     'leaderboard.html',
+    'leaderboard/index.html',
     'css/styles.css',
     'assets/logo.png',
     'assets/favicon.png',
@@ -54,54 +55,59 @@ requiredFiles.forEach(f => {
     }
 });
 
-// 检查 css/styles.css 是否包含 Logo 尺寸防御与工业设计类
+// 检查 css/styles.css 是否包含标准的全局居中规范
 const cssContent = fs.readFileSync(path.join(rootDir, 'css/styles.css'), 'utf8');
-if (cssContent.includes('.site-logo-container') && cssContent.includes('.industrial-card') && cssContent.includes('.btn-industrial')) {
-    logPass('css/styles.css 包含完整的 Logo 防护与 Neo-brutalism 工业样式');
+if (
+    cssContent.includes('margin-left: auto !important') &&
+    cssContent.includes('margin-right: auto !important') &&
+    cssContent.includes('max-width: 1280px !important') &&
+    cssContent.includes('padding-left: 16px !important') &&
+    cssContent.includes('box-sizing: border-box !important')
+) {
+    logPass('css/styles.css 包含标准严格响应式居中规则 (margin: 0 auto !important; max-width: 1280px; padding: 0 16px)');
 } else {
-    logFail('css/styles.css 缺少必要的防护类或工业样式');
+    logFail('css/styles.css 缺少全局强制居中与全宽自适应规则！');
 }
 
-// 2. 检查 leaderboard.html 前 6 名顺序与场景化细分
-console.log('\n【2. 排行榜 (leaderboard.html) 规范与场景化细分断言】');
-const lbContent = fs.readFileSync(path.join(rootDir, 'leaderboard.html'), 'utf8');
+// 2. 检查 leaderboard.html 与 leaderboard/index.html 前 6 名顺序与场景化细分
+console.log('\n【2. 排行榜 (leaderboard.html & leaderboard/index.html) 规范与场景化细分断言】');
+['leaderboard.html', 'leaderboard/index.html'].forEach(lbFile => {
+    const lbContent = fs.readFileSync(path.join(rootDir, lbFile), 'utf8');
+    const providers = ['环球梯', '大佬云', '云界线', '闪电鼠', '神行加速', '榴莲云'];
+    let lastIndex = -1;
+    let orderPass = true;
+    providers.forEach(p => {
+        const idx = lbContent.indexOf(p);
+        if (idx === -1) {
+            logFail(`${lbFile} 缺失核心服务商: ${p}`);
+            orderPass = false;
+        } else if (idx < lastIndex) {
+            logFail(`${lbFile} 服务商顺序错误: ${p} 出现在前置服务商之前`);
+            orderPass = false;
+        }
+        lastIndex = idx;
+    });
 
-// 必须按顺序出现
-const providers = ['环球梯', '大佬云', '云界线', '闪电鼠', '神行加速', '榴莲云'];
-let lastIndex = -1;
-let orderPass = true;
-providers.forEach(p => {
-    const idx = lbContent.indexOf(p);
-    if (idx === -1) {
-        logFail(`leaderboard.html 缺失核心服务商: ${p}`);
-        orderPass = false;
-    } else if (idx < lastIndex) {
-        logFail(`服务商顺序错误: ${p} 出现在前置服务商之前`);
-        orderPass = false;
+    if (orderPass) {
+        logPass(`${lbFile} 榜单前 6 名严格按规范排序: 环球梯 -> 大佬云 -> 云界线 -> 闪电鼠 -> 神行加速 -> 榴莲云`);
     }
-    lastIndex = idx;
-});
 
-if (orderPass) {
-    logPass('榜单前 6 名严格按规范排序: 环球梯 -> 大佬云 -> 云界线 -> 闪电鼠 -> 神行加速 -> 榴莲云');
-}
+    const scenarios = [
+        { name: '环球梯', kw: '全能旗舰' },
+        { name: '大佬云', kw: '企业级专线' },
+        { name: '云界线', kw: '开发者首选' },
+        { name: '闪电鼠', kw: '流媒体原生解锁' },
+        { name: '神行加速', kw: '极客备用专线' },
+        { name: '榴莲云', kw: '容灾标杆' }
+    ];
 
-// 场景化细分关键词断言
-const scenarios = [
-    { name: '环球梯', kw: '全能旗舰' },
-    { name: '大佬云', kw: '企业级专线' },
-    { name: '云界线', kw: '开发者首选' },
-    { name: '闪电鼠', kw: '流媒体原生解锁' },
-    { name: '神行加速', kw: '极客备用专线' },
-    { name: '榴莲云', kw: '容灾标杆' }
-];
-
-scenarios.forEach(s => {
-    if (lbContent.includes(s.kw)) {
-        logPass(`服务商 [${s.name}] 成功匹配场景细分: ${s.kw}`);
-    } else {
-        logFail(`服务商 [${s.name}] 缺少场景细分关键词: ${s.kw}`);
-    }
+    scenarios.forEach(s => {
+        if (lbContent.includes(s.kw)) {
+            logPass(`${lbFile} 服务商 [${s.name}] 成功匹配场景细分: ${s.kw}`);
+        } else {
+            logFail(`${lbFile} 服务商 [${s.name}] 缺少场景细分关键词: ${s.kw}`);
+        }
+    });
 });
 
 // 3. 全站 HTML 静态资源根绝对路径与 0 外部商业返利断言
@@ -109,6 +115,7 @@ console.log('\n【3. 全站 HTML 资源根绝对路径与平台风控断言】')
 const htmlFiles = [
     path.join(rootDir, 'index.html'),
     path.join(rootDir, 'leaderboard.html'),
+    path.join(rootDir, 'leaderboard/index.html'),
     path.join(rootDir, 'sitemap.html'),
     path.join(rootDir, '404.html'),
     path.join(rootDir, 'posts/doc-26116.html'),
@@ -128,7 +135,7 @@ htmlFiles.forEach(file => {
         logFail(`${rel}: 未引入 /css/styles.css`);
     }
 
-    // 检查是否有相对样式引用 (如 ./style.css 或 style.css)
+    // 检查是否有相对样式引用
     if (/<link[^>]+href=["'](?:\.\/|[a-zA-Z0-9_\-]+\.css)["']/i.test(content)) {
         logFail(`${rel}: 发现相对路径 CSS 引用`);
     }
@@ -156,7 +163,7 @@ htmlFiles.forEach(file => {
     }
 });
 
-// 4. 本地启动临时 HTTP Server 并进行全资源 200 OK 断言测试
+// 4. 本地启动临时 HTTP Server 并进行全资源 200 OK 断言测试 (支持 /leaderboard 与 /leaderboard.html)
 console.log('\n【4. 真实本地 HTTP Server 挂载与 0 死链网络断言】');
 
 const mimeTypes = {
@@ -173,7 +180,12 @@ const mimeTypes = {
 const server = http.createServer((req, res) => {
     let reqPath = req.url.split('?')[0].split('#')[0];
     if (reqPath === '/') reqPath = '/index.html';
-    const filePath = path.join(rootDir, reqPath);
+    
+    // 支持目录型索引 (例如 /leaderboard -> leaderboard/index.html)
+    let filePath = path.join(rootDir, reqPath);
+    if (fs.existsSync(filePath) && fs.statSync(filePath).isDirectory()) {
+        filePath = path.join(filePath, 'index.html');
+    }
 
     if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
         const ext = path.extname(filePath).toLowerCase();
@@ -192,6 +204,7 @@ server.listen(8999, '127.0.0.1', async () => {
     const testUrls = [
         '/',
         '/leaderboard.html',
+        '/leaderboard',          // 测试目录型无扩展名 Clean URL
         '/sitemap.html',
         '/404.html',
         '/posts/doc-26116.html',
@@ -234,7 +247,7 @@ server.listen(8999, '127.0.0.1', async () => {
             console.error('❌ 门禁审计失败：存在死链或未达标项！');
             process.exit(1);
         } else {
-            console.log(`🎉 全部 ${passedRequests} 个关键静态资源与物理单页 HTTP 200 OK 校验通过，死链率为 0！`);
+            console.log(`🎉 全部 ${passedRequests} 个关键静态资源与双重物理落地单页 HTTP 200 OK 校验通过，死链率为 0！`);
             console.log('======================================================\n');
             process.exit(0);
         }
