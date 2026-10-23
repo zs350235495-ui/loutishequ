@@ -162,6 +162,19 @@ header img, .site-logo, .header-logo, .header-logo img {
   font-family: monospace, sans-serif !important;
 }
 
+/* 测速天梯榜搜索框：36px高，6px 12px内边距，280px宽，2px黑色实线边框，12px外边距 */
+#leaderboard-search {
+  margin-top: 12px !important;
+  height: 36px !important;
+  padding: 6px 12px !important;
+  width: 280px !important;
+  max-width: 100% !important;
+  border: 2px solid #000000 !important;
+  box-sizing: border-box !important;
+  background-color: #ffffff !important;
+  box-shadow: 2px 2px 0px #000000 !important;
+}
+
 
         /* ==========================================================================
            全站纯原生核心样式 (100% 离线自闭环，杜绝 CDN 丢失导致样式裸奔与 Logo 畸大)
@@ -499,9 +512,10 @@ header img, .site-logo, .header-logo, .header-logo img {
                     </div>
 
                     <!-- 搜索框 -->
-                    <div class="relative w-full md:w-64">
+                    <div class="relative w-full md:w-auto" style="margin-top: 12px;">
                         <input type="text" id="leaderboard-search" placeholder="搜索机场或线路架构..." 
-                            class="w-full bg-white border-2 border-[#18181B] px-3 py-1.5 text-xs font-mono focus:outline-none focus:bg-amber-50 placeholder-zinc-400 shadow-[2px_2px_0px_#18181B]">
+                            style="margin-top: 12px !important; height: 36px !important; padding: 6px 12px !important; width: 280px !important; max-width: 100% !important; border: 2px solid #000000 !important; box-sizing: border-box !important; box-shadow: 2px 2px 0px #000000 !important;"
+                            class="bg-white text-xs font-mono focus:outline-none focus:bg-amber-50 placeholder-zinc-400">
                     </div>
                 </div>
             </div>

@@ -109,6 +109,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;0,800;1,400&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        #leaderboard-search {
+            margin-top: 12px !important;
+            height: 36px !important;
+            padding: 6px 12px !important;
+            width: 280px !important;
+            max-width: 100% !important;
+            border: 2px solid #000000 !important;
+            box-sizing: border-box !important;
+            box-shadow: 2px 2px 0px #000000 !important;
+        }
+    </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between">
 
@@ -188,8 +200,10 @@
                     <button onclick="filterTable('4k-stream')" class="btn-industrial px-2.5 py-1 text-xs" data-filter="4k-stream">4K/8K 流媒体全绿</button>
                     <button onclick="filterTable('budget')" class="btn-industrial px-2.5 py-1 text-xs" data-filter="budget">极客/高性价比</button>
                 </div>
-                <div class="w-full sm:w-64">
-                    <input type="text" id="leaderboard-search" oninput="searchTable()" placeholder="搜索节点、专线架构或标签..." class="w-full px-3 py-1.5 text-xs font-mono border-2 border-[#18181B] bg-white focus:outline-none focus:ring-2 focus:ring-[#FF5500]">
+                <div class="w-full sm:w-auto" style="margin-top: 12px;">
+                    <input type="text" id="leaderboard-search" oninput="searchTable()" placeholder="搜索机场或线路架构..." 
+                        style="margin-top: 12px !important; height: 36px !important; padding: 6px 12px !important; width: 280px !important; max-width: 100% !important; border: 2px solid #000000 !important; box-sizing: border-box !important; box-shadow: 2px 2px 0px #000000 !important;"
+                        class="bg-white text-xs font-mono focus:outline-none focus:ring-2 focus:ring-[#FF5500]">
                 </div>
             </div>
         </div>
