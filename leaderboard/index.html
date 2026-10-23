@@ -109,189 +109,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;0,800;1,400&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    
-
-    
-
-
-    
-
-
-<style>
-  /* 基础与全屏重置 */
-  * { box-sizing: border-box; }
-  html, body {
-    margin: 0 !important;
-    padding: 0 !important;
-    width: 100% !important;
-    min-height: 100vh !important;
-    background-color: #f0f0eb !important;
-    color: #000 !important;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
-    display: block !important;
-  }
-
-  /* 顶部黑色系统状态条 */
-  .system-log-bar, .system-top-bar {
-    background-color: #000 !important;
-    color: #00ff66 !important;
-    font-family: monospace !important;
-    font-size: 12px !important;
-    padding: 8px 16px !important;
-    width: 100% !important;
-    box-sizing: border-box !important;
-  }
-
-  /* 主容器：强制居中、大屏 1360px、彻底消除黑边虚无 */
-  .container, main, #app, .main-container, .main-layout {
-    width: 95% !important;
-    max-width: 1360px !important;
-    margin: 20px auto !important;
-    padding: 24px !important;
-    background: #fff !important;
-    border: 3px solid #000 !important;
-    box-shadow: 6px 6px 0px #000 !important;
-    box-sizing: border-box !important;
-    display: block !important;
-  }
-
-  /* 标题与文字样式修复（消除紫色下划线与裸奔状态） */
-  h1, h2, h3, h4, h5, h6 { color: #000 !important; margin: 0 0 12px 0 !important; }
-  a { color: #000 !important; text-decoration: none !important; }
-  a:visited { color: #000 !important; }
-
-  /* 头部工业卡片排版 */
-  .header-card {
-    display: flex !important;
-    align-items: center !important;
-    gap: 16px !important;
-    margin-bottom: 24px !important;
-    border-bottom: 2px solid #000 !important;
-    padding-bottom: 16px !important;
-  }
-  .header-logo, .site-logo-container {
-    width: 56px !important;
-    height: 56px !important;
-    min-width: 56px !important;
-    max-width: 56px !important;
-    min-height: 56px !important;
-    max-height: 56px !important;
-    border: 2px solid #000 !important;
-    box-shadow: 2px 2px 0px #000 !important;
-    overflow: hidden !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    background: #ff5722 !important;
-  }
-  .header-logo img, .site-logo-container img {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
-    display: block !important;
-  }
-  .site-title { font-size: 28px !important; font-weight: 900 !important; color: #000 !important; }
-
-  /* 测速表格与卡片自适应 */
-  table, .benchmark-table, .data-table, .tech-table {
-    width: 100% !important;
-    border-collapse: collapse !important;
-    margin-top: 16px !important;
-  }
-  th, td {
-    border: 1px solid #000 !important;
-    padding: 10px 12px !important;
-    text-align: left !important;
-  }
-  th { background-color: #000 !important; color: #fff !important; font-weight: 700 !important; }
-
-  /* 橙色按钮与高亮 */
-  .btn-orange, .btn-industrial-orange {
-    background-color: #ff5722 !important;
-    color: #fff !important;
-    padding: 6px 12px !important;
-    font-weight: bold !important;
-    border: 2px solid #000 !important;
-    box-shadow: 2px 2px 0px #000 !important;
-    display: inline-block !important;
-    cursor: pointer !important;
-    text-decoration: none !important;
-  }
-  .btn-orange:hover, .btn-industrial-orange:hover {
-    background-color: #e64a19 !important;
-  }
-
-  .btn-industrial {
-    background-color: #fff !important;
-    color: #000 !important;
-    border: 2px solid #000 !important;
-    box-shadow: 2px 2px 0px #000 !important;
-    font-weight: bold !important;
-    padding: 6px 12px !important;
-    display: inline-block !important;
-    cursor: pointer !important;
-    text-decoration: none !important;
-  }
-  .btn-industrial.active, .btn-industrial:active {
-    background-color: #000 !important;
-    color: #fff !important;
-  }
-
-  /* 工业卡片与网格 */
-  .industrial-card {
-    background: #fff !important;
-    border: 2px solid #000 !important;
-    box-shadow: 4px 4px 0px #000 !important;
-    margin-bottom: 20px !important;
-    padding: 16px !important;
-  }
-
-  .reports-grid {
-    display: grid !important;
-    grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
-    gap: 16px !important;
-    width: 100% !important;
-  }
-  @media (min-width: 640px) {
-    .reports-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
-  }
-  @media (min-width: 1024px) {
-    .reports-grid { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; }
-  }
-
-  .report-card, .reports-grid > a {
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: space-between !important;
-    background-color: #fff !important;
-    border: 2px solid #000 !important;
-    padding: 14px !important;
-    box-shadow: 3px 3px 0px #000 !important;
-    text-decoration: none !important;
-    color: #000 !important;
-    min-height: 120px !important;
-  }
-  .report-card:hover, .reports-grid > a:hover {
-    background-color: #fff7ed !important;
-    transform: translate(-2px, -2px) !important;
-    box-shadow: 5px 5px 0px #000 !important;
-  }
-
-  .tag-mono {
-    font-family: monospace !important;
-    font-size: 12px !important;
-    padding: 2px 6px !important;
-    border: 1px solid #000 !important;
-    background-color: #f1f5f9 !important;
-    color: #000 !important;
-    font-weight: 600 !important;
-    display: inline-flex !important;
-    align-items: center !important;
-  }
-</style>
-
 </head>
-<body class="min-h-screen antialiased">
+<body class="min-h-screen flex flex-col justify-between">
 
     <!-- 顶部固定工业导航栏 -->
     <header class="border-b-2 border-[#18181B] bg-white sticky top-0 z-50">
@@ -307,7 +126,7 @@
             </a>
             
             <nav class="flex items-center gap-2">
-                <a href="/" class="btn-industrial px-3 py-1.5 active text-xs">
+                <a href="/leaderboard.html" class="btn-industrial px-3 py-1.5 active text-xs">
                     [ 00 天梯榜 ]
                 </a>
                 <a href="/#blog" class="btn-industrial px-3 py-1.5 text-xs">
@@ -319,7 +138,7 @@
                 <a href="/#reviews" class="btn-industrial px-3 py-1.5 text-xs hidden md:inline-flex">
                     [ 03 众测档案 ]
                 </a>
-                <a href="/posts/doc-26120.html" class="btn-orange btn-industrial-orange px-3 py-1.5 text-xs font-bold">
+                <a href="/posts/doc-26120.html" class="btn-industrial-orange px-3 py-1.5 text-xs font-bold">
                     <span>年度白皮书</span>
                     <span>↗</span>
                 </a>
@@ -328,7 +147,7 @@
     </header>
 
     <!-- 主内容区 -->
-    <main class="main-container max-w-7xl mx-auto px-4 py-8 flex-1 w-full space-y-6">
+    <main class="max-w-7xl mx-auto px-4 py-8 flex-1 w-full space-y-6">
 
         <!-- 观测台实时环境横幅 -->
         <div class="industrial-card p-5">
@@ -427,7 +246,7 @@
                                 </span>
                             </td>
                             <td class="py-3 px-2 text-center align-middle">
-                                <a href="/posts/doc-26120.html" class="btn-orange btn-industrial-orange px-2.5 py-1 text-xs font-bold whitespace-nowrap inline-flex items-center gap-1">
+                                <a href="/posts/doc-26120.html" class="btn-industrial-orange px-2.5 py-1 text-xs font-bold whitespace-nowrap inline-flex items-center gap-1">
                                     <span>实测报告</span>
                                     <span>↗</span>
                                 </a>
@@ -470,7 +289,7 @@
                                 </span>
                             </td>
                             <td class="py-3 px-2 text-center align-middle">
-                                <a href="/posts/doc-26120.html" class="btn-orange btn-industrial-orange px-2.5 py-1 text-xs font-bold whitespace-nowrap inline-flex items-center gap-1">
+                                <a href="/posts/doc-26120.html" class="btn-industrial-orange px-2.5 py-1 text-xs font-bold whitespace-nowrap inline-flex items-center gap-1">
                                     <span>实测报告</span>
                                     <span>↗</span>
                                 </a>
@@ -513,7 +332,7 @@
                                 </span>
                             </td>
                             <td class="py-3 px-2 text-center align-middle">
-                                <a href="/posts/doc-26128.html" class="btn-orange btn-industrial-orange px-2.5 py-1 text-xs font-bold whitespace-nowrap inline-flex items-center gap-1">
+                                <a href="/posts/doc-26128.html" class="btn-industrial-orange px-2.5 py-1 text-xs font-bold whitespace-nowrap inline-flex items-center gap-1">
                                     <span>实测报告</span>
                                     <span>↗</span>
                                 </a>
@@ -556,7 +375,7 @@
                                 </span>
                             </td>
                             <td class="py-3 px-2 text-center align-middle">
-                                <a href="/posts/doc-26124.html" class="btn-orange btn-industrial-orange px-2.5 py-1 text-xs font-bold whitespace-nowrap inline-flex items-center gap-1">
+                                <a href="/posts/doc-26124.html" class="btn-industrial-orange px-2.5 py-1 text-xs font-bold whitespace-nowrap inline-flex items-center gap-1">
                                     <span>实测报告</span>
                                     <span>↗</span>
                                 </a>
@@ -599,7 +418,7 @@
                                 </span>
                             </td>
                             <td class="py-3 px-2 text-center align-middle">
-                                <a href="/posts/doc-26128.html" class="btn-orange btn-industrial-orange px-2.5 py-1 text-xs font-bold whitespace-nowrap inline-flex items-center gap-1">
+                                <a href="/posts/doc-26128.html" class="btn-industrial-orange px-2.5 py-1 text-xs font-bold whitespace-nowrap inline-flex items-center gap-1">
                                     <span>实测报告</span>
                                     <span>↗</span>
                                 </a>
@@ -642,7 +461,7 @@
                                 </span>
                             </td>
                             <td class="py-3 px-2 text-center align-middle">
-                                <a href="/posts/doc-26116.html" class="btn-orange btn-industrial-orange px-2.5 py-1 text-xs font-bold whitespace-nowrap inline-flex items-center gap-1">
+                                <a href="/posts/doc-26116.html" class="btn-industrial-orange px-2.5 py-1 text-xs font-bold whitespace-nowrap inline-flex items-center gap-1">
                                     <span>实测报告</span>
                                     <span>↗</span>
                                 </a>
@@ -792,29 +611,29 @@
                 </div>
                 <a href="/#blog" class="text-xs font-mono text-[#FF5500] hover:underline font-bold">查看全部 24 篇文献 →</a>
             </div>
-            <div class="reports-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs font-mono">
-                <a href="/posts/doc-26120.html" class="report-card p-3 border border-zinc-300 hover:border-[#18181B] bg-zinc-50 hover:bg-white transition-colors flex flex-col justify-between">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs font-mono">
+                <a href="/posts/doc-26120.html" class="p-3 border border-zinc-300 hover:border-[#18181B] bg-zinc-50 hover:bg-white transition-colors flex flex-col justify-between">
                     <div>
                         <div class="font-bold text-zinc-900 mb-1">[DOC-26120] 机场社区健康度白皮书</div>
                         <div class="text-[11px] text-zinc-500">深入拆解专线真实硬成本与跑路征兆</div>
                     </div>
                     <div class="text-[#FF5500] font-bold mt-2">阅读报告 ↗</div>
                 </a>
-                <a href="/posts/doc-26128.html" class="report-card p-3 border border-zinc-300 hover:border-[#18181B] bg-zinc-50 hover:bg-white transition-colors flex flex-col justify-between">
+                <a href="/posts/doc-26128.html" class="p-3 border border-zinc-300 hover:border-[#18181B] bg-zinc-50 hover:bg-white transition-colors flex flex-col justify-between">
                     <div>
                         <div class="font-bold text-zinc-900 mb-1">[DOC-26128] 2026年度避坑报告</div>
                         <div class="text-[11px] text-zinc-500">10个机房与6大协议深度横评</div>
                     </div>
                     <div class="text-[#FF5500] font-bold mt-2">阅读报告 ↗</div>
                 </a>
-                <a href="/posts/doc-26124.html" class="report-card p-3 border border-zinc-300 hover:border-[#18181B] bg-zinc-50 hover:bg-white transition-colors flex flex-col justify-between">
+                <a href="/posts/doc-26124.html" class="p-3 border border-zinc-300 hover:border-[#18181B] bg-zinc-50 hover:bg-white transition-colors flex flex-col justify-between">
                     <div>
                         <div class="font-bold text-zinc-900 mb-1">[DOC-26124] WebRTC真实IP防泄漏</div>
                         <div class="text-[11px] text-zinc-500">STUN 穿透与 Fake-IP 虚拟阻断实战</div>
                     </div>
                     <div class="text-[#FF5500] font-bold mt-2">阅读报告 ↗</div>
                 </a>
-                <a href="/posts/doc-26116.html" class="report-card p-3 border border-zinc-300 hover:border-[#18181B] bg-zinc-50 hover:bg-white transition-colors flex flex-col justify-between">
+                <a href="/posts/doc-26116.html" class="p-3 border border-zinc-300 hover:border-[#18181B] bg-zinc-50 hover:bg-white transition-colors flex flex-col justify-between">
                     <div>
                         <div class="font-bold text-zinc-900 mb-1">[DOC-26116] iKuai+OpenWrt双路由</div>
                         <div class="text-[11px] text-zinc-500">MosDNS 境内直连与境外旁路毫秒分流</div>
