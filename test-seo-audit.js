@@ -46,6 +46,8 @@ const requiredFiles = [
     '404.html',
     'leaderboard.html',
     'leaderboard/index.html',
+    'network-sla-benchmark-community-2026.html',
+    'network-sla-benchmark-community-2026/index.html',
     'css/styles.css',
     'assets/logo.png',
     'assets/favicon.png',
@@ -87,7 +89,9 @@ const htmlFiles = [
     path.join(rootDir, 'posts/doc-26116.html'),
     path.join(rootDir, 'posts/doc-26120.html'),
     path.join(rootDir, 'posts/doc-26124.html'),
-    path.join(rootDir, 'posts/doc-26128.html')
+    path.join(rootDir, 'posts/doc-26128.html'),
+    path.join(rootDir, 'network-sla-benchmark-community-2026.html'),
+    path.join(rootDir, 'network-sla-benchmark-community-2026/index.html')
 ];
 
 htmlFiles.forEach(file => {
@@ -252,6 +256,8 @@ server.listen(8999, '127.0.0.1', async () => {
         '/posts/doc-26120.html',
         '/posts/doc-26124.html',
         '/posts/doc-26128.html',
+        '/network-sla-benchmark-community-2026.html',
+        '/network-sla-benchmark-community-2026',
         '/doc-26116.html',
         '/doc-26120.html',
         '/doc-26124.html',

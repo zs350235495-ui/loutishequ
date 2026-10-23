@@ -19,6 +19,13 @@
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
+    <!-- 2026 全球跨境网络骨干链路稳定性众测报告与白皮书 -->
+    <url>
+        <loc>https://tizishequ.com/network-sla-benchmark-community-2026</loc>
+        <lastmod>2026-10-24</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.95</priority>
+    </url>
     <!-- 独立静态深度技术研报与白皮书 (HTTP 200 OK 真实单页) -->
     <url>
         <loc>https://tizishequ.com/posts/doc-26128.html</loc>
