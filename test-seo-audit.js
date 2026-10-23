@@ -56,17 +56,17 @@ requiredFiles.forEach(f => {
     }
 });
 
-// 检查 css/styles.css 是否包含标准的自然撑满与 1400px 大屏居中
+// 检查 css/styles.css 是否包含标准的自然撑满与 1360px 大屏居中
 const cssContent = fs.readFileSync(path.join(rootDir, 'css/styles.css'), 'utf8');
 if (
     cssContent.includes('display: block !important') &&
-    cssContent.includes('max-width: 1400px !important') &&
-    cssContent.includes('margin: 0 auto !important') &&
-    cssContent.includes('width: 96% !important') &&
+    cssContent.includes('max-width: 1360px !important') &&
+    cssContent.includes('margin: 20px auto !important') &&
+    cssContent.includes('width: 95% !important') &&
     cssContent.includes('.reports-grid') &&
     cssContent.includes('.report-card')
 ) {
-    logPass('css/styles.css 包含 display: block 与大屏展开规则 (max-width: 1400px, width: 96%, margin: 0 auto) 与研报实体网格');
+    logPass('css/styles.css 包含 display: block 与大屏展开规则 (max-width: 1360px, width: 95%, margin: 20px auto) 与研报实体网格');
 } else {
     logFail('css/styles.css 缺少大屏展开规则或研报卡片样式！');
 }

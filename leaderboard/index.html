@@ -111,7 +111,13 @@
     <script src="https://cdn.tailwindcss.com"></script>
     
 
+    
+
+
     <style>
+        /* ==========================================================================
+           1. 视口与全局重置：铺满整个屏幕
+           ========================================================================== */
         *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
@@ -123,28 +129,49 @@
             min-height: 100vh !important;
             margin: 0 !important;
             padding: 0 !important;
-            background-color: #F8F9FA !important;
-            background-image: radial-gradient(#18181B 0.75px, transparent 0.75px) !important;
-            background-size: 16px 16px !important;
-            color: #18181B !important;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+            background-color: #f5f5f2 !important; /* 统一为温和硬朗的浅灰底色，彻底消灭外围刺眼黑块 */
+            color: #111 !important;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
             line-height: 1.5 !important;
             -webkit-font-smoothing: antialiased !important;
+            display: block !important; /* 彻底杜绝 flex 居中把页面挤成一团 */
+        }
+
+        /* ==========================================================================
+           2. 主内容顶级包裹容器：大屏舒展铺开，水平标准居中
+           ========================================================================== */
+        .container, main, #app, .main-layout, .terminal-window, .page-wrapper, .main-container, .terminal-container, .wrapper {
+            width: 95% !important;
+            max-width: 1360px !important; /* 彻底放开宽度至 1360px，不再是畸形的 600px */
+            min-width: 320px !important;
+            margin: 20px auto !important; /* 左右水平居中，上下留出舒适呼吸间距 */
+            padding: 24px 20px !important;
+            box-sizing: border-box !important;
+            background: #ffffff !important;
+            border: 3px solid #000000 !important; /* 纯正 Neo-brutalism 粗黑框 */
+            box-shadow: 6px 6px 0px #000000 !important; /* 工业厚重立体投影 */
             display: block !important;
         }
 
-        header {
+        /* ==========================================================================
+           3. 顶部 Header / 导航条适配容器全宽
+           ========================================================================== */
+        header, .site-header, .top-nav {
             width: 100% !important;
-            background-color: #FFFFFF !important;
-            border-bottom: 2px solid #18181B !important;
+            max-width: 100% !important;
+            margin-bottom: 24px !important;
+            box-sizing: border-box !important;
             display: block !important;
+            background-color: #ffffff;
+            border-bottom: 2px solid #000000;
         }
 
-        header > div {
-            width: 96% !important;
-            max-width: 1400px !important;
+        header > div, .site-header > div, .top-nav > div {
+            width: 95% !important;
+            max-width: 1360px !important;
             margin: 0 auto !important;
             padding: 12px 16px !important;
+            box-sizing: border-box !important;
             display: flex !important;
             flex-wrap: wrap !important;
             align-items: center !important;
@@ -152,47 +179,30 @@
             gap: 12px !important;
         }
 
-        .container, main, #app, .main-layout, .main-container {
-            width: 96% !important;
-            max-width: 1400px !important;
-            margin: 0 auto !important;
-            padding: 24px 16px !important;
-            box-sizing: border-box !important;
-            display: block !important;
-        }
-
-        table, .benchmark-table, .tech-table {
+        .system-top-bar {
             width: 100% !important;
-            table-layout: auto !important;
-            border-collapse: collapse !important;
-        }
-
-        .tech-table th, .tech-table td {
-            border: 1px solid #18181B !important;
-            padding: 10px 12px !important;
-            font-size: 0.85rem !important;
-            font-family: 'JetBrains Mono', monospace !important;
-        }
-
-        .tech-table th {
             background-color: #18181B !important;
             color: #FFFFFF !important;
-            font-weight: 700 !important;
-            text-align: left !important;
+            border-bottom: 2px solid #000000 !important;
+            padding: 6px 16px !important;
+            font-family: 'JetBrains Mono', monospace, monospace !important;
+            font-size: 0.75rem !important;
+            box-sizing: border-box !important;
         }
 
         footer {
             width: 100% !important;
             background-color: #18181B !important;
-            border-top: 2px solid #18181B !important;
+            border-top: 3px solid #000000 !important;
             padding: 2rem 1rem !important;
             margin-top: 3rem !important;
             display: block !important;
+            box-sizing: border-box !important;
         }
 
         footer > div {
-            width: 96% !important;
-            max-width: 1400px !important;
+            width: 95% !important;
+            max-width: 1360px !important;
             margin: 0 auto !important;
             display: flex !important;
             flex-wrap: wrap !important;
@@ -201,19 +211,125 @@
             gap: 1.5rem !important;
         }
 
-        .industrial-card {
+        /* ==========================================================================
+           4. 节点测速大表格与研报模块：撑满 100% 容器宽度
+           ========================================================================== */
+        table, .benchmark-table, .data-table, .tech-table {
+            width: 100% !important;
+            table-layout: auto !important;
+            border-collapse: collapse !important;
+        }
+
+        .tech-table th, .tech-table td,
+        table th, table td {
+            border: 1px solid #18181B;
+            padding: 10px 12px;
+            font-size: 0.85rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .tech-table th, table th {
+            background-color: #18181B;
+            color: #FFFFFF;
+            font-weight: 700;
+            text-align: left;
+        }
+
+        /* ==========================================================================
+           5. 研报列表、预警档案与文章卡片：自适应撑满
+           ========================================================================== */
+        .card, .module-box, .article-item, .post-container, .industrial-card {
+            width: 100% !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+            background-color: #FFFFFF;
+            border: 2px solid #000000;
+            box-shadow: 4px 4px 0px #000000;
+            margin-bottom: 1.5rem;
+        }
+
+        .reports-grid, .grid {
+            display: grid !important;
+            grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+            gap: 16px !important;
+            width: 100% !important;
+        }
+
+        @media (min-width: 640px) {
+            .reports-grid, .sm\:grid-cols-2 {
+                grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .reports-grid, .lg\:grid-cols-4 {
+                grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+            }
+        }
+
+        .report-card, .reports-grid > a, .reports-grid > div {
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: space-between !important;
             background-color: #FFFFFF !important;
-            border: 2px solid #18181B !important;
-            box-shadow: 4px 4px 0px #18181B !important;
-            margin-bottom: 1.5rem !important;
+            border: 2px solid #000000 !important;
+            padding: 14px !important;
+            box-shadow: 3px 3px 0px #000000 !important;
+            text-decoration: none !important;
+            color: #18181B !important;
+            min-height: 120px !important;
+        }
+
+        .report-card:hover, .reports-grid > a:hover {
+            background-color: #FFF7ED !important;
+            transform: translate(-2px, -2px) !important;
+            box-shadow: 5px 5px 0px #000000 !important;
+        }
+
+        /* ==========================================================================
+           6. 文章详情页（如 /posts/doc-*）文字排版宽度优化：保证阅读舒适且不缩水
+           ========================================================================== */
+        .post-content, .article-body, article {
+            width: 100% !important;
+            max-width: 1000px !important; /* 文章正文保持 1000px，既不散也不挤 */
+            margin: 0 auto !important;
+            line-height: 1.7 !important;
+            font-size: 16px !important;
+        }
+
+        /* ==========================================================================
+           7. 实体组件、按钮与 Logo 尺寸防畸变保护
+           ========================================================================== */
+        .site-logo-container {
+            width: 40px !important;
+            height: 40px !important;
+            min-width: 40px !important;
+            max-width: 40px !important;
+            min-height: 40px !important;
+            max-height: 40px !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            border: 2px solid #000000 !important;
+            background-color: #FF5500 !important;
+            box-shadow: 2px 2px 0px #000000 !important;
+            overflow: hidden !important;
+            flex-shrink: 0 !important;
+        }
+
+        .site-logo-container img {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+            display: block !important;
         }
 
         .btn-industrial {
             font-family: 'JetBrains Mono', monospace !important;
             background-color: #FFFFFF !important;
             color: #18181B !important;
-            border: 2px solid #18181B !important;
-            box-shadow: 2px 2px 0px #18181B !important;
+            border: 2px solid #000000 !important;
+            box-shadow: 2px 2px 0px #000000 !important;
             font-weight: 700 !important;
             padding: 6px 12px !important;
             font-size: 0.75rem !important;
@@ -228,8 +344,8 @@
             background-color: #F1F5F9 !important;
         }
 
-        .btn-industrial.active {
-            background-color: #18181B !important;
+        .btn-industrial.active, .btn-industrial:active {
+            background-color: #000000 !important;
             color: #FFFFFF !important;
         }
 
@@ -237,8 +353,8 @@
             font-family: 'JetBrains Mono', monospace !important;
             background-color: #FF5500 !important;
             color: #FFFFFF !important;
-            border: 2px solid #18181B !important;
-            box-shadow: 2px 2px 0px #18181B !important;
+            border: 2px solid #000000 !important;
+            box-shadow: 2px 2px 0px #000000 !important;
             font-weight: 700 !important;
             padding: 6px 12px !important;
             font-size: 0.75rem !important;
@@ -249,80 +365,20 @@
             cursor: pointer !important;
         }
 
+        .btn-industrial-orange:hover {
+            background-color: #E04B00 !important;
+        }
+
         .tag-mono {
             font-family: 'JetBrains Mono', monospace !important;
             font-size: 0.75rem !important;
             padding: 2px 6px !important;
-            border: 1px solid #18181B !important;
+            border: 1px solid #000000 !important;
             background-color: #F1F5F9 !important;
             color: #18181B !important;
             font-weight: 600 !important;
             display: inline-flex !important;
             align-items: center !important;
-        }
-
-        .site-logo-container {
-            width: 40px !important;
-            height: 40px !important;
-            min-width: 40px !important;
-            max-width: 40px !important;
-            min-height: 40px !important;
-            max-height: 40px !important;
-            display: inline-flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            border: 2px solid #18181B !important;
-            background-color: #FF5500 !important;
-            box-shadow: 2px 2px 0px #18181B !important;
-            overflow: hidden !important;
-            flex-shrink: 0 !important;
-        }
-
-        .site-logo-container img {
-            width: 100% !important;
-            height: 100% !important;
-            object-fit: cover !important;
-            display: block !important;
-        }
-
-        .reports-grid {
-            display: grid !important;
-            grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
-            gap: 16px !important;
-            width: 100% !important;
-        }
-
-        @media (min-width: 640px) {
-            .reports-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .reports-grid {
-                grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-            }
-        }
-
-        .report-card,
-        .reports-grid > a {
-            display: flex !important;
-            flex-direction: column !important;
-            justify-content: space-between !important;
-            background-color: #FFFFFF !important;
-            border: 2px solid #18181B !important;
-            padding: 14px !important;
-            box-shadow: 3px 3px 0px #18181B !important;
-            text-decoration: none !important;
-            color: #18181B !important;
-            min-height: 120px !important;
-        }
-
-        .report-card:hover,
-        .reports-grid > a:hover {
-            background-color: #FFF7ED !important;
-            transform: translate(-2px, -2px) !important;
-            box-shadow: 5px 5px 0px #18181B !important;
         }
     </style>
 
