@@ -196,24 +196,6 @@ header img, .site-logo, .header-logo, .header-logo img {
             color: #18181B !important;
         }
 
-        /* 顶部深黑系统状态条 */
-        .system-top-bar,
-        header ~ div,
-        body > div:first-of-type {
-            width: 100% !important;
-            background-color: #18181B !important;
-            color: #FFFFFF !important;
-            border-bottom: 2px solid #18181B !important;
-            padding: 6px 16px !important;
-            font-family: 'JetBrains Mono', monospace, monospace !important;
-            font-size: 0.75rem !important;
-            display: flex !important;
-            flex-wrap: wrap !important;
-            align-items: center !important;
-            justify-content: space-between !important;
-            box-sizing: border-box !important;
-        }
-
         /* 顶部 Header */
         header {
             width: 100% !important;
@@ -429,22 +411,6 @@ header img, .site-logo, .header-logo, .header-logo img {
 
 </head>
 <body class="min-h-screen antialiased">
-
-    <!-- 全局状态条 (TOP SYSTEM BAR) -->
-    <div class="bg-[#18181B] text-white py-1 px-4 text-xs font-mono border-b-2 border-[#18181B] flex flex-wrap justify-between items-center z-50">
-        <div class="flex items-center space-x-4">
-            <span class="flex items-center gap-1.5 text-[#4ADE80] font-bold">
-                <span class="inline-block w-2 h-2 rounded-full bg-[#16A34A] animate-pulse"></span>
-                SYSTEM LOG: AUDIT_ACTIVE
-            </span>
-            <span class="text-zinc-400 hidden md:inline">| WORKSPACE: HARDWARE_TELEMETRY_V2</span>
-            <span class="text-zinc-400 hidden lg:inline">| NODE: TOKYO_EDGE_01</span>
-        </div>
-        <div class="flex items-center space-x-4 text-zinc-300">
-            <span>STATION ID: #8849-VPN-LAB</span>
-            <span class="text-[#FF5500] font-bold">[NO PAID PROMOTION]</span>
-        </div>
-    </div>
 
     <!-- 1. HEADER 全局工业标牌 (左 Logo 右标题横向紧凑排列) -->
     <header class="site-header sticky top-0 bg-[#FFFFFF] border-b-2 border-[#18181B] z-40 shadow-sm">
