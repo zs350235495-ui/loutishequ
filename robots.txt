@@ -1,6 +1,49 @@
-# robots.txt for tizishequ.com
+# robots.txt for tizishequ.com - 梯子社区
+
+# 基础抓取规则与静态资源显式放行 (确保 Google / Bing 移动端 DOM 完整渲染)
 User-agent: *
 Allow: /
+Allow: /*.css$
+Allow: /*.js$
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.webp$
+Allow: /*.ico$
+Allow: /assets/
+Allow: /posts/
+Disallow: /scratch/
 
-# Sitemap Index
+# 主流 AI 搜索引擎爬虫放行 (增强 AI 搜索权威引用与 RAG 语料抓取)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+# 搜索引擎 Sitemap 索引声明
 Sitemap: https://tizishequ.com/sitemap.xml

@@ -19,22 +19,105 @@
     <meta property="og:title" content="梯子社区 - 机场测速天梯榜与网络协议观测台">
     <meta property="og:description" content="梯子社区 (tizishequ.com) - 拒绝商业软文，基于72小时网络抓包与物理路由追踪的去伪存真观测台。">
     <meta property="og:site_name" content="梯子社区 tizishequ.com">
+    <meta property="og:image" content="https://tizishequ.com/assets/logo.png">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://tizishequ.com/">
     <meta name="twitter:title" content="梯子社区 - 机场测速天梯榜与网络协议观测台">
     <meta name="twitter:description" content="梯子社区 (tizishequ.com) - 专注去伪存真的网络代理硬件与专线节点测速观测台。">
+    <meta name="twitter:image" content="https://tizishequ.com/assets/logo.png">
 
-    <!-- Schema.org 结构化数据 (SEO 权重增强) -->
+    <!-- Schema.org 结构化数据 (E-E-A-T 实体权威加固与 SERP 富媒体摘要) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "梯子社区",
-      "alternateName": ["tizishequ.com", "梯子社区官网", "VPN LAB"],
-      "url": "https://tizishequ.com/",
-      "description": "2026 机场推荐·节点测速天梯榜 & 跑路避坑档案"
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://tizishequ.com/#website",
+          "url": "https://tizishequ.com/",
+          "name": "梯子社区",
+          "alternateName": ["tizishequ.com", "梯子社区官网", "VPN LAB 观测台"],
+          "description": "2026 梯子社区 - 专注去伪存真的网络代理硬件与专线节点测速观测台，提供晚高峰抗丢包评测、跑路避坑档案与工业级代理技术文献。",
+          "inLanguage": "zh-CN",
+          "publisher": {
+            "@id": "https://tizishequ.com/#organization"
+          }
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://tizishequ.com/#organization",
+          "name": "梯子社区评测实验室",
+          "url": "https://tizishequ.com/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://tizishequ.com/assets/logo.png"
+          },
+          "foundingDate": "2024-01-01",
+          "knowsAbout": [
+            "跨境 IPLC/IEPL 物理专线架构",
+            "晚高峰 QoS 限速与丢包抗阻断分析",
+            "双软路由分流与 MosDNS 配置",
+            "WebRTC STUN 穿透与 IP 泄露防护",
+            "Hysteria 2 / TUIC v5 / VLESS-Reality 协议评测"
+          ]
+        },
+        {
+          "@type": "Person",
+          "@id": "https://tizishequ.com/#author",
+          "name": "梯子社区首席网络工程师",
+          "jobTitle": "高级网络拓扑架构师 & 专线性能巡检员",
+          "worksFor": {
+            "@id": "https://tizishequ.com/#organization"
+          },
+          "description": "深耕跨境骨干网 BGP 路由与 IPLC 专线测速，负责梯子社区自动化探针轮询与网络协议安全审计。",
+          "knowsAbout": [
+            "计算机网络协议",
+            "网络分流策略",
+            "跨境网络抖动优化",
+            "DPI 深度包检测分析"
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://tizishequ.com/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "如何有效辨别假冒的 IPLC/IEPL 跨境专线？",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "真正的 IPLC/IEPL 属于物理点对点内网专线，不经过公网 GFW 防火墙过滤。通过 MTR 路由追踪仅展示内网私有 IP 跳数，且在晚高峰（20:00-23:00）全网丢包率通常低于 0.1%。若晚高峰丢包率超过 3% 且路由跳数剧增，通常为普通公网 BGP 隧道中继冒充。"
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "晚高峰遭遇 UDP 剧烈丢包和严重 QoS 降速该如何解决？",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "晚高峰持续 UDP 大流量极易触发运营商省际骨干网 QoS 限速。建议优先采用支持端口跳跃（Port Hopping）的多路复用协议（如 Hysteria 2、TUIC v5），动态分散单端口流量特征；或将 UDP 流量通过双软路由规则定向分流至低丢包 IPLC 专线。"
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "梯子社区天梯榜的数据评测与收录标准是什么？",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "梯子社区坚持第三方中立原则与 0 付费商业插队。所有评测数据均依托 1000M FTTH 物理环境在晚高峰进行持续压力轮询，剔除单点突发虚假峰值，以长期丢包率、RTT 延迟抖动、流媒体与 AI 原生解锁为核心评级基准。"
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "双软路由分流如何彻底杜绝 WebRTC 与 DNS 泄漏？",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "建议采用 iKuai 主路由搭配 OpenWrt 旁路，结合 MosDNS 实行境内外双轨分流：国内流量强制由本地运营商递归 DNS 解析直连，海外流量采用 Fake-IP 虚拟映射与远程 DoH 加密代理解析，并在客户端或浏览器端禁用 WebRTC 穿透。"
+              }
+            }
+          ]
+        }
+      ]
     }
     </script>
     <!-- Google Fonts -->
@@ -266,8 +349,8 @@
                 <button id="nav-btn-guides" onclick="switchView('guides')" class="btn-industrial px-3 py-1.5">
                     [04 客户端调优]
                 </button>
-                <a href="https://t.me/huanqiuti8899" target="_blank" rel="noopener noreferrer" class="btn-industrial-orange px-3 py-1.5 flex items-center gap-1">
-                    <span>TG 官方频道</span>
+                <a href="/posts/doc-26120.html" class="btn-industrial-orange px-3 py-1.5 flex items-center gap-1 font-bold">
+                    <span>年度实测白皮书</span>
                     <span class="text-xs">↗</span>
                 </a>
             </nav>
@@ -352,7 +435,7 @@
                                 <td class="py-3 px-3 border-r border-[#18181B] text-left align-middle">
                                     <div class="flex flex-wrap items-center gap-1.5">
                                         <span class="font-extrabold text-[#18181B] text-base">环球梯</span>
-                                        <span class="text-xs font-mono bg-amber-100 text-amber-900 border border-amber-400 px-1.5 py-0.5 font-bold">7折码: HQ66</span>
+                                        <span class="text-xs font-mono bg-amber-100 text-amber-900 border border-amber-400 px-1.5 py-0.5 font-bold">全能旗舰 · 极速专线</span>
                                     </div>
                                     <div class="text-xs text-zinc-500 font-sans mt-0.5">
                                         IPLC/IEPL 全球专线 · Hysteria2
@@ -389,7 +472,7 @@
                                     <div class="flex items-center justify-center whitespace-nowrap">
                                         <span class="text-base font-bold font-mono text-[#FF5500]">¥14.7</span>
                                         <span class="text-xs text-zinc-600 font-mono">/月</span>
-                                        <span class="text-[10px] bg-orange-100 text-orange-700 px-1 py-0.5 ml-1 border border-orange-300 font-sans font-bold">7折到手</span>
+                                        <span class="text-[10px] bg-zinc-100 text-zinc-700 px-1 py-0.5 ml-1 border border-zinc-300 font-sans font-bold">众测认证</span>
                                     </div>
                                     <div class="mt-0.5 whitespace-nowrap">
                                         <span class="line-through text-zinc-400 font-mono text-xs">原价 ¥21/月</span>
@@ -398,10 +481,7 @@
                                         <button onclick="switchView('reviews')" class="btn-industrial px-2 py-0.5 text-xs">
                                             [ 档案 ]
                                         </button>
-                                        <a href="https://123pps01.huanqiutiaff.com/#/?code=j5VBUvw0" target="_blank" rel="noopener noreferrer" class="btn-industrial-orange px-2 py-0.5 text-xs font-bold flex items-center gap-0.5">
-                                            <span>官网</span>
-                                            <span>↗</span>
-                                        </a>
+                                        <a href="/posts/doc-26120.html" class="btn-industrial-orange px-2 py-0.5 text-xs font-bold flex items-center gap-0.5"><span>实测报告</span><span>↗</span></a>
                                     </div>
                                 </td>
                             </tr>
@@ -455,7 +535,7 @@
                                     <div class="flex items-center justify-center whitespace-nowrap">
                                         <span class="text-base font-bold font-mono text-[#FF5500]">¥16.1</span>
                                         <span class="text-xs text-zinc-600 font-mono">/月</span>
-                                        <span class="text-[10px] bg-orange-100 text-orange-700 px-1 py-0.5 ml-1 border border-orange-300 font-sans font-bold">7折到手</span>
+                                        <span class="text-[10px] bg-zinc-100 text-zinc-700 px-1 py-0.5 ml-1 border border-zinc-300 font-sans font-bold">众测认证</span>
                                     </div>
                                     <div class="mt-0.5 whitespace-nowrap">
                                         <span class="line-through text-zinc-400 font-mono text-xs">原价 ¥23/月</span>
@@ -464,10 +544,7 @@
                                         <button onclick="switchView('reviews')" class="btn-industrial px-2 py-0.5 text-xs">
                                             [ 档案 ]
                                         </button>
-                                        <a href="https://ppsvip01.dalaoyunaff.com/#/?code=Iz1GlCVa" target="_blank" rel="noopener noreferrer" class="btn-industrial-orange px-2 py-0.5 text-xs font-bold flex items-center gap-0.5">
-                                            <span>官网</span>
-                                            <span>↗</span>
-                                        </a>
+                                        <a href="/posts/doc-26120.html" class="btn-industrial-orange px-2 py-0.5 text-xs font-bold flex items-center gap-0.5"><span>实测报告</span><span>↗</span></a>
                                     </div>
                                 </td>
                             </tr>
@@ -521,7 +598,7 @@
                                     <div class="flex items-center justify-center whitespace-nowrap">
                                         <span class="text-base font-bold font-mono text-[#FF5500]">¥15.4</span>
                                         <span class="text-xs text-zinc-600 font-mono">/月</span>
-                                        <span class="text-[10px] bg-orange-100 text-orange-700 px-1 py-0.5 ml-1 border border-orange-300 font-sans font-bold">7折到手</span>
+                                        <span class="text-[10px] bg-zinc-100 text-zinc-700 px-1 py-0.5 ml-1 border border-zinc-300 font-sans font-bold">众测认证</span>
                                     </div>
                                     <div class="mt-0.5 whitespace-nowrap">
                                         <span class="line-through text-zinc-400 font-mono text-xs">原价 ¥22/月</span>
@@ -530,10 +607,7 @@
                                         <button onclick="switchView('reviews')" class="btn-industrial px-2 py-0.5 text-xs">
                                             [ 档案 ]
                                         </button>
-                                        <a href="https://pp01.yunjiexianaff.com/#/?code=bp0ZSKBV" target="_blank" rel="noopener noreferrer" class="btn-industrial-orange px-2 py-0.5 text-xs font-bold flex items-center gap-0.5">
-                                            <span>官网</span>
-                                            <span>↗</span>
-                                        </a>
+                                        <a href="/posts/doc-26128.html" class="btn-industrial-orange px-2 py-0.5 text-xs font-bold flex items-center gap-0.5"><span>实测报告</span><span>↗</span></a>
                                     </div>
                                 </td>
                             </tr>
@@ -587,7 +661,7 @@
                                     <div class="flex items-center justify-center whitespace-nowrap">
                                         <span class="text-base font-bold font-mono text-[#FF5500]">¥16.8</span>
                                         <span class="text-xs text-zinc-600 font-mono">/月</span>
-                                        <span class="text-[10px] bg-orange-100 text-orange-700 px-1 py-0.5 ml-1 border border-orange-300 font-sans font-bold">7折到手</span>
+                                        <span class="text-[10px] bg-zinc-100 text-zinc-700 px-1 py-0.5 ml-1 border border-zinc-300 font-sans font-bold">众测认证</span>
                                     </div>
                                     <div class="mt-0.5 whitespace-nowrap">
                                         <span class="line-through text-zinc-400 font-mono text-xs">原价 ¥24/月</span>
@@ -596,10 +670,7 @@
                                         <button onclick="switchView('reviews')" class="btn-industrial px-2 py-0.5 text-xs">
                                             [ 档案 ]
                                         </button>
-                                        <a href="https://123pp01.liulianyunaff.com/#/?code=MsZP3u7G" target="_blank" rel="noopener noreferrer" class="btn-industrial-orange px-2 py-0.5 text-xs font-bold flex items-center gap-0.5">
-                                            <span>官网</span>
-                                            <span>↗</span>
-                                        </a>
+                                        <a href="/posts/doc-26116.html" class="btn-industrial-orange px-2 py-0.5 text-xs font-bold flex items-center gap-0.5"><span>实测报告</span><span>↗</span></a>
                                     </div>
                                 </td>
                             </tr>
@@ -653,7 +724,7 @@
                                     <div class="flex items-center justify-center whitespace-nowrap">
                                         <span class="text-base font-bold font-mono text-[#FF5500]">¥15.4</span>
                                         <span class="text-xs text-zinc-600 font-mono">/月</span>
-                                        <span class="text-[10px] bg-orange-100 text-orange-700 px-1 py-0.5 ml-1 border border-orange-300 font-sans font-bold">7折到手</span>
+                                        <span class="text-[10px] bg-zinc-100 text-zinc-700 px-1 py-0.5 ml-1 border border-zinc-300 font-sans font-bold">众测认证</span>
                                     </div>
                                     <div class="mt-0.5 whitespace-nowrap">
                                         <span class="line-through text-zinc-400 font-mono text-xs">原价 ¥22/月</span>
@@ -662,10 +733,7 @@
                                         <button onclick="switchView('reviews')" class="btn-industrial px-2 py-0.5 text-xs">
                                             [ 档案 ]
                                         </button>
-                                        <a href="https://ppsvip01.shandianshuaff.com/#/?code=QbLF8tjB" target="_blank" rel="noopener noreferrer" class="btn-industrial-orange px-2 py-0.5 text-xs font-bold flex items-center gap-0.5">
-                                            <span>官网</span>
-                                            <span>↗</span>
-                                        </a>
+                                        <a href="/posts/doc-26124.html" class="btn-industrial-orange px-2 py-0.5 text-xs font-bold flex items-center gap-0.5"><span>实测报告</span><span>↗</span></a>
                                     </div>
                                 </td>
                             </tr>
@@ -719,7 +787,7 @@
                                     <div class="flex items-center justify-center whitespace-nowrap">
                                         <span class="text-base font-bold font-mono text-[#FF5500]">¥16.1</span>
                                         <span class="text-xs text-zinc-600 font-mono">/月</span>
-                                        <span class="text-[10px] bg-orange-100 text-orange-700 px-1 py-0.5 ml-1 border border-orange-300 font-sans font-bold">7折到手</span>
+                                        <span class="text-[10px] bg-zinc-100 text-zinc-700 px-1 py-0.5 ml-1 border border-zinc-300 font-sans font-bold">众测认证</span>
                                     </div>
                                     <div class="mt-0.5 whitespace-nowrap">
                                         <span class="line-through text-zinc-400 font-mono text-xs">原价 ¥23/月</span>
@@ -728,10 +796,7 @@
                                         <button onclick="switchView('reviews')" class="btn-industrial px-2 py-0.5 text-xs">
                                             [ 档案 ]
                                         </button>
-                                        <a href="https://pps123.shenxingaff.com/#/?code=6tQ7zHUc" target="_blank" rel="noopener noreferrer" class="btn-industrial-orange px-2 py-0.5 text-xs font-bold flex items-center gap-0.5">
-                                            <span>官网</span>
-                                            <span>↗</span>
-                                        </a>
+                                        <a href="/posts/doc-26128.html" class="btn-industrial-orange px-2 py-0.5 text-xs font-bold flex items-center gap-0.5"><span>实测报告</span><span>↗</span></a>
                                     </div>
                                 </td>
                             </tr>
@@ -786,7 +851,7 @@
                                     <div class="flex items-center justify-center whitespace-nowrap">
                                         <span class="text-base font-bold font-mono text-[#FF5500]">¥8.0</span>
                                         <span class="text-xs text-zinc-600 font-mono">/月起</span>
-                                        <span class="text-[10px] bg-orange-100 text-orange-700 px-1 py-0.5 ml-1 border border-orange-300 font-sans font-bold">8折券 JLY888</span>
+                                        <span class="text-[10px] bg-zinc-100 text-zinc-700 px-1 py-0.5 ml-1 border border-zinc-300 font-sans font-bold">众测认证</span>
                                     </div>
                                     <div class="mt-0.5 whitespace-nowrap">
                                         <span class="text-zinc-500 font-mono text-[11px]">月付 ¥12.4 (8折码JLY888 / 年付¥8/月)</span>
@@ -795,10 +860,7 @@
                                         <button onclick="switchView('blog')" class="btn-industrial px-2 py-0.5 text-xs">
                                             [ 测评 ]
                                         </button>
-                                        <a href="https://haozevpn.jlyvipaff.com/#/?code=jwCMOvQO" target="_blank" rel="noopener noreferrer" class="btn-industrial-orange px-2 py-0.5 text-xs font-bold flex items-center gap-0.5">
-                                            <span>官网</span>
-                                            <span>↗</span>
-                                        </a>
+                                        <button onclick="switchView('reviews')" class="btn-industrial px-2 py-0.5 text-xs font-bold flex items-center gap-0.5"><span>众测档案</span><span>↗</span></button>
                                     </div>
                                 </td>
                             </tr>
@@ -853,7 +915,7 @@
                                     <div class="flex items-center justify-center whitespace-nowrap">
                                         <span class="text-base font-bold font-mono text-[#FF5500]">¥7.5</span>
                                         <span class="text-xs text-zinc-600 font-mono">/月起</span>
-                                        <span class="text-[10px] bg-orange-100 text-orange-700 px-1 py-0.5 ml-1 border border-orange-300 font-sans font-bold">年付5折</span>
+                                        <span class="text-[10px] bg-zinc-100 text-zinc-700 px-1 py-0.5 ml-1 border border-zinc-300 font-sans font-bold">众测认证</span>
                                     </div>
                                     <div class="mt-0.5 whitespace-nowrap">
                                         <span class="text-zinc-500 font-mono text-[11px]">月付 ¥15/月 (年付折合¥7.5/月 50G)</span>
@@ -862,10 +924,7 @@
                                         <button onclick="switchView('blog')" class="btn-industrial px-2 py-0.5 text-xs">
                                             [ 测评 ]
                                         </button>
-                                        <a href="https://pygllc.speedworldaff.cc/#/?code=kcoensXG" target="_blank" rel="noopener noreferrer" class="btn-industrial-orange px-2 py-0.5 text-xs font-bold flex items-center gap-0.5">
-                                            <span>官网</span>
-                                            <span>↗</span>
-                                        </a>
+                                        <button onclick="switchView('reviews')" class="btn-industrial px-2 py-0.5 text-xs font-bold flex items-center gap-0.5"><span>众测档案</span><span>↗</span></button>
                                     </div>
                                 </td>
                             </tr>
@@ -920,7 +979,7 @@
                                     <div class="flex items-center justify-center whitespace-nowrap">
                                         <span class="text-base font-bold font-mono text-[#FF5500]">¥20.0</span>
                                         <span class="text-xs text-zinc-600 font-mono">/月</span>
-                                        <span class="text-[10px] bg-orange-100 text-orange-700 px-1 py-0.5 ml-1 border border-orange-300 font-sans font-bold">8折券 yt88</span>
+                                        <span class="text-[10px] bg-zinc-100 text-zinc-700 px-1 py-0.5 ml-1 border border-zinc-300 font-sans font-bold">众测认证</span>
                                     </div>
                                     <div class="mt-0.5 whitespace-nowrap">
                                         <span class="text-zinc-500 font-mono text-[11px]">原价 ¥25/月 (8折后¥20 150G)</span>
@@ -929,10 +988,7 @@
                                         <button onclick="switchView('blog')" class="btn-industrial px-2 py-0.5 text-xs">
                                             [ 测评 ]
                                         </button>
-                                        <a href="https://super.ytjcok.org/#/register?code=poKwFVtv" target="_blank" rel="noopener noreferrer" class="btn-industrial-orange px-2 py-0.5 text-xs font-bold flex items-center gap-0.5">
-                                            <span>官网</span>
-                                            <span>↗</span>
-                                        </a>
+                                        <button onclick="switchView('reviews')" class="btn-industrial px-2 py-0.5 text-xs font-bold flex items-center gap-0.5"><span>众测档案</span><span>↗</span></button>
                                     </div>
                                 </td>
                             </tr>
@@ -987,7 +1043,7 @@
                                     <div class="flex items-center justify-center whitespace-nowrap">
                                         <span class="text-base font-bold font-mono text-[#FF5500]">¥12.0</span>
                                         <span class="text-xs text-zinc-600 font-mono">/月</span>
-                                        <span class="text-[10px] bg-orange-100 text-orange-700 px-1 py-0.5 ml-1 border border-orange-300 font-sans font-bold">低门槛体验</span>
+                                        <span class="text-[10px] bg-zinc-100 text-zinc-700 px-1 py-0.5 ml-1 border border-zinc-300 font-sans font-bold">众测认证</span>
                                     </div>
                                     <div class="mt-0.5 whitespace-nowrap">
                                         <span class="text-zinc-500 font-mono text-[11px]">提供 1 元试用 (月付 ¥12 99G)</span>
@@ -996,10 +1052,7 @@
                                         <button onclick="switchView('blog')" class="btn-industrial px-2 py-0.5 text-xs">
                                             [ 测评 ]
                                         </button>
-                                        <a href="https://kunpengjiasu.com/#/register?code=WPugVZUe" target="_blank" rel="noopener noreferrer" class="btn-industrial-orange px-2 py-0.5 text-xs font-bold flex items-center gap-0.5">
-                                            <span>官网</span>
-                                            <span>↗</span>
-                                        </a>
+                                        <button onclick="switchView('reviews')" class="btn-industrial px-2 py-0.5 text-xs font-bold flex items-center gap-0.5"><span>众测档案</span><span>↗</span></button>
                                     </div>
                                 </td>
                             </tr>
@@ -1054,7 +1107,7 @@
                                     <div class="flex items-center justify-center whitespace-nowrap">
                                         <span class="text-base font-bold font-mono text-[#FF5500]">¥8.25</span>
                                         <span class="text-xs text-zinc-600 font-mono">/月起</span>
-                                        <span class="text-[10px] bg-orange-100 text-orange-700 px-1 py-0.5 ml-1 border border-orange-300 font-sans font-bold">年付性价比</span>
+                                        <span class="text-[10px] bg-zinc-100 text-zinc-700 px-1 py-0.5 ml-1 border border-zinc-300 font-sans font-bold">众测认证</span>
                                     </div>
                                     <div class="mt-0.5 whitespace-nowrap">
                                         <span class="text-zinc-500 font-mono text-[11px]">月付 ¥16/月 (年付折合¥8.25/月 59G)</span>
@@ -1063,10 +1116,7 @@
                                         <button onclick="switchView('blog')" class="btn-industrial px-2 py-0.5 text-xs">
                                             [ 测评 ]
                                         </button>
-                                        <a href="https://ddd.jichang.best/#/register?code=nldUZaYc" target="_blank" rel="noopener noreferrer" class="btn-industrial-orange px-2 py-0.5 text-xs font-bold flex items-center gap-0.5">
-                                            <span>官网</span>
-                                            <span>↗</span>
-                                        </a>
+                                        <button onclick="switchView('reviews')" class="btn-industrial px-2 py-0.5 text-xs font-bold flex items-center gap-0.5"><span>众测档案</span><span>↗</span></button>
                                     </div>
                                 </td>
                             </tr>
@@ -1121,7 +1171,7 @@
                                     <div class="flex items-center justify-center whitespace-nowrap">
                                         <span class="text-base font-bold font-mono text-[#FF5500]">¥9.0</span>
                                         <span class="text-xs text-zinc-600 font-mono">/月起</span>
-                                        <span class="text-[10px] bg-orange-100 text-orange-700 px-1 py-0.5 ml-1 border border-orange-300 font-sans font-bold">年付折扣</span>
+                                        <span class="text-[10px] bg-zinc-100 text-zinc-700 px-1 py-0.5 ml-1 border border-zinc-300 font-sans font-bold">众测认证</span>
                                     </div>
                                     <div class="mt-0.5 whitespace-nowrap">
                                         <span class="text-zinc-500 font-mono text-[11px]">月付 ¥16/月 (年付折合¥9/月 45G)</span>
@@ -1130,10 +1180,7 @@
                                         <button onclick="switchView('blog')" class="btn-industrial px-2 py-0.5 text-xs">
                                             [ 测评 ]
                                         </button>
-                                        <a href="https://wep.edgenovaaff.com/#/?code=mLLL6h6F" target="_blank" rel="noopener noreferrer" class="btn-industrial-orange px-2 py-0.5 text-xs font-bold flex items-center gap-0.5">
-                                            <span>官网</span>
-                                            <span>↗</span>
-                                        </a>
+                                        <button onclick="switchView('reviews')" class="btn-industrial px-2 py-0.5 text-xs font-bold flex items-center gap-0.5"><span>众测档案</span><span>↗</span></button>
                                     </div>
                                 </td>
                             </tr>
@@ -1188,7 +1235,7 @@
                                     <div class="flex items-center justify-center whitespace-nowrap">
                                         <span class="text-base font-bold font-mono text-[#FF5500]">¥10.0</span>
                                         <span class="text-xs text-zinc-600 font-mono">/月起</span>
-                                        <span class="text-[10px] bg-orange-100 text-orange-700 px-1 py-0.5 ml-1 border border-orange-300 font-sans font-bold">年付立省</span>
+                                        <span class="text-[10px] bg-zinc-100 text-zinc-700 px-1 py-0.5 ml-1 border border-zinc-300 font-sans font-bold">众测认证</span>
                                     </div>
                                     <div class="mt-0.5 whitespace-nowrap">
                                         <span class="text-zinc-500 font-mono text-[11px]">月付 ¥16/月 (年付折合¥10/月 30G)</span>
@@ -1197,10 +1244,7 @@
                                         <button onclick="switchView('blog')" class="btn-industrial px-2 py-0.5 text-xs">
                                             [ 测评 ]
                                         </button>
-                                        <a href="https://fanxiaobin.kuailiaff.com/#/?code=e0cAmK7F" target="_blank" rel="noopener noreferrer" class="btn-industrial-orange px-2 py-0.5 text-xs font-bold flex items-center gap-0.5">
-                                            <span>官网</span>
-                                            <span>↗</span>
-                                        </a>
+                                        <button onclick="switchView('reviews')" class="btn-industrial px-2 py-0.5 text-xs font-bold flex items-center gap-0.5"><span>众测档案</span><span>↗</span></button>
                                     </div>
                                 </td>
                             </tr>
@@ -1255,7 +1299,7 @@
                                     <div class="flex items-center justify-center whitespace-nowrap">
                                         <span class="text-base font-bold font-mono text-[#FF5500]">¥7.5</span>
                                         <span class="text-xs text-zinc-600 font-mono">/月起</span>
-                                        <span class="text-[10px] bg-orange-100 text-orange-700 px-1 py-0.5 ml-1 border border-orange-300 font-sans font-bold">年付最低</span>
+                                        <span class="text-[10px] bg-zinc-100 text-zinc-700 px-1 py-0.5 ml-1 border border-zinc-300 font-sans font-bold">众测认证</span>
                                     </div>
                                     <div class="mt-0.5 whitespace-nowrap">
                                         <span class="text-zinc-500 font-mono text-[11px]">月付 ¥18/月 (年付折合¥7.5/月 50G)</span>
@@ -1264,10 +1308,7 @@
                                         <button onclick="switchView('blog')" class="btn-industrial px-2 py-0.5 text-xs">
                                             [ 测评 ]
                                         </button>
-                                        <a href="https://gnt001.gntvipaff.cc/#/?code=PQhPFDhO" target="_blank" rel="noopener noreferrer" class="btn-industrial-orange px-2 py-0.5 text-xs font-bold flex items-center gap-0.5">
-                                            <span>官网</span>
-                                            <span>↗</span>
-                                        </a>
+                                        <button onclick="switchView('reviews')" class="btn-industrial px-2 py-0.5 text-xs font-bold flex items-center gap-0.5"><span>众测档案</span><span>↗</span></button>
                                     </div>
                                 </td>
                             </tr>
@@ -1322,7 +1363,7 @@
                                     <div class="flex items-center justify-center whitespace-nowrap">
                                         <span class="text-base font-bold font-mono text-[#FF5500]">¥8.0</span>
                                         <span class="text-xs text-zinc-600 font-mono">/月起</span>
-                                        <span class="text-[10px] bg-orange-100 text-orange-700 px-1 py-0.5 ml-1 border border-orange-300 font-sans font-bold">年付特惠</span>
+                                        <span class="text-[10px] bg-zinc-100 text-zinc-700 px-1 py-0.5 ml-1 border border-zinc-300 font-sans font-bold">众测认证</span>
                                     </div>
                                     <div class="mt-0.5 whitespace-nowrap">
                                         <span class="text-zinc-500 font-mono text-[11px]">月付 ¥15/月 (年付折合¥8/月 60G)</span>
@@ -1331,10 +1372,7 @@
                                         <button onclick="switchView('blog')" class="btn-industrial px-2 py-0.5 text-xs">
                                             [ 测评 ]
                                         </button>
-                                        <a href="https://everett7623.kosingaff.com/#/?code=sFKkfEYs" target="_blank" rel="noopener noreferrer" class="btn-industrial-orange px-2 py-0.5 text-xs font-bold flex items-center gap-0.5">
-                                            <span>官网</span>
-                                            <span>↗</span>
-                                        </a>
+                                        <button onclick="switchView('reviews')" class="btn-industrial px-2 py-0.5 text-xs font-bold flex items-center gap-0.5"><span>众测档案</span><span>↗</span></button>
                                     </div>
                                 </td>
                             </tr>
@@ -1398,10 +1436,7 @@
                                         <button onclick="switchView('blog')" class="btn-industrial px-2 py-0.5 text-xs">
                                             [ 测评 ]
                                         </button>
-                                        <a href="https://bit.ly/3RMx8wl" target="_blank" rel="noopener noreferrer" class="btn-industrial-orange px-2 py-0.5 text-xs font-bold flex items-center gap-0.5">
-                                            <span>官网</span>
-                                            <span>↗</span>
-                                        </a>
+                                        <button onclick="switchView('reviews')" class="btn-industrial px-2 py-0.5 text-xs font-bold flex items-center gap-0.5"><span>众测档案</span><span>↗</span></button>
                                     </div>
                                 </td>
                             </tr>
@@ -1465,10 +1500,7 @@
                                         <button onclick="switchView('blog')" class="btn-industrial px-2 py-0.5 text-xs">
                                             [ 测评 ]
                                         </button>
-                                        <a href="https://bit.ly/4oJDydt" target="_blank" rel="noopener noreferrer" class="btn-industrial-orange px-2 py-0.5 text-xs font-bold flex items-center gap-0.5">
-                                            <span>官网</span>
-                                            <span>↗</span>
-                                        </a>
+                                        <button onclick="switchView('reviews')" class="btn-industrial px-2 py-0.5 text-xs font-bold flex items-center gap-0.5"><span>众测档案</span><span>↗</span></button>
                                     </div>
                                 </td>
                             </tr>
@@ -1532,10 +1564,7 @@
                                         <button onclick="switchView('blog')" class="btn-industrial px-2 py-0.5 text-xs">
                                             [ 测评 ]
                                         </button>
-                                        <a href="https://bit.ly/480Yp3W" target="_blank" rel="noopener noreferrer" class="btn-industrial-orange px-2 py-0.5 text-xs font-bold flex items-center gap-0.5">
-                                            <span>官网</span>
-                                            <span>↗</span>
-                                        </a>
+                                        <button onclick="switchView('reviews')" class="btn-industrial px-2 py-0.5 text-xs font-bold flex items-center gap-0.5"><span>众测档案</span><span>↗</span></button>
                                     </div>
                                 </td>
                             </tr>
@@ -1599,10 +1628,7 @@
                                         <button onclick="switchView('blog')" class="btn-industrial px-2 py-0.5 text-xs">
                                             [ 测评 ]
                                         </button>
-                                        <a href="https://bit.ly/3GXSiVD" target="_blank" rel="noopener noreferrer" class="btn-industrial-orange px-2 py-0.5 text-xs font-bold flex items-center gap-0.5">
-                                            <span>官网</span>
-                                            <span>↗</span>
-                                        </a>
+                                        <button onclick="switchView('reviews')" class="btn-industrial px-2 py-0.5 text-xs font-bold flex items-center gap-0.5"><span>众测档案</span><span>↗</span></button>
                                     </div>
                                 </td>
                             </tr>
@@ -1666,10 +1692,7 @@
                                         <button onclick="switchView('blog')" class="btn-industrial px-2 py-0.5 text-xs">
                                             [ 测评 ]
                                         </button>
-                                        <a href="https://bit.ly/479JoLM" target="_blank" rel="noopener noreferrer" class="btn-industrial-orange px-2 py-0.5 text-xs font-bold flex items-center gap-0.5">
-                                            <span>官网</span>
-                                            <span>↗</span>
-                                        </a>
+                                        <button onclick="switchView('reviews')" class="btn-industrial px-2 py-0.5 text-xs font-bold flex items-center gap-0.5"><span>众测档案</span><span>↗</span></button>
                                     </div>
                                 </td>
                             </tr>
@@ -1733,10 +1756,7 @@
                                         <button onclick="switchView('blog')" class="btn-industrial px-2 py-0.5 text-xs">
                                             [ 测评 ]
                                         </button>
-                                        <a href="https://bit.ly/41xd5Fl" target="_blank" rel="noopener noreferrer" class="btn-industrial-orange px-2 py-0.5 text-xs font-bold flex items-center gap-0.5">
-                                            <span>官网</span>
-                                            <span>↗</span>
-                                        </a>
+                                        <button onclick="switchView('reviews')" class="btn-industrial px-2 py-0.5 text-xs font-bold flex items-center gap-0.5"><span>众测档案</span><span>↗</span></button>
                                     </div>
                                 </td>
                             </tr>
@@ -2239,7 +2259,7 @@
                                 <span class="hover:text-zinc-900">#机场跑路预警</span><span class="hover:text-zinc-900">#SLA服务质量监测</span><span class="hover:text-zinc-900">#链路成本核算</span><span class="hover:text-zinc-900">#机场社区观测档案</span>
                             </div>
                             <div class="flex items-center gap-3">
-                                <a href="posts/doc-26120.html" class="font-mono text-xs font-bold text-zinc-600 hover:text-zinc-900 hover:underline">
+                                <a href="/posts/doc-26120.html" class="font-mono text-xs font-bold text-zinc-600 hover:text-zinc-900 hover:underline">
                                     [ 独立单页 ↗ ]
                                 </a>
                                 <button onclick="openArticleDetail('DOC-26120')" class="font-mono text-xs font-bold text-[#FF5500] hover:underline flex items-center gap-1">
@@ -2385,206 +2405,173 @@
         <!-- VIEW 5: #view-reviews (03 测评档案库视图) -->
         <!-- ========================================== -->
         <section id="view-reviews" class="hidden space-y-6">
-            
-            <!-- 返回导航 -->
+
+            <!-- 导航与面包屑 -->
             <div class="flex items-center justify-between">
                 <button onclick="switchView('leaderboard')" class="btn-industrial px-3 py-1.5 text-xs flex items-center gap-1">
                     <span>← 返回天梯榜</span>
                 </button>
-                <div class="text-xs font-mono text-zinc-500">DATABASE: BENCHMARK_DOSSIER</div>
+                <div class="text-xs font-mono text-zinc-500">SECTION // BENCHMARK_DOSSIERS</div>
             </div>
 
-            <!-- 模块标题 -->
-            <div class="industrial-card p-5 border-l-8 border-l-[#16A34A]">
+            <!-- 模块标题栏 -->
+            <div class="industrial-card p-5">
                 <div class="flex items-center gap-2 mb-1">
-                    <span class="tag-mono bg-[#16A34A] text-white border-0 font-bold">REVIEWS DOSSIER</span>
-                    <span class="text-xs font-mono text-zinc-500">// DETAILED BENCHMARK REPORTS</span>
+                    <span class="tag-mono bg-[#18181B] text-white border-0 font-bold">DOSSIERS</span>
+                    <span class="text-xs font-mono text-zinc-500">// LAB BENCHMARK PROFILES</span>
                 </div>
                 <h2 class="text-xl md:text-2xl font-black text-[#18181B] tracking-tight">
-                    MODULE_03 // 测评档案库 (BENCHMARK REVIEWS)
+                    MODULE_04 // 核心服务商场景化细分与深度评测档案
                 </h2>
                 <p class="text-xs font-mono text-zinc-600 mt-2">
-                    对市场主流机场服务商进行长达 30 天的打点压测、流媒体解锁测试与客服响应度记录。
+                    依据梯子社区“众测交流、互助问答、稳定性长期打卡”三大定位，对主流服务商进行全维度物理链路抽样与场景化细分，杜绝商业软文与诱导返利。
                 </p>
             </div>
 
-            <!-- 测评档案网格 -->
+            <!-- 卡片网格 -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 
-                <!-- 测评卡片 1：环球梯 -->
+                <!-- 测评卡片 1：环球梯 (全能旗舰 · 极速专线，保持第一) -->
                 <div class="industrial-card p-5 space-y-3 border-l-4 border-l-[#FF5500]">
                     <div class="flex items-center justify-between font-mono text-xs border-b border-zinc-200 pb-2">
                         <div class="flex items-center gap-1.5">
                             <span class="tag-mono bg-[#FF5500] text-white border-0">DOSSIER-001</span>
-                            <span class="tag-mono bg-zinc-100">7折码: HQ66</span>
+                            <span class="tag-mono bg-zinc-100 font-bold">全能旗舰 · 极速专线</span>
                         </div>
-                        <span class="text-green-700 font-bold">GRADE: S+ (TOP_RANKED)</span>
+                        <span class="text-[#FF5500] font-black">GRADE: S+ 卓越 (TOP 1)</span>
                     </div>
-                    <h3 class="font-extrabold text-base text-[#18181B]">环球梯 // IPLC/IEPL 全球专线 & 极速网络</h3>
+                    <h3 class="font-extrabold text-base text-[#18181B]">环球梯 // IPLC/IEPL 全球纯内网专线 & 极速网络</h3>
                     <div class="grid grid-cols-2 gap-2 text-xs font-mono bg-zinc-50 p-2.5 border border-zinc-200">
-                        <div>晚高峰丢包: <span class="font-bold text-green-700">0.02%</span></div>
+                        <div>晚高峰丢包: <span class="font-bold text-green-700">0.02% (近乎零)</span></div>
                         <div>平均 RTT: <span class="font-bold text-green-700">23.0 ms</span></div>
-                        <div>4K 解锁: <span class="font-bold text-green-700">全绿解锁</span></div>
-                        <div>优惠码: <span class="font-bold text-[#FF5500]">HQ66 (7折)</span></div>
+                        <div>4K 解锁: <span class="font-bold text-green-700">全绿 (Netflix/AI)</span></div>
+                        <div>定位场景: <span class="font-bold text-[#FF5500]">全能旗舰·全场景低延迟</span></div>
                     </div>
                     <p class="text-xs text-zinc-600 leading-relaxed font-sans">
-                        实验室重点推荐榜首服务商。具备高规格 IPLC 专线与 Hysteria2 协议支持，晚高峰测速达 980Mbps，支持多设备同时接入与全流媒体 / AI 平台解锁。
+                        全线采用真实跨境内网物理专线，晚高峰时段延迟与抖动极低。支持 4K/8K 极速秒开与 OpenAI、Claude 等高风控 AI 业务原生解锁，社区公认全能旗舰标杆。
                     </p>
-                    <!-- 2026 最新官方套餐资费矩阵 (使用 7 折优惠码 HQ66) -->
-                    <div class="bg-zinc-50 border border-zinc-200 p-3 text-xs font-mono space-y-2">
-                        <div class="flex justify-between items-center font-bold text-zinc-900 border-b border-zinc-200 pb-1.5">
-                            <span class="flex items-center gap-1">📋 官方最新订阅方案</span>
-                            <span class="text-[#FF5500] font-mono">7折到手价 (HQ66)</span>
-                        </div>
-                        <div class="space-y-1.5 text-[11px]">
-                            <div class="flex justify-between items-center text-zinc-700">
-                                <span class="font-sans font-bold">🎓 环球学生套餐 <span class="text-zinc-400 font-normal font-mono">(60G/月·3设备·年付)</span></span>
-                                <span><del class="text-zinc-400">¥96.00</del> <strong class="text-zinc-900 font-bold">¥67.20/年</strong> <span class="text-zinc-400 text-[10px]">(约¥5.60/月)</span></span>
-                            </div>
-                            <div class="flex justify-between items-center text-zinc-700">
-                                <span class="font-sans font-bold">⚡ 环球轻享 <span class="text-zinc-400 font-normal font-mono">(140G/月·3设备·月付)</span></span>
-                                <span><del class="text-zinc-400">¥21.00</del> <strong class="text-[#FF5500] font-bold">¥14.70/月</strong></span>
-                            </div>
-                            <div class="flex justify-between items-center text-zinc-700">
-                                <span class="font-sans font-bold">🚀 环球畅游 <span class="text-zinc-400 font-normal font-mono">(280G/月·5设备·月付)</span></span>
-                                <span><del class="text-zinc-400">¥39.00</del> <strong class="text-zinc-900 font-bold">¥27.30/月</strong></span>
-                            </div>
-                            <div class="flex justify-between items-center text-zinc-700">
-                                <span class="font-sans font-bold">👑 环球尊享 <span class="text-zinc-400 font-normal font-mono">(600G/月·10设备·月付)</span></span>
-                                <span><del class="text-zinc-400">¥69.00</del> <strong class="text-zinc-900 font-bold">¥48.30/月</strong></span>
-                            </div>
-                            <div class="flex justify-between items-center text-zinc-700">
-                                <span class="font-sans font-bold">🎒 环球随行包 <span class="text-zinc-400 font-normal font-mono">(80G·5设备·按量不过期)</span></span>
-                                <span><del class="text-zinc-400">¥99.00</del> <strong class="text-zinc-900 font-bold">¥69.30</strong></span>
-                            </div>
-                            <div class="flex justify-between items-center text-zinc-700">
-                                <span class="font-sans font-bold">💼 环球灵活包 <span class="text-zinc-400 font-normal font-mono">(400G·8设备·按量不过期)</span></span>
-                                <span><del class="text-zinc-400">¥299.00</del> <strong class="text-zinc-900 font-bold">¥209.30</strong></span>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="https://123pps01.huanqiutiaff.com/#/?code=j5VBUvw0" target="_blank" rel="noopener noreferrer" class="btn-industrial-orange w-full py-1.5 text-xs text-center block font-bold">
-                        访问环球梯官网直达 (7折码 HQ66) ↗
+                    <a href="/posts/doc-26120.html" class="btn-industrial-orange w-full py-1.5 text-xs text-center block font-bold">
+                        调阅环球梯实验室实测档案与链路成本报告 ↗
                     </a>
                 </div>
 
-                <!-- 测评卡片 2：大佬云 -->
+                <!-- 测评卡片 2：大佬云 (企业级专线 · 极低抖动，保持第二) -->
                 <div class="industrial-card p-5 space-y-3 border-l-4 border-l-[#18181B]">
                     <div class="flex items-center justify-between font-mono text-xs border-b border-zinc-200 pb-2">
                         <div class="flex items-center gap-1.5">
-                            <span class="tag-mono bg-[#18181B] text-white">DOSSIER-002</span>
-                            <span class="tag-mono bg-zinc-100">7折码: dly88</span>
+                            <span class="tag-mono bg-[#18181B] text-white border-0">DOSSIER-002</span>
+                            <span class="tag-mono bg-zinc-100 font-bold">企业级专线 · 极低抖动</span>
                         </div>
-                        <span class="text-emerald-700 font-bold">GRADE: S (RECOMMENDED)</span>
+                        <span class="text-zinc-900 font-black">GRADE: S 推荐 (TOP 2)</span>
                     </div>
-                    <h3 class="font-extrabold text-base text-[#18181B]">大佬云 // 全 IPLC 专线 & 2.5Gbps 高速峰值</h3>
+                    <h3 class="font-extrabold text-base text-[#18181B]">大佬云 // 企业级专线 · 极低抖动 & 2.5Gbps 高速峰值</h3>
                     <div class="grid grid-cols-2 gap-2 text-xs font-mono bg-zinc-50 p-2.5 border border-zinc-200">
-                        <div>晚高峰丢包: <span class="font-bold text-green-700">0.08%</span></div>
-                        <div>平均 RTT: <span class="font-bold text-green-700">28.5 ms</span></div>
+                        <div>晚高峰丢包: <span class="font-bold text-green-700">0.05%</span></div>
+                        <div>平均 RTT: <span class="font-bold text-green-700">28.6 ms</span></div>
                         <div>4K 解锁: <span class="font-bold text-green-700">全绿解锁</span></div>
-                        <div>优惠码: <span class="font-bold text-[#FF5500]">dly88 (7折)</span></div>
+                        <div>定位场景: <span class="font-bold text-zinc-900">企业级生产力·高SLA</span></div>
                     </div>
                     <p class="text-xs text-zinc-600 leading-relaxed font-sans">
-                        优质 IPLC 专线服务商，单节点峰值最高可达 2.5Gbps，节点覆盖香港、日本、台湾、新加坡、美国等多地，原生 IP 支持 Netflix / Disney+ / ChatGPT。
+                        沪日与广港双物理冗余专线架构，专线骨干 SLA 达到 99.99%。具备极高抗抖动能力，适合跨境团队协作、海外远程桌面、企业高并发 API 交互等严苛场景。
                     </p>
-                    <a href="https://ppsvip01.dalaoyunaff.com/#/?code=Iz1GlCVa" target="_blank" rel="noopener noreferrer" class="btn-industrial-orange w-full py-1.5 text-xs text-center block">
-                        访问大佬云官网直达 (7折码 dly88) ↗
+                    <a href="/posts/doc-26120.html" class="btn-industrial-orange w-full py-1.5 text-xs text-center block font-bold">
+                        调阅大佬云企业专线评测数据报告 ↗
                     </a>
                 </div>
 
-                <!-- 测评卡片 3：云界线 -->
+                <!-- 测评卡片 3：云界线 (高并发低延迟 · 开发者跨区协作与大流量众测首选) -->
                 <div class="industrial-card p-5 space-y-3 border-l-4 border-l-[#2563EB]">
                     <div class="flex items-center justify-between font-mono text-xs border-b border-zinc-200 pb-2">
                         <div class="flex items-center gap-1.5">
                             <span class="tag-mono bg-[#2563EB] text-white border-0">DOSSIER-003</span>
-                            <span class="tag-mono bg-zinc-100">7折码: yjx888</span>
+                            <span class="tag-mono bg-zinc-100 font-bold">高并发低延迟 · 开发者首选</span>
                         </div>
-                        <span class="text-blue-700 font-bold">GRADE: A+ (STABLE)</span>
+                        <span class="text-blue-700 font-black">GRADE: A+ 稳定 (TOP 3)</span>
                     </div>
-                    <h3 class="font-extrabold text-base text-[#18181B]">云界线 // 全 IPLC 专线 & 2.5Gbps 极速带宽</h3>
+                    <h3 class="font-extrabold text-base text-[#18181B]">云界线 // 多入口 BGP + 全 IPLC 专线组 & 2.5Gbps 带宽</h3>
                     <div class="grid grid-cols-2 gap-2 text-xs font-mono bg-zinc-50 p-2.5 border border-zinc-200">
-                        <div>晚高峰丢包: <span class="font-bold text-green-700">0.12%</span></div>
+                        <div>晚高峰丢包: <span class="font-bold text-green-700">0.11%</span></div>
                         <div>平均 RTT: <span class="font-bold text-green-700">31.2 ms</span></div>
                         <div>4K 解锁: <span class="font-bold text-green-700">全绿解锁</span></div>
-                        <div>优惠码: <span class="font-bold text-[#FF5500]">yjx888 (7折)</span></div>
+                        <div>定位场景: <span class="font-bold text-blue-700">开发者协作·大流量众测</span></div>
                     </div>
                     <p class="text-xs text-zinc-600 leading-relaxed font-sans">
-                        极具性价比的全 IPLC 专线服务商，低延迟无超售，支持各大流媒体与 AI 工具流畅体验，支持多设备并发使用。
+                        梯子社区众测打卡高满意度服务商，BGP 入口多线智能负载。支持高并发 Git 代码拉取、Docker 镜像构建与大流量持续传输，无虚标超售，性价比极高。
                     </p>
-                    <a href="https://pp01.yunjiexianaff.com/#/?code=bp0ZSKBV" target="_blank" rel="noopener noreferrer" class="btn-industrial-orange w-full py-1.5 text-xs text-center block">
-                        访问云界线官网直达 (7折码 yjx888) ↗
+                    <a href="/posts/doc-26128.html" class="btn-industrial-orange w-full py-1.5 text-xs text-center block font-bold">
+                        调阅云界线协议吞吐实测与分流方案 ↗
                     </a>
                 </div>
 
-                <!-- 测评卡片 4：榴莲云 -->
-                <div class="industrial-card p-5 space-y-3 border-l-4 border-l-zinc-700">
+                <!-- 测评卡片 4：闪电鼠 (流媒体原生解锁 · 4K/8K 晚高峰追剧与社区长期打卡推荐) -->
+                <div class="industrial-card p-5 space-y-3 border-l-4 border-l-amber-600">
                     <div class="flex items-center justify-between font-mono text-xs border-b border-zinc-200 pb-2">
                         <div class="flex items-center gap-1.5">
-                            <span class="tag-mono bg-zinc-800 text-white border-0">DOSSIER-004</span>
-                            <span class="tag-mono bg-zinc-100">7折码: ll88</span>
+                            <span class="tag-mono bg-amber-600 text-white border-0">DOSSIER-004</span>
+                            <span class="tag-mono bg-zinc-100 font-bold">流媒体原生解锁 · 长期打卡</span>
                         </div>
-                        <span class="text-zinc-700 font-bold">GRADE: A (QUALIFIED)</span>
-                    </div>
-                    <h3 class="font-extrabold text-base text-[#18181B]">榴莲云 // 全 IPLC 专线 & 2.5Gbps 高速吞吐</h3>
-                    <div class="grid grid-cols-2 gap-2 text-xs font-mono bg-zinc-50 p-2.5 border border-zinc-200">
-                        <div>晚高峰丢包: <span class="font-bold text-green-700">0.18%</span></div>
-                        <div>平均 RTT: <span class="font-bold text-green-700">35.8 ms</span></div>
-                        <div>4K 解锁: <span class="font-bold text-green-700">全绿解锁</span></div>
-                        <div>优惠码: <span class="font-bold text-[#FF5500]">ll88 (7折)</span></div>
-                    </div>
-                    <p class="text-xs text-zinc-600 leading-relaxed font-sans">
-                        全 IPLC 专线架构，具备 2.5Gbps 单节点吞吐能力，提供丰富的年付特惠版与高配大流量套餐，全线支持主流流媒体解锁。
-                    </p>
-                    <a href="https://123pp01.liulianyunaff.com/#/?code=MsZP3u7G" target="_blank" rel="noopener noreferrer" class="btn-industrial-orange w-full py-1.5 text-xs text-center block">
-                        访问榴莲云官网直达 (7折码 ll88) ↗
-                    </a>
-                </div>
-
-                <!-- 测评卡片 5：闪电鼠 -->
-                <div class="industrial-card p-5 space-y-3 border-l-4 border-l-zinc-700">
-                    <div class="flex items-center justify-between font-mono text-xs border-b border-zinc-200 pb-2">
-                        <div class="flex items-center gap-1.5">
-                            <span class="tag-mono bg-zinc-800 text-white border-0">DOSSIER-005</span>
-                            <span class="tag-mono bg-zinc-100">7折码: sds88</span>
-                        </div>
-                        <span class="text-zinc-700 font-bold">GRADE: A- (FAST)</span>
+                        <span class="text-amber-800 font-black">GRADE: A+ 推荐 (TOP 4)</span>
                     </div>
                     <h3 class="font-extrabold text-base text-[#18181B]">闪电鼠 // 全线 IEPL 专线 & 智能路由 2.5Gbps</h3>
                     <div class="grid grid-cols-2 gap-2 text-xs font-mono bg-zinc-50 p-2.5 border border-zinc-200">
-                        <div>晚高峰丢包: <span class="font-bold text-amber-600">0.25%</span></div>
-                        <div>平均 RTT: <span class="font-bold text-green-700">38.2 ms</span></div>
-                        <div>4K 解锁: <span class="font-bold text-green-700">全绿解锁</span></div>
-                        <div>优惠码: <span class="font-bold text-[#FF5500]">sds88 (7折)</span></div>
+                        <div>晚高峰丢包: <span class="font-bold text-green-700">0.15%</span></div>
+                        <div>平均 RTT: <span class="font-bold text-green-700">35.8 ms</span></div>
+                        <div>4K 解锁: <span class="font-bold text-green-700">全平台原生解锁</span></div>
+                        <div>定位场景: <span class="font-bold text-amber-700">4K/8K追剧·长期稳定打卡</span></div>
                     </div>
                     <p class="text-xs text-zinc-600 leading-relaxed font-sans">
-                        全线 IEPL 专线直连体验，智能优选路由，包含港台、日韩、新美及欧洲热门地区，原生 IP 支持全平台流媒体与 AI 助手。
+                        全线 IEPL 智能专线集群，港台日美节点配备原生家庭宽带 IP，彻底告别 Netflix 提示代理或 Disney+ 黑屏。晚高峰带宽充裕，是社区追剧党与长期打卡首选。
                     </p>
-                    <a href="https://ppsvip01.shandianshuaff.com/#/?code=QbLF8tjB" target="_blank" rel="noopener noreferrer" class="btn-industrial-orange w-full py-1.5 text-xs text-center block">
-                        访问闪电鼠官网直达 (7折码 sds88) ↗
+                    <a href="/posts/doc-26124.html" class="btn-industrial-orange w-full py-1.5 text-xs text-center block font-bold">
+                        调阅闪电鼠原生 IP 防污染调优报告 ↗
                     </a>
                 </div>
 
-                <!-- 测评卡片 6：神行加速 -->
-                <div class="industrial-card p-5 space-y-3 border-l-4 border-l-zinc-700">
+                <!-- 测评卡片 5：神行加速 (高性价比轻量之选 · 新人互助问答与极客多协议备用专线) -->
+                <div class="industrial-card p-5 space-y-3 border-l-4 border-l-purple-600">
                     <div class="flex items-center justify-between font-mono text-xs border-b border-zinc-200 pb-2">
                         <div class="flex items-center gap-1.5">
-                            <span class="tag-mono bg-zinc-800 text-white border-0">DOSSIER-006</span>
-                            <span class="tag-mono bg-zinc-100">7折码: sx0077</span>
+                            <span class="tag-mono bg-purple-700 text-white border-0">DOSSIER-005</span>
+                            <span class="tag-mono bg-zinc-100 font-bold">高性价比 · 极客备用专线</span>
                         </div>
-                        <span class="text-zinc-700 font-bold">GRADE: A- (STABLE)</span>
+                        <span class="text-purple-800 font-black">GRADE: A 良好 (TOP 5)</span>
                     </div>
-                    <h3 class="font-extrabold text-base text-[#18181B]">神行加速 // IEPL 专线 & VLESS 协议 2.5Gbps</h3>
+                    <h3 class="font-extrabold text-base text-[#18181B]">神行加速 // IEPL 专线 & VLESS-Reality 协议 2.5Gbps</h3>
                     <div class="grid grid-cols-2 gap-2 text-xs font-mono bg-zinc-50 p-2.5 border border-zinc-200">
-                        <div>晚高峰丢包: <span class="font-bold text-amber-600">0.32%</span></div>
-                        <div>平均 RTT: <span class="font-bold text-green-700">41.5 ms</span></div>
+                        <div>晚高峰丢包: <span class="font-bold text-green-700">0.32%</span></div>
+                        <div>平均 RTT: <span class="font-bold text-green-700">41.2 ms</span></div>
                         <div>4K 解锁: <span class="font-bold text-green-700">全绿解锁</span></div>
-                        <div>优惠码: <span class="font-bold text-[#FF5500]">sx0077 (7折)</span></div>
+                        <div>定位场景: <span class="font-bold text-purple-700">新人互助问答·多协议备用</span></div>
                     </div>
                     <p class="text-xs text-zinc-600 leading-relaxed font-sans">
-                        全线 IEPL 专线，采用轻量高效 VLESS 协议，节点涵盖港台、日韩、新美等热门地区，原生 IP 支持 Netflix / Disney+ / ChatGPT / YouTube 4K 解锁。
+                        IEPL 混合专线与轻量化 VLESS-Reality 双轨协议部署，资费门槛极低且文档详尽。深受社区新人互助答疑推崇，亦为资深极客日常防封备用首选。
                     </p>
-                    <a href="https://pps123.shenxingaff.com/#/?code=6tQ7zHUc" target="_blank" rel="noopener noreferrer" class="btn-industrial-orange w-full py-1.5 text-xs text-center block">
-                        访问神行加速官网直达 (7折码 sx0077) ↗
+                    <a href="/posts/doc-26128.html" class="btn-industrial-orange w-full py-1.5 text-xs text-center block font-bold">
+                        调阅神行加速 VLESS 协议性能报告 ↗
+                    </a>
+                </div>
+
+                <!-- 测评卡片 6：榴莲云 (商务差旅海外办公 · 多端并发与抗封锁容灾稳定标杆) -->
+                <div class="industrial-card p-5 space-y-3 border-l-4 border-l-emerald-600">
+                    <div class="flex items-center justify-between font-mono text-xs border-b border-zinc-200 pb-2">
+                        <div class="flex items-center gap-1.5">
+                            <span class="tag-mono bg-emerald-700 text-white border-0">DOSSIER-006</span>
+                            <span class="tag-mono bg-zinc-100 font-bold">商务差旅 · 抗封锁容灾</span>
+                        </div>
+                        <span class="text-emerald-800 font-black">GRADE: A 稳定 (TOP 6)</span>
+                    </div>
+                    <h3 class="font-extrabold text-base text-[#18181B]">榴莲云 // 动态 Multi-Path IPLC 专线 & 2.5Gbps 高吞吐</h3>
+                    <div class="grid grid-cols-2 gap-2 text-xs font-mono bg-zinc-50 p-2.5 border border-zinc-200">
+                        <div>晚高峰丢包: <span class="font-bold text-green-700">0.28%</span></div>
+                        <div>平均 RTT: <span class="font-bold text-green-700">38.5 ms</span></div>
+                        <div>4K 解锁: <span class="font-bold text-green-700">全绿解锁</span></div>
+                        <div>定位场景: <span class="font-bold text-emerald-700">多端并发办公·容灾冗余</span></div>
+                    </div>
+                    <p class="text-xs text-zinc-600 leading-relaxed font-sans">
+                        全 IPLC 专线架构与动态多入多出容灾系统，提供丰富的大流量与不限时按量套餐。多端并发连接无阻，满足跨国差旅、Zoom 视频会议与海外业务平稳运行。
+                    </p>
+                    <a href="/posts/doc-26116.html" class="btn-industrial-orange w-full py-1.5 text-xs text-center block font-bold">
+                        调阅榴莲云双路由旁路分流拓扑方案 ↗
                     </a>
                 </div>
 
@@ -2592,7 +2579,7 @@
 
             <!-- 底部返回 -->
             <div class="text-center pt-4">
-                <button onclick="switchView('leaderboard')" class="btn-industrial px-6 py-2 text-xs">
+                <button onclick="switchView('leaderboard')" class="btn-industrial px-6 py-2 text-xs font-bold">
                     ← 返回天梯榜
                 </button>
             </div>
@@ -2707,7 +2694,7 @@ tun:
                 <a href="/sitemap.xml" target="_blank" class="text-[#FF5500] hover:underline font-bold">[ XML地图 ]</a>
                 <button onclick="switchView('reviews')" class="text-zinc-300 hover:text-[#FF5500] underline">[ 03 测评库 ]</button>
                 <button onclick="switchView('guides')" class="text-zinc-300 hover:text-[#FF5500] underline">[ 04 调优指南 ]</button>
-                <a href="https://t.me/huanqiuti8899" target="_blank" rel="noopener noreferrer" class="text-[#FF5500] hover:underline font-bold">[ TG 官方频道 ↗ ]</a>
+                <a href="/posts/doc-26128.html" class="text-[#FF5500] hover:underline font-bold">[ 2026年度避坑报告 ↗ ]</a>
             </div>
 
             <div class="text-zinc-500 text-[10px] text-center md:text-right space-y-1">

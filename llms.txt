@@ -1,0 +1,23 @@
+# 梯子社区 (tizishequ.com) // 工业级网络代理观测台与协议工程文献库
+
+> 梯子社区是一个立足于客观中立网络技术实测、跨境专线延迟与丢包抖动连续监测的去伪存真观测平台。平台杜绝虚假商业推广，依托自动化分布式探针进行晚高峰（20:00 - 23:00）全天候压力轮询，收录真实网络性能天梯榜与深度网络协议工程文献。
+
+## 核心技术与评估方法论 (Methodology & Standards)
+
+- **物理链路硬成本模型**：基于跨境 IPLC / IEPL 物理专线与 IDC 机房带宽批发单价，拆解超售倍率对晚高峰 QoS 丢包率的影响机制。
+- **抗丢包压力评测**：排除非峰值单点突发峰值，使用 1000M FTTH 环境执行 72 小时多维 MTR 路由追踪与连续 ICMP/UDP 负载测试。
+- **协议对抗演进**：持续追踪 Shadowsocks 2022、Hysteria 2、TUIC v5、VLESS-Reality 等现代抗审查协议在 DPI 深度包检测与 QoS 限速下的实际表现。
+- **网络合规与隐私治理**：研究双软路由拓扑分流、MosDNS 防污染、WebRTC STUN 穿透阻断与 Fake-IP 虚拟映射阻断技术。
+
+## 核心评测与技术研报目录 (Core Articles & Reports)
+
+- [DOC-26120: 机场社区 2026 年度服务商风险评估与健康度基准](https://tizishequ.com/posts/doc-26120.html): 深入拆解跨境专线真实硬成本、晚高峰 QoS 抢占崩溃机制、七大跑路征兆与双链路零感知容灾方案。
+- [DOC-26128: 2026 梯子社区年度避坑报告：常见节点协议性能实测与全场景科学上网选型指南](https://tizishequ.com/posts/doc-26128.html): 10 余个机房与 6 大主流协议深度横评，拆解峰值带宽虚标与真实 RTT 抖动，提供标准分流规则与全套排障 SOP。
+- [DOC-26124: 彻底封堵真实 IP 暴露：WebRTC、DNS 泄漏与 DoH/DoT 分流防劫持全链路排查指南](https://tizishequ.com/posts/doc-26124.html): 深入解析真实物理 IP 泄露根因、WebRTC STUN 穿透、DNS 污染回落及全局代理 UDP 缺失，提供完整自查 Checklist 与客户端深度加固方案。
+- [DOC-26116: iKuai + OpenWrt 双软路由分流终极实操：如何实现境内直连低延迟与境外流量智能分流？](https://tizishequ.com/posts/doc-26116.html): 详细拆解 iKuai 主路由 + OpenWrt 旁路双软路由网络架构、DNS 防污染 MosDNS 配置、四类终端系统调优与避坑排错指南。
+
+## 站点地图与架构导航 (Sitemap & Resources)
+
+- [梯子社区官方主站首页](https://tizishequ.com/): 实时节点性能天梯榜、晚高峰抗丢包测速观测台与黑名单档案库。
+- [HTML 网站地图](https://tizishequ.com/sitemap.html): 站内所有独立静态文档与核心页面索引。
+- [XML 搜索引擎地图](https://tizishequ.com/sitemap.xml): 遵循标准 Sitemaps 协议的最新物理页面收录索引。
