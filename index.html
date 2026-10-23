@@ -157,6 +157,30 @@
         }
     </script>
     <style>
+        /* 确保 html/body 填满屏幕 */
+        html, body {
+            margin: 0 !important;
+            padding: 0 !important;
+            width: 100% !important;
+            background-color: #F8F9FA !important;
+        }
+
+        /* 主内容容器：大屏展开，居中对齐 */
+        .container, main, .terminal-container, .wrapper, .main-container {
+            width: 95% !important;
+            max-width: 1400px !important; /* 彻底放开宽度，支持大屏充分展示 */
+            margin: 20px auto !important; /* 强制上下20px，左右水平严格居中 */
+            padding: 24px !important;
+            box-sizing: border-box !important;
+        }
+
+        /* 节点测速表格：允许 100% 充满容器，字体自适应 */
+        table, .benchmark-table, .tech-table {
+            width: 100% !important;
+            border-collapse: collapse !important;
+            table-layout: auto !important;
+        }
+
         /* 瑞士工业设计核心 Dot Grid 背景 */
         body {
             background-color: #F8F9FA;

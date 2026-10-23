@@ -1,115 +1,150 @@
 /**
  * tizishequ.com - 梯子社区核心视觉样式表 (Core Neo-Brutalism & Layout Engine)
- * 纯原生 CSS，无外部网络依赖，采用规范根绝对路径 /css/styles.css 引入
- * 杜绝在任何子路径或离线环境下的样式裸奔、左侧空白偏移与 CLS 布局偏移
+ * 纯原生 CSS，不依赖任何外部 CDN 运行时，支持 100% 离线自适应与大屏饱满铺开
  */
 
 /* ==========================================================================
-   1. 基础盒模型与现代重置 (杜绝粗暴重置破坏 auto margin)
+   1. 基础重置与全屏铺满 (确保 html/body 填满屏幕)
    ========================================================================== */
 *, *::before, *::after {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-html {
-    font-size: 16px;
-    scroll-behavior: smooth;
-    -webkit-text-size-adjust: 100%;
-    width: 100% !important;
+html, body {
     margin: 0 !important;
     padding: 0 !important;
-}
-
-body {
-    background-color: #F8F9FA;
+    width: 100% !important;
+    min-height: 100vh;
+    background-color: #F8F9FA !important;
     background-image: radial-gradient(#18181B 0.75px, transparent 0.75px);
     background-size: 16px 16px;
     color: #18181B;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    min-height: 100vh;
-    width: 100% !important;
-    min-width: 100% !important;
-    max-width: 100vw !important;
-    overflow-x: hidden !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* 关键：确保直系子容器全局水平居中 */
 }
 
 /* ==========================================================================
-   2. 全局主容器水平居中与全宽自适应 (彻底杜绝左侧大面积留白与右偏挤压)
+   2. 主内容容器：大屏彻底放开宽度，居中对齐 (杜绝 700px~800px 缩水与左偏)
    ========================================================================== */
+.container,
 main,
 .main-container,
-#app,
-.container,
-.dashboard-wrapper,
+.terminal-container,
+.wrapper,
+#app {
+    width: 95% !important;
+    max-width: 1400px !important; /* 彻底放开宽度，支持大屏充分展开展示 */
+    margin: 20px auto !important; /* 强制上下 20px，左右水平严格居中 */
+    padding: 24px !important;
+    box-sizing: border-box !important;
+}
+
 header > div,
 footer > div {
-    margin-left: auto !important;
-    margin-right: auto !important;
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
-    width: 100% !important;
-    max-width: 1280px !important;
-    padding-left: 16px !important;
-    padding-right: 16px !important;
+    width: 95% !important;
+    max-width: 1400px !important;
+    margin: 0 auto !important;
     box-sizing: border-box !important;
-    float: none !important;
-    clear: both !important;
-    position: relative !important;
-    left: 0 !important;
-    right: 0 !important;
 }
 
-header, footer {
+header {
     width: 100% !important;
+    background-color: #FFFFFF;
+    border-bottom: 2px solid #18181B;
+}
+
+footer {
+    width: 100% !important;
+    background-color: #18181B;
+    border-top: 2px solid #18181B;
 }
 
 /* ==========================================================================
-   3. 关键组件：Logo 防护机制 (彻底杜绝 Logo 畸大)
+   3. 节点测速表格：允许 100% 充满容器，字体自适应
    ========================================================================== */
-.site-logo-container {
-    width: 40px !important;
-    height: 40px !important;
-    min-width: 40px !important;
-    max-width: 40px !important;
-    min-height: 40px !important;
-    max-height: 40px !important;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid #18181B;
-    background-color: #FF5500;
-    box-shadow: 2px 2px 0px #18181B;
-    overflow: hidden;
-    flex-shrink: 0;
-}
-
-.site-logo-container img {
+table,
+.benchmark-table,
+.tech-table {
     width: 100% !important;
-    height: 100% !important;
-    max-width: 100% !important;
-    max-height: 100% !important;
-    object-fit: cover !important;
-    display: block;
+    border-collapse: collapse !important;
+    table-layout: auto !important;
 }
 
-.brand-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    color: inherit;
+.tech-table th, .tech-table td {
+    border: 1px solid #18181B;
+    padding: 10px 12px;
+    font-size: 0.85rem;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.tech-table th {
+    background-color: #18181B;
+    color: #FFFFFF;
+    font-weight: 700;
+    text-align: left;
 }
 
 /* ==========================================================================
-   4. 实体工业设计核心组件 (Neo-Brutalism Industrial Elements)
+   4. 底部研报模块与全站网格系统 (纯原生 CSS 布局，杜绝样式散架)
+   ========================================================================== */
+.grid,
+.reports-grid {
+    display: grid !important;
+    grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+    gap: 16px !important;
+    width: 100% !important;
+}
+
+@media (min-width: 640px) {
+    .grid-cols-2,
+    .sm\:grid-cols-2,
+    .reports-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+}
+
+@media (min-width: 1024px) {
+    .grid-cols-3,
+    .md\:grid-cols-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    }
+    .grid-cols-4,
+    .lg\:grid-cols-4,
+    .reports-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    }
+}
+
+/* 研报卡片工整实体样式 (即便 Tailwind 未加载也 100% 工整成型) */
+.report-card,
+.reports-grid > a,
+.reports-grid > div {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    background-color: #FFFFFF !important;
+    border: 2px solid #18181B !important;
+    padding: 14px !important;
+    box-shadow: 3px 3px 0px #18181B !important;
+    text-decoration: none !important;
+    color: #18181B !important;
+    transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.1s ease !important;
+    min-height: 120px;
+}
+
+.report-card:hover,
+.reports-grid > a:hover {
+    background-color: #FFF7ED !important;
+    transform: translate(-2px, -2px) !important;
+    box-shadow: 5px 5px 0px #18181B !important;
+}
+
+/* ==========================================================================
+   5. 实体工业设计核心组件 (Neo-Brutalism Industrial Elements)
    ========================================================================== */
 .industrial-card {
     background-color: #FFFFFF;
@@ -200,36 +235,39 @@ header, footer {
     white-space: nowrap;
 }
 
-/* 终端代码块 */
-.terminal-block {
-    background-color: #18181B;
-    color: #4ADE80;
-    font-family: 'JetBrains Mono', monospace;
+/* Logo 防护 */
+.site-logo-container {
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+    max-width: 40px !important;
+    min-height: 40px !important;
+    max-height: 40px !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     border: 2px solid #18181B;
-    box-shadow: 4px 4px 0px #FF5500;
-    padding: 1rem;
-    border-radius: 0;
-    overflow-x: auto;
+    background-color: #FF5500;
+    box-shadow: 2px 2px 0px #18181B;
+    overflow: hidden;
+    flex-shrink: 0;
 }
 
-/* 表格专有样式 */
-.tech-table {
-    width: 100%;
-    border-collapse: collapse;
+.site-logo-container img {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    object-fit: cover !important;
+    display: block;
 }
 
-.tech-table th, .tech-table td {
-    border: 1px solid #18181B;
-    padding: 10px 12px;
-    font-size: 0.85rem;
-}
-
-.tech-table th {
-    background-color: #18181B;
-    color: #FFFFFF;
-    font-weight: 700;
-    text-align: left;
-    font-family: 'JetBrains Mono', monospace;
+.brand-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: inherit;
 }
 
 /* 自定义滚动条 */

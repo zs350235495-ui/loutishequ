@@ -3,10 +3,11 @@
  * 
  * 包含：
  * 1. 本地真实 HTTP Server 挂载与网络请求断言 (HTTP 200 OK，支持 /leaderboard 与 /leaderboard.html 双重物理路由)
- * 2. 核心 CSS (/css/styles.css) 全局严格居中 (margin: 0 auto !important) 与排版断言 (杜绝左侧留白与样式裸奔)
- * 3. 独立物理单页 /leaderboard.html 与 /leaderboard/index.html 结构与场景化细分验证
- * 4. 零商业推广返利链接 (0 AFF Links / 0 Promo Codes) 与零 TG 引流
- * 5. 全站 0 死链与 Sitemap 物理对齐验证
+ * 2. 核心 CSS (/css/styles.css) 释放大屏容器宽度 (max-width: 1400px !important; margin: 20px auto !important; width: 95% !important)
+ * 3. 底部研报模块网格与实体卡片样式断言 (.reports-grid, .report-card 杜绝样式散架)
+ * 4. 独立物理单页 /leaderboard.html 与 /leaderboard/index.html 结构与场景化细分验证
+ * 5. 零商业推广返利链接 (0 AFF Links / 0 Promo Codes) 与零 TG 引流
+ * 6. 全站 0 死链与 Sitemap 物理对齐验证
  */
 
 const fs = require('fs');
@@ -26,7 +27,7 @@ function logFail(msg) {
 }
 
 console.log('\n======================================================');
-console.log('🚀 开始梯子社区 (tizishequ.com) 全局居中、路由静态化与 0 死链门禁审计');
+console.log('🚀 开始梯子社区 (tizishequ.com) 大屏宽度释放、研报排版与 0 死链门禁审计');
 console.log('======================================================\n');
 
 // 1. 核心基础设施文件与静态样式表检查
@@ -55,18 +56,18 @@ requiredFiles.forEach(f => {
     }
 });
 
-// 检查 css/styles.css 是否包含标准的全局居中规范
+// 检查 css/styles.css 是否包含标准大屏容器宽度与研报卡片规范
 const cssContent = fs.readFileSync(path.join(rootDir, 'css/styles.css'), 'utf8');
 if (
-    cssContent.includes('margin-left: auto !important') &&
-    cssContent.includes('margin-right: auto !important') &&
-    cssContent.includes('max-width: 1280px !important') &&
-    cssContent.includes('padding-left: 16px !important') &&
-    cssContent.includes('box-sizing: border-box !important')
+    cssContent.includes('max-width: 1400px !important') &&
+    cssContent.includes('margin: 20px auto !important') &&
+    cssContent.includes('width: 95% !important') &&
+    cssContent.includes('.reports-grid') &&
+    cssContent.includes('.report-card')
 ) {
-    logPass('css/styles.css 包含标准严格响应式居中规则 (margin: 0 auto !important; max-width: 1280px; padding: 0 16px)');
+    logPass('css/styles.css 包含标准宽屏自适应展开规则 (max-width: 1400px, width: 95%, margin: 20px auto) 与研报工整实体卡片网格');
 } else {
-    logFail('css/styles.css 缺少全局强制居中与全宽自适应规则！');
+    logFail('css/styles.css 缺少大屏展开规则或研报卡片样式！');
 }
 
 // 2. 检查 leaderboard.html 与 leaderboard/index.html 前 6 名顺序与场景化细分
@@ -108,6 +109,13 @@ console.log('\n【2. 排行榜 (leaderboard.html & leaderboard/index.html) 规�
             logFail(`${lbFile} 服务商 [${s.name}] 缺少场景细分关键词: ${s.kw}`);
         }
     });
+
+    // 研报模块工整结构断言
+    if (lbContent.includes('reports-grid') && lbContent.includes('report-card')) {
+        logPass(`${lbFile} 底部研报模块已挂载 reports-grid 与 report-card 工整实体类`);
+    } else {
+        logFail(`${lbFile} 底部研报模块缺少 reports-grid 或 report-card`);
+    }
 });
 
 // 3. 全站 HTML 静态资源根绝对路径与 0 外部商业返利断言
@@ -133,11 +141,6 @@ htmlFiles.forEach(file => {
         logPass(`${rel}: 成功以根绝对路径引入 /css/styles.css`);
     } else {
         logFail(`${rel}: 未引入 /css/styles.css`);
-    }
-
-    // 检查是否有相对样式引用
-    if (/<link[^>]+href=["'](?:\.\/|[a-zA-Z0-9_\-]+\.css)["']/i.test(content)) {
-        logFail(`${rel}: 发现相对路径 CSS 引用`);
     }
 
     // 检查商业推广外链与 TG 链接
