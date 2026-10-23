@@ -109,6 +109,33 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;0,800;1,400&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* 确保 html/body 填满屏幕，严禁外层 body 用居中把页面挤成一团 */
+        html, body {
+            width: 100% !important;
+            min-height: 100vh !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            background-color: #F8F9FA !important;
+            display: block !important;
+        }
+
+        /* 主内容容器：自然撑满，大屏居中展示 */
+        .container, main, #app, .main-layout, .main-container {
+            width: 96% !important;
+            max-width: 1400px !important;
+            margin: 0 auto !important;
+            padding: 24px 16px !important;
+            box-sizing: border-box !important;
+        }
+
+        /* 节点测速表格：允许 100% 充满容器，字体自适应 */
+        table, .benchmark-table, .tech-table {
+            width: 100% !important;
+            table-layout: auto !important;
+            border-collapse: collapse !important;
+        }
+    </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between">
 
@@ -126,7 +153,7 @@
             </a>
             
             <nav class="flex items-center gap-2">
-                <a href="/leaderboard.html" class="btn-industrial px-3 py-1.5 active text-xs">
+                <a href="/" class="btn-industrial px-3 py-1.5 active text-xs">
                     [ 00 天梯榜 ]
                 </a>
                 <a href="/#blog" class="btn-industrial px-3 py-1.5 text-xs">

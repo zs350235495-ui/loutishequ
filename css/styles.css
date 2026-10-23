@@ -4,7 +4,7 @@
  */
 
 /* ==========================================================================
-   1. 基础重置与全屏铺满 (确保 html/body 填满屏幕)
+   1. 基础重置与全屏铺满 (确保 html/body 填满屏幕，严禁外层 body 用居中把页面挤成一团)
    ========================================================================== */
 *, *::before, *::after {
     box-sizing: border-box;
@@ -13,10 +13,10 @@
 }
 
 html, body {
+    width: 100% !important;
+    min-height: 100vh !important;
     margin: 0 !important;
     padding: 0 !important;
-    width: 100% !important;
-    min-height: 100vh;
     background-color: #F8F9FA !important;
     background-image: radial-gradient(#18181B 0.75px, transparent 0.75px);
     background-size: 16px 16px;
@@ -25,29 +25,32 @@ html, body {
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    display: block !important; /* 关键：严禁外层 body 用居中把页面挤成一团 */
 }
 
 /* ==========================================================================
-   2. 主内容容器：大屏彻底放开宽度，居中对齐 (杜绝 700px~800px 缩水与左偏)
+   2. 主布局容器：自然撑满，大屏居中充分展开展示 (杜绝 700px~800px 锁死与缩小)
    ========================================================================== */
 .container,
 main,
+#app,
+.main-layout,
 .main-container,
 .terminal-container,
-.wrapper,
-#app {
-    width: 95% !important;
-    max-width: 1400px !important; /* 彻底放开宽度，支持大屏充分展开展示 */
-    margin: 20px auto !important; /* 强制上下 20px，左右水平严格居中 */
-    padding: 24px !important;
+.wrapper {
+    width: 96% !important;
+    max-width: 1400px !important; /* 彻底放开宽度，支持大屏充分展示 */
+    margin: 0 auto !important;    /* 强制水平严格居中 */
+    padding: 24px 16px !important;
     box-sizing: border-box !important;
 }
 
 header > div,
 footer > div {
-    width: 95% !important;
+    width: 96% !important;
     max-width: 1400px !important;
     margin: 0 auto !important;
+    padding: 0 16px !important;
     box-sizing: border-box !important;
 }
 
@@ -55,12 +58,14 @@ header {
     width: 100% !important;
     background-color: #FFFFFF;
     border-bottom: 2px solid #18181B;
+    display: block !important;
 }
 
 footer {
     width: 100% !important;
     background-color: #18181B;
     border-top: 2px solid #18181B;
+    display: block !important;
 }
 
 /* ==========================================================================
@@ -70,8 +75,8 @@ table,
 .benchmark-table,
 .tech-table {
     width: 100% !important;
-    border-collapse: collapse !important;
     table-layout: auto !important;
+    border-collapse: collapse !important;
 }
 
 .tech-table th, .tech-table td {

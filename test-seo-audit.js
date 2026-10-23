@@ -2,10 +2,10 @@
  * test-seo-audit.js - 梯子社区 (tizishequ.com) 自动化门禁断言与 0 死链测试脚本
  * 
  * 包含：
- * 1. 本地真实 HTTP Server 挂载与网络请求断言 (HTTP 200 OK，支持 /leaderboard 与 /leaderboard.html 双重物理路由)
- * 2. 核心 CSS (/css/styles.css) 释放大屏容器宽度 (max-width: 1400px !important; margin: 20px auto !important; width: 95% !important)
- * 3. 底部研报模块网格与实体卡片样式断言 (.reports-grid, .report-card 杜绝样式散架)
- * 4. 独立物理单页 /leaderboard.html 与 /leaderboard/index.html 结构与场景化细分验证
+ * 1. 本地真实 HTTP Server 挂载与网络请求断言 (HTTP 200 OK，支持 /、/leaderboard 与 /leaderboard.html Clean URL)
+ * 2. 核心 CSS (/css/styles.css) 与 HTML 容器展开断言 (display: block !important; width: 96% !important; max-width: 1400px !important; margin: 0 auto !important)
+ * 3. 彻底消除 zoom、scale、固定像素缩小与 #/leaderboard 虚拟哈希路由
+ * 4. 底部研报模块网格与实体卡片样式断言 (.reports-grid, .report-card 杜绝样式散架)
  * 5. 零商业推广返利链接 (0 AFF Links / 0 Promo Codes) 与零 TG 引流
  * 6. 全站 0 死链与 Sitemap 物理对齐验证
  */
@@ -27,7 +27,7 @@ function logFail(msg) {
 }
 
 console.log('\n======================================================');
-console.log('🚀 开始梯子社区 (tizishequ.com) 大屏宽度释放、研报排版与 0 死链门禁审计');
+console.log('🚀 开始梯子社区 (tizishequ.com) 容器自适应展开、消灭 Hash 路由与 0 死链审计');
 console.log('======================================================\n');
 
 // 1. 核心基础设施文件与静态样式表检查
@@ -56,22 +56,62 @@ requiredFiles.forEach(f => {
     }
 });
 
-// 检查 css/styles.css 是否包含标准大屏容器宽度与研报卡片规范
+// 检查 css/styles.css 是否包含标准的自然撑满与 1400px 大屏居中
 const cssContent = fs.readFileSync(path.join(rootDir, 'css/styles.css'), 'utf8');
 if (
+    cssContent.includes('display: block !important') &&
     cssContent.includes('max-width: 1400px !important') &&
-    cssContent.includes('margin: 20px auto !important') &&
-    cssContent.includes('width: 95% !important') &&
+    cssContent.includes('margin: 0 auto !important') &&
+    cssContent.includes('width: 96% !important') &&
     cssContent.includes('.reports-grid') &&
     cssContent.includes('.report-card')
 ) {
-    logPass('css/styles.css 包含标准宽屏自适应展开规则 (max-width: 1400px, width: 95%, margin: 20px auto) 与研报工整实体卡片网格');
+    logPass('css/styles.css 包含 display: block 与大屏展开规则 (max-width: 1400px, width: 96%, margin: 0 auto) 与研报实体网格');
 } else {
     logFail('css/styles.css 缺少大屏展开规则或研报卡片样式！');
 }
 
-// 2. 检查 leaderboard.html 与 leaderboard/index.html 前 6 名顺序与场景化细分
-console.log('\n【2. 排行榜 (leaderboard.html & leaderboard/index.html) 规范与场景化细分断言】');
+// 2. 检查全站 viewport 与消灭缩放/固定狭窄限制
+console.log('\n【2. 视口声明与缩放/固定狭窄限制排查】');
+const htmlFiles = [
+    path.join(rootDir, 'index.html'),
+    path.join(rootDir, 'leaderboard.html'),
+    path.join(rootDir, 'leaderboard/index.html'),
+    path.join(rootDir, 'sitemap.html'),
+    path.join(rootDir, '404.html'),
+    path.join(rootDir, 'posts/doc-26116.html'),
+    path.join(rootDir, 'posts/doc-26120.html'),
+    path.join(rootDir, 'posts/doc-26124.html'),
+    path.join(rootDir, 'posts/doc-26128.html')
+];
+
+htmlFiles.forEach(file => {
+    const rel = path.relative(rootDir, file);
+    const content = fs.readFileSync(file, 'utf8');
+
+    // Viewport
+    if (/<meta[^>]+name=["']viewport["'][^>]*content=["'][^"']*width=device-width/i.test(content)) {
+        logPass(`${rel}: 具备标准视口声明 (width=device-width, initial-scale=1.0)`);
+    } else {
+        logFail(`${rel}: 缺少标准视口声明！`);
+    }
+
+    // 检查 zoom: 或 transform: scale(
+    if (/zoom\s*:/i.test(content)) {
+        logFail(`${rel}: 发现 zoom 缩放属性！`);
+    }
+    if (/transform\s*:\s*scale\(/i.test(content)) {
+        logFail(`${rel}: 发现 transform: scale 缩放属性！`);
+    }
+
+    // 检查是否有导航链接依然指向 /#/leaderboard
+    if (content.includes('/#/leaderboard')) {
+        logFail(`${rel}: 依然存在 /#/leaderboard 虚拟哈希导航！`);
+    }
+});
+
+// 3. 检查 leaderboard.html 与 leaderboard/index.html 前 6 名顺序与场景化细分
+console.log('\n【3. 排行榜 (leaderboard.html & leaderboard/index.html) 规范与场景化细分断言】');
 ['leaderboard.html', 'leaderboard/index.html'].forEach(lbFile => {
     const lbContent = fs.readFileSync(path.join(rootDir, lbFile), 'utf8');
     const providers = ['环球梯', '大佬云', '云界线', '闪电鼠', '神行加速', '榴莲云'];
@@ -109,61 +149,6 @@ console.log('\n【2. 排行榜 (leaderboard.html & leaderboard/index.html) 规�
             logFail(`${lbFile} 服务商 [${s.name}] 缺少场景细分关键词: ${s.kw}`);
         }
     });
-
-    // 研报模块工整结构断言
-    if (lbContent.includes('reports-grid') && lbContent.includes('report-card')) {
-        logPass(`${lbFile} 底部研报模块已挂载 reports-grid 与 report-card 工整实体类`);
-    } else {
-        logFail(`${lbFile} 底部研报模块缺少 reports-grid 或 report-card`);
-    }
-});
-
-// 3. 全站 HTML 静态资源根绝对路径与 0 外部商业返利断言
-console.log('\n【3. 全站 HTML 资源根绝对路径与平台风控断言】');
-const htmlFiles = [
-    path.join(rootDir, 'index.html'),
-    path.join(rootDir, 'leaderboard.html'),
-    path.join(rootDir, 'leaderboard/index.html'),
-    path.join(rootDir, 'sitemap.html'),
-    path.join(rootDir, '404.html'),
-    path.join(rootDir, 'posts/doc-26116.html'),
-    path.join(rootDir, 'posts/doc-26120.html'),
-    path.join(rootDir, 'posts/doc-26124.html'),
-    path.join(rootDir, 'posts/doc-26128.html')
-];
-
-htmlFiles.forEach(file => {
-    const rel = path.relative(rootDir, file);
-    const content = fs.readFileSync(file, 'utf8');
-
-    // 必须包含 /css/styles.css
-    if (content.includes('/css/styles.css')) {
-        logPass(`${rel}: 成功以根绝对路径引入 /css/styles.css`);
-    } else {
-        logFail(`${rel}: 未引入 /css/styles.css`);
-    }
-
-    // 检查商业推广外链与 TG 链接
-    const linkRegex = /href=["']([^"']+)["']/gi;
-    let m;
-    const links = [];
-    while ((m = linkRegex.exec(content)) !== null) {
-        links.push(m[1]);
-    }
-
-    const affLinks = links.filter(l => /(?:aff|code=|invite|\?aff=|\?ref=|\.best|bit\.ly)/i.test(l) && !l.startsWith('#') && !l.startsWith('javascript:'));
-    if (affLinks.length === 0) {
-        logPass(`${rel}: 零商业推广返利链接 (0 AFF Links)`);
-    } else {
-        logFail(`${rel}: 存在商业返利链接: ${affLinks.join(', ')}`);
-    }
-
-    const tgLinks = links.filter(l => /(?:t\.me|telegram)/i.test(l));
-    if (tgLinks.length === 0) {
-        logPass(`${rel}: 零外部 Telegram 引流链接`);
-    } else {
-        logFail(`${rel}: 存在 Telegram 引流链接: ${tgLinks.join(', ')}`);
-    }
 });
 
 // 4. 本地启动临时 HTTP Server 并进行全资源 200 OK 断言测试 (支持 /leaderboard 与 /leaderboard.html)

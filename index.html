@@ -128,196 +128,10 @@
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            bg: '#F8F9FA',
-                            dark: '#18181B',
-                            orange: '#FF5500',
-                            green: '#16A34A',
-                            yellow: '#D97706',
-                            blue: '#2563EB',
-                            panel: '#FFFFFF'
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'Space Mono', 'Consolas', 'monospace']
-                    },
-                    boxShadow: {
-                        'hard-sm': '2px 2px 0px #18181B',
-                        'hard': '4px 4px 0px #18181B',
-                        'hard-lg': '6px 6px 0px #18181B',
-                        'hard-orange': '4px 4px 0px #FF5500',
-                    }
-                }
-            }
+        // 彻底消灭 Hash 路由：将历史遗留 #/leaderboard 无缝重定向至 Clean URL 首页
+        if (window.location.hash && (window.location.hash.includes('leaderboard'))) {
+            window.location.replace('/');
         }
-    </script>
-    <style>
-        /* 确保 html/body 填满屏幕 */
-        html, body {
-            margin: 0 !important;
-            padding: 0 !important;
-            width: 100% !important;
-            background-color: #F8F9FA !important;
-        }
-
-        /* 主内容容器：大屏展开，居中对齐 */
-        .container, main, .terminal-container, .wrapper, .main-container {
-            width: 95% !important;
-            max-width: 1400px !important; /* 彻底放开宽度，支持大屏充分展示 */
-            margin: 20px auto !important; /* 强制上下20px，左右水平严格居中 */
-            padding: 24px !important;
-            box-sizing: border-box !important;
-        }
-
-        /* 节点测速表格：允许 100% 充满容器，字体自适应 */
-        table, .benchmark-table, .tech-table {
-            width: 100% !important;
-            border-collapse: collapse !important;
-            table-layout: auto !important;
-        }
-
-        /* 瑞士工业设计核心 Dot Grid 背景 */
-        body {
-            background-color: #F8F9FA;
-            background-image: radial-gradient(#18181B 0.75px, transparent 0.75px);
-            background-size: 16px 16px;
-            color: #18181B;
-            font-family: 'Inter', -apple-system, sans-serif;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        /* 实体工业边框与卡片 */
-        .industrial-card {
-            background-color: #FFFFFF;
-            border: 2px solid #18181B;
-            box-shadow: 4px 4px 0px #18181B;
-            transition: transform 0.1s ease, box-shadow 0.1s ease;
-        }
-
-        .industrial-card-sm {
-            background-color: #FFFFFF;
-            border: 1px solid #18181B;
-            box-shadow: 2px 2px 0px #18181B;
-        }
-
-        .industrial-card-hover:hover {
-            transform: translate(-2px, -2px);
-            box-shadow: 6px 6px 0px #18181B;
-        }
-
-        /* 实体工业按钮 */
-        .btn-industrial {
-            font-family: 'JetBrains Mono', monospace;
-            background-color: #FFFFFF;
-            color: #18181B;
-            border: 2px solid #18181B;
-            box-shadow: 2px 2px 0px #18181B;
-            font-weight: 700;
-            text-transform: uppercase;
-            transition: all 0.08s ease;
-            user-select: none;
-        }
-
-        .btn-industrial:hover {
-            background-color: #F1F5F9;
-        }
-
-        .btn-industrial:active, .btn-industrial.active {
-            background-color: #18181B;
-            color: #FFFFFF;
-            transform: translate(2px, 2px);
-            box-shadow: 0px 0px 0px #18181B;
-        }
-
-        .btn-industrial-orange {
-            background-color: #FF5500;
-            color: #FFFFFF;
-            border: 2px solid #18181B;
-            box-shadow: 2px 2px 0px #18181B;
-            font-weight: 700;
-        }
-
-        .btn-industrial-orange:hover {
-            background-color: #E04B00;
-        }
-
-        .btn-industrial-orange:active {
-            transform: translate(2px, 2px);
-            box-shadow: 0px 0px 0px #18181B;
-        }
-
-        /* 标签与标牌 */
-        .tag-mono {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.75rem;
-            padding: 0.125rem 0.375rem;
-            border: 1px solid #18181B;
-            background-color: #F1F5F9;
-            color: #18181B;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-        }
-
-        /* 自定义滚动条 */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #F8F9FA;
-            border-left: 1px solid #18181B;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #18181B;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #FF5500;
-        }
-
-        /* 文章终端样式 */
-        .terminal-block {
-            background-color: #18181B;
-            color: #4ADE80;
-            font-family: 'JetBrains Mono', monospace;
-            border: 2px solid #18181B;
-            box-shadow: 4px 4px 0px #FF5500;
-        }
-
-        /* 文章表格专有样式 */
-        .tech-table th, .tech-table td {
-            border: 1px solid #18181B;
-            padding: 0.625rem 0.75rem;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-        }
-        .tech-table th {
-            background-color: #18181B;
-            color: #FFFFFF;
-            font-weight: 700;
-            text-align: left;
-        }
-
-        /* 判定结论框 */
-        .verdict-box {
-            background-color: #FFF7ED;
-            border: 2px solid #FF5500;
-            box-shadow: 4px 4px 0px #18181B;
-        }
-    </style>
-    <script>
-        // SPA Hash 路由重定向与平滑静态化拦截 (消除 # 虚拟路径)
-        (function() {
-            var hash = window.location.hash;
-            if (hash === '#/leaderboard' || hash === '#leaderboard') {
-                window.location.replace('/leaderboard.html');
-            }
-        })();
     </script>
 </head>
 <body class="min-h-screen flex flex-col antialiased">
@@ -343,7 +157,7 @@
         <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
             <!-- 左侧 LOGO 与标牌 -->
             <div class="flex items-center">
-                <a href="/leaderboard.html" onclick="switchView('leaderboard')" class="flex items-center gap-3 group">
+                <a href="/" class="flex items-center gap-3 group">
                     <!-- 品牌徽标 Logo 图标 -->
                     <div class="site-logo-container rounded-full border-2 border-[#18181B] shadow-[2px_2px_0px_#18181B] overflow-hidden bg-white shrink-0 flex items-center justify-center group-hover:scale-105 transition-transform">
                         <img src="/assets/logo.png" width="40" height="40" alt="梯子社区 LOGO" class="w-full h-full object-cover">
@@ -368,9 +182,7 @@
 
             <!-- 右侧导航群 -->
             <nav class="flex flex-wrap items-center gap-1.5 text-xs font-mono">
-                <button id="nav-btn-leaderboard" onclick="switchView('leaderboard')" class="btn-industrial px-3 py-1.5 active">
-                    [00 机场天梯榜]
-                </button>
+                <a href="/" id="nav-btn-leaderboard" class="btn-industrial px-3 py-1.5 active font-bold">[00 机场天梯榜]</a>
                 <button id="nav-btn-blog" onclick="switchView('blog')" class="btn-industrial px-3 py-1.5">
                     [01 实验室博客]
                 </button>
@@ -3678,9 +3490,7 @@ const ARTICLES_DATA = articlesData;
             // 3. 容错更新 URL Hash
             if (!skipHashUpdate) {
                 try {
-                    if (window.location.hash !== `#${targetView}`) {
-                        history.pushState(null, '', `#${targetView}`);
-                    }
+                    // Clean URL: 纯前端单页平滑视图切换，不污染 URL Hash
                 } catch (e) {
                     console.warn('History pushState error bypassed:', e);
                 }
@@ -3784,9 +3594,7 @@ const ARTICLES_DATA = articlesData;
             resolveAppRoute();
         });
 
-        window.addEventListener('hashchange', () => {
-            resolveAppRoute();
-        });
+        // 彻底消除 hashchange 监听
     </script>
 </body>
 </html>
