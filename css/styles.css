@@ -441,3 +441,7 @@ tbody tr:hover {
   font-family: "JetBrains Mono", Consolas, -apple-system, "Microsoft YaHei", monospace !important;
 }
 
+
+/* SVG Safety Constraints */
+svg { max-width: 100%; box-sizing: border-box; }
+#floating-tg-widget svg { width: 15px !important; height: 15px !important; max-width: 15px !important; max-height: 15px !important; }

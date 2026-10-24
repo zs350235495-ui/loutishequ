@@ -238,17 +238,17 @@
 
 
     <!-- 0. 顶部官方 Telegram 交流通道置顶横幅 (醒目高亮) -->
-    <aside style="background: #18181B; border-bottom: 2px solid #229ED9;" class="w-full py-2 px-3 text-xs font-mono text-white relative z-50">
-        <div class="max-w-7xl mx-auto flex items-center justify-between gap-3 flex-wrap">
-            <div class="flex items-center gap-2">
-                <span style="background: #229ED9;" class="inline-flex items-center justify-center w-5 h-5 rounded-full text-white shrink-0">
-                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
+    <aside style="background: #18181B; border-bottom: 2px solid #229ED9; width: 100%; box-sizing: border-box; position: relative; z-index: 50; padding: 8px 12px; font-family: monospace; font-size: 12px; color: #ffffff;">
+        <div style="max-width: 1280px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; box-sizing: border-box;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+                <span style="background: #229ED9; width: 22px; height: 22px; min-width: 22px; min-height: 22px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; color: #ffffff;">
+                    <svg width="13" height="13" viewBox="0 0 24 24" style="width: 13px !important; height: 13px !important; max-width: 13px !important; max-height: 13px !important; fill: #ffffff !important; display: block;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
                 </span>
-                <span class="font-bold text-zinc-100">
+                <span style="font-weight: bold; color: #f4f4f5; font-size: 12px;">
                     【官方通知】官方 Telegram 交流社群已开通，实时推送晚高峰测速报告与失联跑路预警！
                 </span>
             </div>
-            <a href="https://t.me/huanqiuti8899" target="_blank" rel="noopener noreferrer" style="background: #229ED9; color: #ffffff; border: 1.5px solid #ffffff; box-shadow: 2px 2px 0px #ffffff;" class="inline-flex items-center gap-1.5 px-3 py-1 font-bold text-xs transition-all hover:brightness-110 active:translate-x-[1px] active:translate-y-[1px]">
+            <a href="https://t.me/huanqiuti8899" target="_blank" rel="noopener noreferrer" style="background: #229ED9; color: #ffffff; border: 1.5px solid #ffffff; box-shadow: 2px 2px 0px #ffffff; padding: 4px 12px; font-weight: bold; font-size: 12px; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; flex-shrink: 0;">
                 <span>点击加入官方 TG 群 ↗</span>
             </a>
         </div>
@@ -921,18 +921,17 @@
       target="_blank" 
       rel="noopener noreferrer" 
       id="floating-tg-widget"
-      class="fixed bottom-6 right-6 z-50 flex items-center gap-2.5 px-3.5 py-2.5 rounded-none font-bold text-xs font-mono transition-all duration-200 hover:translate-x-[-2px] hover:translate-y-[-2px] active:translate-x-[0px] active:translate-y-[0px] group cursor-pointer"
-      style="background: #229ED9; color: #ffffff !important; border: 2px solid #18181B; box-shadow: 4px 4px 0px #18181B; text-decoration: none;"
+      style="position: fixed; bottom: 24px; right: 24px; z-index: 9999; display: flex; align-items: center; gap: 10px; padding: 8px 14px; background: #229ED9; color: #ffffff !important; border: 2px solid #18181B; box-shadow: 4px 4px 0px #18181B; text-decoration: none; font-family: monospace; font-size: 12px; font-weight: bold; box-sizing: border-box; cursor: pointer;"
       title="点击直接跳转官方 Telegram 交流群"
     >
-      <div style="background: rgba(255,255,255,0.2);" class="w-6 h-6 rounded-full flex items-center justify-center shrink-0">
-        <svg class="w-3.5 h-3.5 fill-white" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
+      <div style="background: rgba(255,255,255,0.25); width: 26px; height: 26px; min-width: 26px; min-height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+        <svg width="15" height="15" viewBox="0 0 24 24" style="width: 15px !important; height: 15px !important; max-width: 15px !important; max-height: 15px !important; fill: #ffffff !important; display: block;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
       </div>
-      <div class="flex flex-col text-left">
-        <span class="text-[9px] text-sky-100 font-mono leading-none mb-0.5">ONLINE TELEMETRY</span>
-        <span class="text-xs font-black tracking-wide text-white">官方 Telegram ↗</span>
+      <div style="display: flex; flex-direction: column; text-align: left; line-height: 1.2;">
+        <span style="font-size: 9px; color: #e0f2fe; font-family: monospace;">ONLINE TELEMETRY</span>
+        <span style="font-size: 13px; font-weight: 900; color: #ffffff;">官方 Telegram ↗</span>
       </div>
-      <span class="w-2 h-2 rounded-full bg-emerald-400 shrink-0" style="box-shadow: 0 0 4px #34d399;"></span>
+      <span style="width: 8px; height: 8px; min-width: 8px; min-height: 8px; border-radius: 50%; background: #34d399; box-shadow: 0 0 6px #34d399; display: inline-block; flex-shrink: 0;"></span>
     </a>
 </body>
 </html>
