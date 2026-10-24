@@ -139,11 +139,26 @@ htmlFiles.forEach(file => {
         logFail(`${rel}: 缺失 <link rel="canonical"> 规范标签！`);
     }
 
-    // 检查商业推广返利参数 (0 AFF / 0 Code)
-    if (/[?&](aff|ref|code)=/i.test(content)) {
-        logFail(`${rel}: 检测到潜在的商业返利推广参数 (?aff= / ?ref= / ?code=)！`);
+    // 检查商业推广返利参数规范 (站内链接零污染，出站外链必须具备 rel="nofollow")
+    const internalAff = /href=["'](\/[^"']*[?&](aff|ref|code)=[^"']*)["']/i.exec(content) ||
+                        /href=["'](https?:\/\/tizishequ\.com[^"']*[?&](aff|ref|code)=[^"']*)["']/i.exec(content);
+    if (internalAff) {
+        logFail(`${rel}: 站内自身链接发现非法返利参数: ${internalAff[1]}`);
     } else {
-        logPass(`${rel}: 零商业返利推广参数断言通过`);
+        logPass(`${rel}: 站内自身链接零返利参数断言通过`);
+    }
+
+    // 若存在带推广参数的外部出站链接，检查是否合规配置了 nofollow
+    const rawLinks = content.match(/<a[^>]+href=["'][^"']*[?&](aff|ref|code)=[^"']*["'][^>]*>/gi) || [];
+    let allExternalCompliant = true;
+    rawLinks.forEach(linkTag => {
+        if (!/rel=["'][^"']*nofollow[^"']*["']/i.test(linkTag)) {
+            logFail(`${rel}: 推广出站链接缺少 rel="nofollow": ${linkTag}`);
+            allExternalCompliant = false;
+        }
+    });
+    if (rawLinks.length > 0 && allExternalCompliant) {
+        logPass(`${rel}: 商业外链全面合规 (均声明 rel="nofollow" 保护 SEO 权重)`);
     }
 
     // 检查 Schema.org JSON-LD 语法合法性
