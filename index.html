@@ -614,6 +614,24 @@ header img, .site-logo, .header-logo, .header-logo img {
 </head>
 <body class="min-h-screen antialiased">
 
+
+    <!-- 0. 顶部官方 Telegram 交流通道置顶横幅 (醒目高亮) -->
+    <aside style="background: #18181B; border-bottom: 2px solid #229ED9;" class="w-full py-2 px-3 text-xs font-mono text-white relative z-50">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-3 flex-wrap">
+            <div class="flex items-center gap-2">
+                <span style="background: #229ED9;" class="inline-flex items-center justify-center w-5 h-5 rounded-full text-white shrink-0">
+                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
+                </span>
+                <span class="font-bold text-zinc-100">
+                    【官方通知】官方 Telegram 交流社群已开通，实时推送晚高峰测速报告与失联跑路预警！
+                </span>
+            </div>
+            <a href="https://t.me/huanqiuti8899" target="_blank" rel="noopener noreferrer" style="background: #229ED9; color: #ffffff; border: 1.5px solid #ffffff; box-shadow: 2px 2px 0px #ffffff;" class="inline-flex items-center gap-1.5 px-3 py-1 font-bold text-xs transition-all hover:brightness-110 active:translate-x-[1px] active:translate-y-[1px]">
+                <span>点击加入官方 TG 群 ↗</span>
+            </a>
+        </div>
+    </aside>
+
     <!-- 1. HEADER 全局工业标牌 (左 Logo 右标题横向紧凑排列) -->
     <header class="site-header sticky top-0 bg-[#FFFFFF] border-b-2 border-[#18181B] z-40 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 py-2.5 flex items-center justify-between gap-4">
@@ -650,6 +668,10 @@ header img, .site-logo, .header-logo, .header-logo img {
                 <button id="nav-btn-guides" onclick="switchView('guides')" class="btn-industrial px-3 py-1.5">
                     [04 客户端调优]
                 </button>
+                            <a href="https://t.me/huanqiuti8899" target="_blank" rel="noopener noreferrer" style="background: #229ED9; color: #ffffff; border: 2px solid #18181B; box-shadow: 2px 2px 0px #18181B;" class="px-3 py-1.5 flex items-center gap-1.5 font-bold text-xs transition-all hover:brightness-105 active:translate-x-[1px] active:translate-y-[1px]" title="点击跳转官方 Telegram 交流通道">
+                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
+                    <span>官方 Telegram ↗</span>
+                </a>
             </nav>
         </div>
     </header>
@@ -776,9 +798,13 @@ header img, .site-logo, .header-logo, .header-logo img {
                                         <span class="line-through text-zinc-400 font-mono text-xs">原价 ¥21/月</span>
                                     </div>
                                     <div class="flex items-center justify-center gap-1 mt-1.5 whitespace-nowrap">
-                                        <button onclick="switchView('reviews')" class="btn-industrial px-2 py-0.5 text-xs">
+                                        <button onclick="switchView('reviews')" class="btn-industrial px-1.5 py-0.5 text-xs">
                                             [ 档案 ]
                                         </button>
+                                        <a href="https://t.me/huanqiuti8899" target="_blank" rel="noopener noreferrer" style="background: #229ED9; color: #ffffff; border: 1px solid #18181B;" class="px-1.5 py-0.5 text-xs font-bold flex items-center gap-0.5 hover:brightness-105" title="点击跳转官方 Telegram">
+                                            <span>TG</span>
+                                            <span>↗</span>
+                                        </a>
                                         <a href="https://123pps01.huanqiutiaff.com/#/?code=j5VBUvw0" target="_blank" rel="noopener noreferrer nofollow" class="btn-industrial-orange px-2 py-0.5 text-xs font-bold flex items-center gap-0.5">
                                             <span>官网</span>
                                             <span>↗</span>
@@ -2873,9 +2899,15 @@ header img, .site-logo, .header-logo, .header-logo img {
                             </div>
                         </div>
                     </div>
-                    <a href="https://123pps01.huanqiutiaff.com/#/?code=j5VBUvw0" target="_blank" rel="noopener noreferrer nofollow" class="btn-industrial-orange w-full py-1.5 text-xs text-center block font-bold">
-                        访问环球梯官网直达 (7折码 HQ66) ↗
-                    </a>
+                    <div class="grid grid-cols-2 gap-2">
+                        <a href="https://t.me/huanqiuti8899" target="_blank" rel="noopener noreferrer" style="background: #229ED9; color: #ffffff;" class="border-2 border-[#18181B] shadow-[2px_2px_0px_#18181B] py-1.5 text-xs text-center font-bold flex items-center justify-center gap-1 hover:brightness-105">
+                            <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
+                            <span>官方 Telegram ↗</span>
+                        </a>
+                        <a href="https://123pps01.huanqiutiaff.com/#/?code=j5VBUvw0" target="_blank" rel="noopener noreferrer nofollow" class="btn-industrial-orange py-1.5 text-xs text-center block font-bold">
+                            官网直达 (7折码 HQ66) ↗
+                        </a>
+                    </div>
                 </div>
 
                 <!-- 测评卡片 2：大佬云 -->
@@ -4247,7 +4279,7 @@ const ARTICLES_DATA = articlesData;
             if (!toast) {
                 toast = document.createElement('div');
                 toast.id = 'app-toast';
-                toast.className = 'fixed bottom-6 right-6 z-50 bg-[#18181B] text-white px-4 py-2.5 text-xs font-mono font-bold shadow-[3px_3px_0px_#18181B] border-2 border-[#FF5500] transition-all flex items-center gap-2';
+                toast.className = 'fixed bottom-20 right-6 z-50 bg-[#18181B] text-white px-4 py-2.5 text-xs font-mono font-bold shadow-[3px_3px_0px_#18181B] border-2 border-[#FF5500] transition-all flex items-center gap-2';
                 document.body.appendChild(toast);
             }
             toast.innerHTML = `<span class="text-[#FF5500]">✓</span> <span>${msg}</span>`;
@@ -4258,5 +4290,25 @@ const ARTICLES_DATA = articlesData;
             }, 2500);
         }
     </script>
+
+    <!-- 7. 全局 Telegram 悬浮互动通道 (右下角高亮浮窗) -->
+    <a 
+      href="https://t.me/huanqiuti8899" 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      id="floating-tg-widget"
+      class="fixed bottom-6 right-6 z-50 flex items-center gap-2.5 px-3.5 py-2.5 rounded-none font-bold text-xs font-mono transition-all duration-200 hover:translate-x-[-2px] hover:translate-y-[-2px] active:translate-x-[0px] active:translate-y-[0px] group cursor-pointer"
+      style="background: #229ED9; color: #ffffff !important; border: 2px solid #18181B; box-shadow: 4px 4px 0px #18181B; text-decoration: none;"
+      title="点击直接跳转官方 Telegram 交流群"
+    >
+      <div style="background: rgba(255,255,255,0.2);" class="w-6 h-6 rounded-full flex items-center justify-center shrink-0">
+        <svg class="w-3.5 h-3.5 fill-white" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
+      </div>
+      <div class="flex flex-col text-left">
+        <span class="text-[9px] text-sky-100 font-mono leading-none mb-0.5">ONLINE TELEMETRY</span>
+        <span class="text-xs font-black tracking-wide text-white">官方 Telegram ↗</span>
+      </div>
+      <span class="w-2 h-2 rounded-full bg-emerald-400 shrink-0" style="box-shadow: 0 0 4px #34d399;"></span>
+    </a>
 </body>
 </html>
