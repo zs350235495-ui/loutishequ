@@ -287,6 +287,27 @@ article {
   cursor: pointer !important;
 }
 
+
+.btn-industrial-blue {
+  font-family: 'JetBrains Mono', monospace !important;
+  background-color: #229ED9 !important;
+  color: #FFFFFF !important;
+  border: 2px solid #000000 !important;
+  box-shadow: 2px 2px 0px #000000 !important;
+  font-weight: 700 !important;
+  padding: 6px 12px !important;
+  font-size: 0.75rem !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-decoration: none !important;
+  cursor: pointer !important;
+}
+
+.btn-industrial-blue:hover {
+  background-color: #1B8ABF !important;
+}
+
 .btn-industrial-orange:hover {
   background-color: #E04B00 !important;
 }
