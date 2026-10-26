@@ -51,7 +51,10 @@ const requiredFiles = [
     'css/styles.css',
     'assets/logo.png',
     'assets/favicon.png',
-    'favicon.ico'
+    'favicon.ico',
+    'go.html',
+    '_redirects',
+    'nginx-redirects.conf'
 ];
 
 requiredFiles.forEach(f => {
@@ -221,8 +224,57 @@ console.log('\n【3. 排行榜 (leaderboard.html & leaderboard/index.html) 规�
     });
 });
 
-// 4. 本地启动临时 HTTP Server 并进行全资源 200 OK 断言测试 (支持 /leaderboard 与 /leaderboard.html)
-console.log('\n【4. 真实本地 HTTP Server 挂载与 0 死链网络断言】');
+// 4. AFF 推广链接 301 隔离与合规跳转闭环审计
+console.log('\n【4. AFF 推广链接 301 隔离与合规跳转闭环审计】');
+
+// 4.1 go.html 必须严格包含 meta noindex, nofollow
+const goHtmlContent = fs.readFileSync(path.join(rootDir, 'go.html'), 'utf8');
+if (/<meta[^>]+name=["']robots["'][^>]*content=["'][^"']*noindex,\s*nofollow/i.test(goHtmlContent)) {
+    logPass('go.html 承接页包含严格的 <meta name="robots" content="noindex, nofollow"> 防爬虫建索标签');
+} else {
+    logFail('go.html 缺失 <meta name="robots" content="noindex, nofollow"> 防爬虫建索标签！');
+}
+
+// 4.2 robots.txt 严禁 Disallow: /go/ 或 /go.html
+const robotsContent = fs.readFileSync(path.join(rootDir, 'robots.txt'), 'utf8');
+const hasDisallowGo = robotsContent.split('\n').some(line => {
+    const trimmed = line.trim();
+    return !trimmed.startsWith('#') && /^Disallow:\s*\/go(\/|\.html)?/i.test(trimmed);
+});
+if (hasDisallowGo) {
+    logFail('robots.txt 存在 Disallow: /go/ 或 /go.html，会导致 Bing Webmaster Tools 报 Blocked 严重错误！');
+} else {
+    logPass('robots.txt 遵循搜索引擎合规策略 (未对 /go/ 或 /go.html 进行 Disallow 拦截)');
+}
+
+// 4.3 检查 index.html、leaderboard.html、leaderboard/index.html 中的所有 /go.html?id= 链接
+let totalIsolatedAffLinks = 0;
+let nonCompliantAffLinks = 0;
+['index.html', 'leaderboard.html', 'leaderboard/index.html'].forEach(f => {
+    const fContent = fs.readFileSync(path.join(rootDir, f), 'utf8');
+    const goLinks = fContent.match(/<a[^>]+href=["']\/go\.html\?id=[^"']+["'][^>]*>/gi) || [];
+    totalIsolatedAffLinks += goLinks.length;
+    goLinks.forEach(tag => {
+        if (!/rel=["'][^"']*nofollow\s+sponsored\s+noopener\s+noreferrer[^"']*["']/i.test(tag)) {
+            logFail(`${f}: 跳转链接缺失 rel="nofollow sponsored noopener noreferrer": ${tag}`);
+            nonCompliantAffLinks++;
+        }
+    });
+    // 检查是否依然残留外部直连机场 AFF 链接
+    const directAff = fContent.match(/<a[^>]+href=["']https?:\/\/[^"']*(?:huanqiutiaff|dalaoyunaff|yunjiexianaff|liulianyunaff|shandianshuaff|shenxingaff|jlyvipaff|speedworldaff|ytjcok|kunpengjiasu|jichang\.best|edgenovaaff|kuailiaff|gntvipaff|kosingaff)[^"']*["']/gi) || [];
+    if (directAff.length > 0) {
+        logFail(`${f}: 依然残留 ${directAff.length} 处外部直连 AFF 链接！`);
+    } else {
+        logPass(`${f}: 0 处外部直连 AFF 链接，已 100% 隔离至 /go.html`);
+    }
+});
+
+if (totalIsolatedAffLinks > 0 && nonCompliantAffLinks === 0) {
+    logPass(`全站共发现 ${totalIsolatedAffLinks} 处标准 301 隔离安全内链，且 100% 具备 rel="nofollow sponsored noopener noreferrer"`);
+}
+
+// 5. 本地启动临时 HTTP Server 并进行全资源 200 OK 断言测试 (支持 /leaderboard 与 /leaderboard.html)
+console.log('\n【5. 真实本地 HTTP Server 挂载与 0 死链网络断言】');
 
 const mimeTypes = {
     '.html': 'text/html; charset=utf-8',
@@ -287,7 +339,12 @@ server.listen(8999, '127.0.0.1', async () => {
         '/llms.txt',
         '/LICENSE',
         '/SECURITY.md',
-        '/CONTRIBUTING.md'
+        '/CONTRIBUTING.md',
+        '/go.html',
+        '/go/huanqiuti',
+        '/go/tg',
+        '/_redirects',
+        '/nginx-redirects.conf'
     ];
 
     let passedRequests = 0;

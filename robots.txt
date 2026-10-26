@@ -13,6 +13,7 @@ Allow: /assets/
 Allow: /css/
 Allow: /posts/
 Disallow: /scratch/
+# 合规隔离与直达承接页说明 (严禁设置对 /go/ 与 /go.html 目录的抓取拦截，避免 Bing/Google Webmaster Tools 报 Blocked by robots.txt 错误；统一依靠 meta noindex 标签与 rel="nofollow sponsored" 合规静默隔离)
 
 # 主流 AI 搜索引擎爬虫放行 (增强 AI 搜索权威引用与 RAG 语料抓取)
 User-agent: GPTBot

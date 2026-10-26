@@ -1,0 +1,88 @@
+# ========================================================
+# Cloudflare Pages / Netlify 301 Redirects for AFF & Channels
+# tizishequ.com - 梯子社区全站 301 隔离与合规跳转表
+# ========================================================
+
+# 1. 核心服务商 /go/ 路径 301 重定向 (支持标准全名与速记短别名)
+/go/huanqiuti https://123pps01.huanqiutiaff.com/#/?code=j5VBUvw0 301
+/go/hqt https://123pps01.huanqiutiaff.com/#/?code=j5VBUvw0 301
+/go/dalaoyun https://ppsvip01.dalaoyunaff.com/#/?code=Iz1GlCVa 301
+/go/dly https://ppsvip01.dalaoyunaff.com/#/?code=Iz1GlCVa 301
+/go/yunjiexian https://pp01.yunjiexianaff.com/#/?code=bp0ZSKBV 301
+/go/yjx https://pp01.yunjiexianaff.com/#/?code=bp0ZSKBV 301
+/go/liulianyun https://123pp01.liulianyunaff.com/#/?code=MsZP3u7G 301
+/go/lly https://123pp01.liulianyunaff.com/#/?code=MsZP3u7G 301
+/go/shandianshu https://ppsvip01.shandianshuaff.com/#/?code=QbLF8tjB 301
+/go/sds https://ppsvip01.shandianshuaff.com/#/?code=QbLF8tjB 301
+/go/shenxing https://pps123.shenxingaff.com/#/?code=6tQ7zHUc 301
+/go/sxjs https://pps123.shenxingaff.com/#/?code=6tQ7zHUc 301
+/go/jilianyun https://haozevpn.jlyvipaff.com/#/?code=jwCMOvQO 301
+/go/jly https://haozevpn.jlyvipaff.com/#/?code=jwCMOvQO 301
+/go/sujie https://pygllc.speedworldaff.cc/#/?code=kcoensXG 301
+/go/sj https://pygllc.speedworldaff.cc/#/?code=kcoensXG 301
+/go/yuntu https://super.ytjcok.org/#/register?code=poKwFVtv 301
+/go/ytjc https://super.ytjcok.org/#/register?code=poKwFVtv 301
+/go/kunpeng https://kunpengjiasu.com/#/register?code=WPugVZUe 301
+/go/kpjs https://kunpengjiasu.com/#/register?code=WPugVZUe 301
+/go/shunyun https://ddd.jichang.best/#/register?code=nldUZaYc 301
+/go/sy https://ddd.jichang.best/#/register?code=nldUZaYc 301
+/go/edgenova https://wep.edgenovaaff.com/#/?code=mLLL6h6F 301
+/go/byjd https://wep.edgenovaaff.com/#/?code=mLLL6h6F 301
+/go/kuaili https://fanxiaobin.kuailiaff.com/#/?code=e0cAmK7F 301
+/go/klkl https://fanxiaobin.kuailiaff.com/#/?code=e0cAmK7F 301
+/go/guangnianti https://gnt001.gntvipaff.cc/#/?code=PQhPFDhO 301
+/go/gnt https://gnt001.gntvipaff.cc/#/?code=PQhPFDhO 301
+/go/kexinyun https://everett7623.kosingaff.com/#/?code=sFKkfEYs 301
+/go/kxy https://everett7623.kosingaff.com/#/?code=sFKkfEYs 301
+/go/ytoo https://bit.ly/3RMx8wl 301
+/go/flyingbird https://bit.ly/4oJDydt 301
+/go/puffcloud https://bit.ly/480Yp3W 301
+/go/paofuyun https://bit.ly/480Yp3W 301
+/go/flowercloud https://bit.ly/3GXSiVD 301
+/go/huayun https://bit.ly/3GXSiVD 301
+/go/nexitally https://bit.ly/479JoLM 301
+/go/naixi https://bit.ly/479JoLM 301
+/go/kycloud https://bit.ly/41xd5Fl 301
+/go/tg https://t.me/huanqiuti8899 301
+
+# 2. Netlify 针对 /go.html?id=xxx 参数化规则
+/go.html id=huanqiuti https://123pps01.huanqiutiaff.com/#/?code=j5VBUvw0 301!
+/go.html id=hqt https://123pps01.huanqiutiaff.com/#/?code=j5VBUvw0 301!
+/go.html id=dalaoyun https://ppsvip01.dalaoyunaff.com/#/?code=Iz1GlCVa 301!
+/go.html id=dly https://ppsvip01.dalaoyunaff.com/#/?code=Iz1GlCVa 301!
+/go.html id=yunjiexian https://pp01.yunjiexianaff.com/#/?code=bp0ZSKBV 301!
+/go.html id=yjx https://pp01.yunjiexianaff.com/#/?code=bp0ZSKBV 301!
+/go.html id=liulianyun https://123pp01.liulianyunaff.com/#/?code=MsZP3u7G 301!
+/go.html id=lly https://123pp01.liulianyunaff.com/#/?code=MsZP3u7G 301!
+/go.html id=shandianshu https://ppsvip01.shandianshuaff.com/#/?code=QbLF8tjB 301!
+/go.html id=sds https://ppsvip01.shandianshuaff.com/#/?code=QbLF8tjB 301!
+/go.html id=shenxing https://pps123.shenxingaff.com/#/?code=6tQ7zHUc 301!
+/go.html id=sxjs https://pps123.shenxingaff.com/#/?code=6tQ7zHUc 301!
+/go.html id=jilianyun https://haozevpn.jlyvipaff.com/#/?code=jwCMOvQO 301!
+/go.html id=jly https://haozevpn.jlyvipaff.com/#/?code=jwCMOvQO 301!
+/go.html id=sujie https://pygllc.speedworldaff.cc/#/?code=kcoensXG 301!
+/go.html id=sj https://pygllc.speedworldaff.cc/#/?code=kcoensXG 301!
+/go.html id=yuntu https://super.ytjcok.org/#/register?code=poKwFVtv 301!
+/go.html id=ytjc https://super.ytjcok.org/#/register?code=poKwFVtv 301!
+/go.html id=kunpeng https://kunpengjiasu.com/#/register?code=WPugVZUe 301!
+/go.html id=kpjs https://kunpengjiasu.com/#/register?code=WPugVZUe 301!
+/go.html id=shunyun https://ddd.jichang.best/#/register?code=nldUZaYc 301!
+/go.html id=sy https://ddd.jichang.best/#/register?code=nldUZaYc 301!
+/go.html id=edgenova https://wep.edgenovaaff.com/#/?code=mLLL6h6F 301!
+/go.html id=byjd https://wep.edgenovaaff.com/#/?code=mLLL6h6F 301!
+/go.html id=kuaili https://fanxiaobin.kuailiaff.com/#/?code=e0cAmK7F 301!
+/go.html id=klkl https://fanxiaobin.kuailiaff.com/#/?code=e0cAmK7F 301!
+/go.html id=guangnianti https://gnt001.gntvipaff.cc/#/?code=PQhPFDhO 301!
+/go.html id=gnt https://gnt001.gntvipaff.cc/#/?code=PQhPFDhO 301!
+/go.html id=kexinyun https://everett7623.kosingaff.com/#/?code=sFKkfEYs 301!
+/go.html id=kxy https://everett7623.kosingaff.com/#/?code=sFKkfEYs 301!
+/go.html id=ytoo https://bit.ly/3RMx8wl 301!
+/go.html id=flyingbird https://bit.ly/4oJDydt 301!
+/go.html id=puffcloud https://bit.ly/480Yp3W 301!
+/go.html id=paofuyun https://bit.ly/480Yp3W 301!
+/go.html id=flowercloud https://bit.ly/3GXSiVD 301!
+/go.html id=huayun https://bit.ly/3GXSiVD 301!
+/go.html id=nexitally https://bit.ly/479JoLM 301!
+/go.html id=naixi https://bit.ly/479JoLM 301!
+/go.html id=kycloud https://bit.ly/41xd5Fl 301!
+/go.html id=tg https://t.me/huanqiuti8899 301!

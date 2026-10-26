@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>正在安全直达官方服务... - 梯子社区 (tizishequ.com)</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <style>
+        :root {
+            --bg-color: #FAFAFA;
+            --text-main: #18181B;
+            --text-muted: #71717A;
+            --brand-orange: #FF5500;
+            --brand-border: #18181B;
+            --accent-green: #10B981;
+            --shadow-brutal: 4px 4px 0px #18181B;
+            --shadow-subtle: 2px 2px 0px #18181B;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background-image: radial-gradient(#d4d4d8 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+
+        .dispatch-card {
+            background: #FFFFFF;
+            border: 2px solid var(--brand-border);
+            box-shadow: var(--shadow-brutal);
+            max-width: 520px;
+            width: 100%;
+            padding: 32px 28px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dispatch-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--brand-orange);
+        }
+
+        .header-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #18181B;
+            color: #FFFFFF;
+            font-family: monospace;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 10px;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-green);
+            border-radius: 50%;
+            box-shadow: 0 0 6px var(--accent-green);
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); opacity: 0.8; }
+            50% { transform: scale(1.3); opacity: 1; }
+            100% { transform: scale(0.95); opacity: 0.8; }
+        }
+
+        .scanner-visual {
+            width: 68px;
+            height: 68px;
+            margin: 0 auto 20px;
+            background: #FFF7ED;
+            border: 2px solid var(--brand-border);
+            box-shadow: var(--shadow-subtle);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .scanner-visual svg {
+            width: 34px;
+            height: 34px;
+            color: var(--brand-orange);
+            animation: rotateCompass 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
+
+        @keyframes rotateCompass {
+            0% { transform: rotate(0deg); }
+            50% { transform: rotate(180deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        h1 {
+            font-size: 20px;
+            font-weight: 900;
+            color: var(--text-main);
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .target-name {
+            color: var(--brand-orange);
+            font-weight: 900;
+        }
+
+        .meta-desc {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .status-box {
+            background: #F4F4F5;
+            border: 1px dashed #A1A1AA;
+            padding: 12px 16px;
+            margin-bottom: 24px;
+            font-family: monospace;
+            font-size: 12px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .status-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .status-label {
+            color: #71717A;
+        }
+
+        .status-val {
+            font-weight: bold;
+            color: var(--text-main);
+        }
+
+        .btn-redirect {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 12px 20px;
+            font-size: 14px;
+            font-weight: 800;
+            color: #FFFFFF;
+            background-color: var(--brand-orange);
+            border: 2px solid var(--brand-border);
+            box-shadow: var(--shadow-subtle);
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            font-family: monospace;
+        }
+
+        .btn-redirect:hover {
+            transform: translate(-1px, -1px);
+            box-shadow: 4px 4px 0px var(--brand-border);
+            background-color: #EA4A00;
+        }
+
+        .btn-redirect:active {
+            transform: translate(1px, 1px);
+            box-shadow: 1px 1px 0px var(--brand-border);
+        }
+
+        .btn-home {
+            background: #FFFFFF;
+            color: var(--text-main);
+            margin-top: 10px;
+        }
+
+        .btn-home:hover {
+            background: #F4F4F5;
+        }
+
+        .footer-note {
+            margin-top: 20px;
+            font-size: 11px;
+            font-family: monospace;
+            color: #A1A1AA;
+        }
+    </style>
+</head>
+<body>
+    <div class="dispatch-card">
+        <div class="header-badge">
+            <span class="pulse-dot"></span>
+            <span>DISPATCH_GATEWAY // 301 ISOLATION</span>
+        </div>
+
+        <div class="scanner-visual">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+            </svg>
+        </div>
+
+        <h1 id="title-text">正在安全直达 <span class="target-name" id="dest-name">目标服务</span>...</h1>
+        <p class="meta-desc" id="desc-text">
+            梯子社区 301 隔离跳板已完成目标鉴权与防劫持链路校验，正在为您无缝接通官方直达节点。
+        </p>
+
+        <div class="status-box">
+            <div class="status-row">
+                <span class="status-label">ROUTING_KEY:</span>
+                <span class="status-val" id="val-id">DETECTING...</span>
+            </div>
+            <div class="status-row">
+                <span class="status-label">SECURITY_AUDIT:</span>
+                <span class="status-val" style="color: #10B981;">VERIFIED (PASS)</span>
+            </div>
+            <div class="status-row">
+                <span class="status-label">DISPATCH_STATUS:</span>
+                <span class="status-val" id="val-status" style="color: #FF5500;">REDIRECTING...</span>
+            </div>
+        </div>
+
+        <a id="direct-btn" href="/" rel="nofollow sponsored noopener noreferrer" class="btn-redirect">
+            <span>立即直达官方站点</span>
+            <span>↗</span>
+        </a>
+
+        <a id="home-btn" href="/" class="btn-redirect btn-home" style="display: none;">
+            <span>← 返回天梯榜首页</span>
+        </a>
+
+        <div class="footer-note">
+            // TIZISHEQU.COM · SECURE AFFILIATE 301 DISPATCHER · NOINDEX COMPLIANT
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // 完整 301 跳转映射表 (涵盖全站 21 家推荐服务商、常用速记别名与官方频道)
+            var REDIRECT_MAP = {
+                // #01 环球梯
+                "huanqiuti": { name: "环球梯", url: "https://123pps01.huanqiutiaff.com/#/?code=j5VBUvw0" },
+                "hqt": { name: "环球梯", url: "https://123pps01.huanqiutiaff.com/#/?code=j5VBUvw0" },
+
+                // #02 大佬云
+                "dalaoyun": { name: "大佬云", url: "https://ppsvip01.dalaoyunaff.com/#/?code=Iz1GlCVa" },
+                "dly": { name: "大佬云", url: "https://ppsvip01.dalaoyunaff.com/#/?code=Iz1GlCVa" },
+
+                // #03 云界线
+                "yunjiexian": { name: "云界线", url: "https://pp01.yunjiexianaff.com/#/?code=bp0ZSKBV" },
+                "yjx": { name: "云界线", url: "https://pp01.yunjiexianaff.com/#/?code=bp0ZSKBV" },
+
+                // #04 榴莲云
+                "liulianyun": { name: "榴莲云", url: "https://123pp01.liulianyunaff.com/#/?code=MsZP3u7G" },
+                "lly": { name: "榴莲云", url: "https://123pp01.liulianyunaff.com/#/?code=MsZP3u7G" },
+
+                // #05 闪电鼠
+                "shandianshu": { name: "闪电鼠", url: "https://ppsvip01.shandianshuaff.com/#/?code=QbLF8tjB" },
+                "sds": { name: "闪电鼠", url: "https://ppsvip01.shandianshuaff.com/#/?code=QbLF8tjB" },
+
+                // #06 神行加速
+                "shenxing": { name: "神行加速", url: "https://pps123.shenxingaff.com/#/?code=6tQ7zHUc" },
+                "sxjs": { name: "神行加速", url: "https://pps123.shenxingaff.com/#/?code=6tQ7zHUc" },
+
+                // #07 极连云
+                "jilianyun": { name: "极连云", url: "https://haozevpn.jlyvipaff.com/#/?code=jwCMOvQO" },
+                "jly": { name: "极连云", url: "https://haozevpn.jlyvipaff.com/#/?code=jwCMOvQO" },
+
+                // #08 速界
+                "sujie": { name: "速界", url: "https://pygllc.speedworldaff.cc/#/?code=kcoensXG" },
+                "sj": { name: "速界", url: "https://pygllc.speedworldaff.cc/#/?code=kcoensXG" },
+
+                // #09 云图机场
+                "yuntu": { name: "云图机场", url: "https://super.ytjcok.org/#/register?code=poKwFVtv" },
+                "ytjc": { name: "云图机场", url: "https://super.ytjcok.org/#/register?code=poKwFVtv" },
+
+                // #10 鲲鹏加速
+                "kunpeng": { name: "鲲鹏加速", url: "https://kunpengjiasu.com/#/register?code=WPugVZUe" },
+                "kpjs": { name: "鲲鹏加速", url: "https://kunpengjiasu.com/#/register?code=WPugVZUe" },
+
+                // #11 瞬云
+                "shunyun": { name: "瞬云", url: "https://ddd.jichang.best/#/register?code=nldUZaYc" },
+                "sy": { name: "瞬云", url: "https://ddd.jichang.best/#/register?code=nldUZaYc" },
+
+                // #12 边缘节点
+                "edgenova": { name: "边缘节点", url: "https://wep.edgenovaaff.com/#/?code=mLLL6h6F" },
+                "byjd": { name: "边缘节点", url: "https://wep.edgenovaaff.com/#/?code=mLLL6h6F" },
+
+                // #13 快狸快狸
+                "kuaili": { name: "快狸快狸", url: "https://fanxiaobin.kuailiaff.com/#/?code=e0cAmK7F" },
+                "klkl": { name: "快狸快狸", url: "https://fanxiaobin.kuailiaff.com/#/?code=e0cAmK7F" },
+
+                // #14 光年梯
+                "guangnianti": { name: "光年梯", url: "https://gnt001.gntvipaff.cc/#/?code=PQhPFDhO" },
+                "gnt": { name: "光年梯", url: "https://gnt001.gntvipaff.cc/#/?code=PQhPFDhO" },
+
+                // #15 可信云
+                "kexinyun": { name: "可信云", url: "https://everett7623.kosingaff.com/#/?code=sFKkfEYs" },
+                "kxy": { name: "可信云", url: "https://everett7623.kosingaff.com/#/?code=sFKkfEYs" },
+
+                // #16 YToo (歪兔)
+                "ytoo": { name: "YToo (歪兔)", url: "https://bit.ly/3RMx8wl" },
+
+                // #17 FlyingBird (飞鸟机场)
+                "flyingbird": { name: "FlyingBird (飞鸟机场)", url: "https://bit.ly/4oJDydt" },
+
+                // #18 泡芙云 (PuffCloud)
+                "puffcloud": { name: "泡芙云 (PuffCloud)", url: "https://bit.ly/480Yp3W" },
+                "paofuyun": { name: "泡芙云 (PuffCloud)", url: "https://bit.ly/480Yp3W" },
+
+                // #19 FlowerCloud (花云)
+                "flowercloud": { name: "FlowerCloud (花云)", url: "https://bit.ly/3GXSiVD" },
+                "huayun": { name: "FlowerCloud (花云)", url: "https://bit.ly/3GXSiVD" },
+
+                // #20 Nexitally (奶昔)
+                "nexitally": { name: "Nexitally (奶昔)", url: "https://bit.ly/479JoLM" },
+                "naixi": { name: "Nexitally (奶昔)", url: "https://bit.ly/479JoLM" },
+
+                // #21 KyCloud
+                "kycloud": { name: "KyCloud", url: "https://bit.ly/41xd5Fl" },
+
+                // 官方 Telegram 频道
+                "tg": { name: "官方 Telegram 频道", url: "https://t.me/huanqiuti8899" }
+            };
+
+            var params = new URLSearchParams(window.location.search);
+            var id = (params.get('id') || params.get('to') || '').toLowerCase().trim();
+            var target = REDIRECT_MAP[id];
+
+            var titleEl = document.getElementById('title-text');
+            var destEl = document.getElementById('dest-name');
+            var descEl = document.getElementById('desc-text');
+            var valIdEl = document.getElementById('val-id');
+            var valStatusEl = document.getElementById('val-status');
+            var directBtn = document.getElementById('direct-btn');
+            var homeBtn = document.getElementById('home-btn');
+
+            if (target && target.url) {
+                destEl.textContent = target.name;
+                valIdEl.textContent = id.toUpperCase();
+                valStatusEl.textContent = '301 MOVED // DISPATCHING';
+                directBtn.href = target.url;
+                directBtn.innerHTML = '<span>立即前往 ' + target.name + ' 官网</span> <span>↗</span>';
+
+                // 自动毫秒级替换，防止历史回退死循环
+                setTimeout(function() {
+                    window.location.replace(target.url);
+                }, 300);
+            } else {
+                titleEl.textContent = '未识别的直达服务代码';
+                destEl.textContent = '';
+                descEl.textContent = '未能匹配到有效的服务商代码 [' + (id || 'EMPTY') + ']，请核对链接或直接返回天梯榜主页。';
+                valIdEl.textContent = id ? id.toUpperCase() : 'UNKNOWN';
+                valStatusEl.textContent = '404 NOT FOUND';
+                valStatusEl.style.color = '#EF4444';
+                directBtn.style.display = 'none';
+                homeBtn.style.display = 'inline-flex';
+            }
+        })();
+    </script>
+</body>
+</html>
