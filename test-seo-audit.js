@@ -108,6 +108,14 @@ htmlFiles.forEach(file => {
         logFail(`${rel}: 缺少标准视口声明！`);
     }
 
+    // Meta Description (确保无 ERROR : Meta Description tag missing)
+    const descMatch = /<meta[^>]+name=["']description["'][^>]*content=["']([^"']+)["']/i.exec(content);
+    if (descMatch && descMatch[1] && descMatch[1].trim().length > 10) {
+        logPass(`${rel}: 具备规范 Meta Description 标签 (${descMatch[1].trim().length} 字符)`);
+    } else {
+        logFail(`${rel}: 缺失或 Meta Description 内容过短！`);
+    }
+
     // 检查 zoom: 或 transform: scale(
     if (/zoom\s*:/i.test(content)) {
         logFail(`${rel}: 发现 zoom 缩放属性！`);
@@ -227,12 +235,17 @@ console.log('\n【3. 排行榜 (leaderboard.html & leaderboard/index.html) 规�
 // 4. AFF 推广链接 301 隔离与合规跳转闭环审计
 console.log('\n【4. AFF 推广链接 301 隔离与合规跳转闭环审计】');
 
-// 4.1 go.html 必须严格包含 meta noindex, nofollow
+// 4.1 go.html 必须严格包含 meta noindex, nofollow 与 meta description
 const goHtmlContent = fs.readFileSync(path.join(rootDir, 'go.html'), 'utf8');
 if (/<meta[^>]+name=["']robots["'][^>]*content=["'][^"']*noindex,\s*nofollow/i.test(goHtmlContent)) {
     logPass('go.html 承接页包含严格的 <meta name="robots" content="noindex, nofollow"> 防爬虫建索标签');
 } else {
     logFail('go.html 缺失 <meta name="robots" content="noindex, nofollow"> 防爬虫建索标签！');
+}
+if (goHtmlContent.includes('name="description"')) {
+    logPass('go.html: 具备规范 Meta Description 标签 (防 Site Audit 报 Missing)');
+} else {
+    logFail('go.html: 缺失 Meta Description 标签！');
 }
 
 // 4.2 robots.txt 严禁 Disallow: /go/ 或 /go.html
@@ -271,6 +284,27 @@ let nonCompliantAffLinks = 0;
 
 if (totalIsolatedAffLinks > 0 && nonCompliantAffLinks === 0) {
     logPass(`全站共发现 ${totalIsolatedAffLinks} 处标准 301 隔离安全内链，且 100% 具备 rel="nofollow sponsored noopener noreferrer"`);
+}
+
+// 检查所有 /go/*/index.html 承接页是否均已具备 Meta Description (防止搜索引擎 Site Audit 报 ERROR: Meta Description tag missing)
+
+const goDir = path.join(rootDir, 'go');
+if (fs.existsSync(goDir)) {
+    const goDirs = fs.readdirSync(goDir);
+    let allGoHaveDesc = true;
+    goDirs.forEach(sub => {
+        const subIndex = path.join(goDir, sub, 'index.html');
+        if (fs.existsSync(subIndex)) {
+            const c = fs.readFileSync(subIndex, 'utf8');
+            if (!c.includes('name="description"')) {
+                logFail(`go/${sub}/index.html: 缺失 Meta Description 标签！`);
+                allGoHaveDesc = false;
+            }
+        }
+    });
+    if (allGoHaveDesc) {
+        logPass(`go/ 下全部 ${goDirs.length} 个服务商承接页均已包含规范 Meta Description 标签`);
+    }
 }
 
 // 5. 本地启动临时 HTTP Server 并进行全资源 200 OK 断言测试 (支持 /leaderboard 与 /leaderboard.html)
