@@ -13,6 +13,7 @@
 
 - [2026 全球跨境网络骨干链路稳定性众测报告：晚高峰 SLA 可用性与服务商选型社区白皮书](https://tizishequ.com/network-sla-benchmark-community-2026): 多地 ISP 入口分布式众测与晚高峰并发压力模型，IPLC 专线与 BGP 容灾实测矩阵（环球梯、大佬云等横评），企业跨国开发与高负载数据传输选型决策树。
 - [2026 机场测速天梯榜 (独立物理单页)](https://tizishequ.com/leaderboard.html): 基于 1000M FTTH 晚高峰多路并发实测，收录环球梯、大佬云、云界线、闪电鼠、神行加速、榴莲云等主流专线节点完整性能矩阵。
+- [DOC-26132: 为什么换了原生干净 IP 依然被 403 拦截？深度拆解 TLS 握手特征、JA3/JA4 客户端指纹与风控防御体系](https://tizishequ.com/posts/doc-26132.html): 深入剖析 TLS Client Hello 明文协商机制、密码套件排布与扩展顺序差异，解析 JA3/JA4 指纹算法原理与抗 GREASE 演进，详解边缘 WAF 三维联合封锁与 uTLS 特征仿生实践。
 - [DOC-26120: 机场社区 2026 年度服务商风险评估与健康度基准](https://tizishequ.com/posts/doc-26120.html): 深入拆解跨境专线真实硬成本、晚高峰 QoS 抢占崩溃机制、七大跑路征兆与双链路零感知容灾方案。
 - [DOC-26128: 2026 梯子社区年度避坑报告：常见节点协议性能实测与全场景科学上网选型指南](https://tizishequ.com/posts/doc-26128.html): 10 余个机房与 6 大主流协议深度横评，拆解峰值带宽虚标与真实 RTT 抖动，提供标准分流规则与全套排障 SOP。
 - [DOC-26124: 彻底封堵真实 IP 暴露：WebRTC、DNS 泄漏与 DoH/DoT 分流防劫持全链路排查指南](https://tizishequ.com/posts/doc-26124.html): 深入解析真实物理 IP 泄露根因、WebRTC STUN 穿透、DNS 污染回落及全局代理 UDP 缺失，提供完整自查 Checklist 与客户端深度加固方案。
