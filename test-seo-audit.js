@@ -94,6 +94,7 @@ const htmlFiles = [
     path.join(rootDir, 'posts/doc-26124.html'),
     path.join(rootDir, 'posts/doc-26128.html'),
     path.join(rootDir, 'posts/doc-26132.html'),
+    path.join(rootDir, 'articles/mptcp-multi-path-bandwidth-aggregation-2026.html'),
     path.join(rootDir, 'network-sla-benchmark-community-2026.html'),
     path.join(rootDir, 'network-sla-benchmark-community-2026/index.html')
 ];
@@ -359,6 +360,7 @@ server.listen(8999, '127.0.0.1', async () => {
         '/posts/doc-26124.html',
         '/posts/doc-26128.html',
         '/posts/doc-26132.html',
+        '/articles/mptcp-multi-path-bandwidth-aggregation-2026.html',
         '/network-sla-benchmark-community-2026.html',
         '/network-sla-benchmark-community-2026',
         '/doc-26116.html',
