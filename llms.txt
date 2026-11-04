@@ -11,6 +11,7 @@
 
 ## 核心物理页面索引与技术研报目录 (Core Pages & Reports)
 
+- [2026全平台翻墙梯子客户端订阅导入与分流配置指南](https://tizishequ.com/articles/cross-platform-client-subscription-setup-guide-2026.html): 2026年最新全平台翻墙梯子与机场节点订阅导入全景指南。深度解析iOS小火箭、Windows Clash Verge、Android与Mac客户端配置，涵盖智能规则分流、TUN虚拟网卡与DNS防污染排错实战。
 - [2026 全球跨境网络骨干链路稳定性众测报告：晚高峰 SLA 可用性与服务商选型社区白皮书](https://tizishequ.com/network-sla-benchmark-community-2026): 多地 ISP 入口分布式众测与晚高峰并发压力模型，IPLC 专线与 BGP 容灾实测矩阵（环球梯、大佬云等横评），企业跨国开发与高负载数据传输选型决策树。
 - [2026 机场测速天梯榜 (独立物理单页)](https://tizishequ.com/leaderboard.html): 基于 1000M FTTH 晚高峰多路并发实测，收录环球梯、大佬云、云界线、闪电鼠、神行加速、榴莲云等主流专线节点完整性能矩阵。
 - [2026跨境多路TCP聚合并发实测与双宽带叠加调优指南](https://tizishequ.com/articles/mptcp-multi-path-bandwidth-aggregation-2026.html): 网络评测实验室发布 2026 多路 TCP（MPTCP / RFC 8684）与双网卡聚合实测，深度解析 WiFi 加蜂窝网络、双千兆宽带并发分流在跨境大文件吞吐与无缝热备切换中的表现，提供软路由与客户端多路径聚合调优方案。
