@@ -236,8 +236,8 @@ console.log('\n【3. 排行榜 (leaderboard.html & leaderboard/index.html) 规�
     });
 });
 
-// 4. AFF 推广链接 301 隔离与合规跳转闭环审计
-console.log('\n【4. AFF 推广链接 301 隔离与合规跳转闭环审计】');
+// 4. AFF 推广链接 302 隔离与合规跳转闭环审计
+console.log('\n【4. AFF 推广链接 302 隔离与合规跳转闭环审计】');
 
 // 4.1 go.html 必须严格包含 meta noindex, nofollow 与 meta description
 const goHtmlContent = fs.readFileSync(path.join(rootDir, 'go.html'), 'utf8');
@@ -287,7 +287,7 @@ let nonCompliantAffLinks = 0;
 });
 
 if (totalIsolatedAffLinks > 0 && nonCompliantAffLinks === 0) {
-    logPass(`全站共发现 ${totalIsolatedAffLinks} 处标准 301 隔离安全内链，且 100% 具备 rel="nofollow sponsored noopener noreferrer"`);
+    logPass(`全站共发现 ${totalIsolatedAffLinks} 处标准 302 隔离安全内链，且 100% 具备 rel="nofollow sponsored noopener noreferrer"`);
 }
 
 // 检查所有 /go/*/index.html 承接页是否均已具备 Meta Description (防止搜索引擎 Site Audit 报 ERROR: Meta Description tag missing)
