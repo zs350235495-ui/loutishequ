@@ -27,6 +27,12 @@
         <priority>0.95</priority>
     </url>
     <!-- 独立静态深度技术研报与白皮书 (HTTP 200 OK 真实单页) -->
+        <url>
+        <loc>https://tizishequ.com/articles/gaming-low-latency-fullcone-nat-airport-ladder-2026.html</loc>
+        <lastmod>2026-11-14</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.95</priority>
+    </url>
     <url>
         <loc>https://tizishequ.com/articles/speedtest-jitter-loss-airport-ladder-rankings-2026.html</loc>
         <lastmod>2026-11-08</lastmod>
