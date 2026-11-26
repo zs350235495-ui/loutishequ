@@ -3,93 +3,93 @@
     <!-- 梯子社区 (tizishequ.com) 官方核心物理静态页面索引 -->
     <url>
         <loc>https://tizishequ.com/</loc>
-        <lastmod>2026-11-23</lastmod>
+        <lastmod>2026-11-26</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://tizishequ.com/leaderboard.html</loc>
-        <lastmod>2026-10-23</lastmod>
+        <lastmod>2026-11-26</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.95</priority>
     </url>
     <url>
         <loc>https://tizishequ.com/sitemap.html</loc>
-        <lastmod>2026-10-23</lastmod>
+        <lastmod>2026-11-26</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <!-- 2026 全球跨境网络骨干链路稳定性众测报告与白皮书 -->
     <url>
         <loc>https://tizishequ.com/network-sla-benchmark-community-2026</loc>
-        <lastmod>2026-10-24</lastmod>
+        <lastmod>2026-11-26</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.95</priority>
     </url>
     <!-- 独立静态深度技术研报与白皮书 (HTTP 200 OK 真实单页) -->
     <url>
         <loc>https://tizishequ.com/articles/2026-airport-ladder-mobile-travel-guide.html</loc>
-        <lastmod>2026-11-23</lastmod>
+        <lastmod>2026-11-26</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.95</priority>
     </url>
     <url>
         <loc>https://tizishequ.com/articles/2026-airport-ladder-streaming-loadbalance-guide.html</loc>
-        <lastmod>2026-11-19</lastmod>
+        <lastmod>2026-11-26</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.95</priority>
     </url>
         <url>
         <loc>https://tizishequ.com/articles/gaming-low-latency-fullcone-nat-airport-ladder-2026.html</loc>
-        <lastmod>2026-11-14</lastmod>
+        <lastmod>2026-11-26</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.95</priority>
     </url>
     <url>
         <loc>https://tizishequ.com/articles/speedtest-jitter-loss-airport-ladder-rankings-2026.html</loc>
-        <lastmod>2026-11-08</lastmod>
+        <lastmod>2026-11-26</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.95</priority>
     </url>
     <url>
         <loc>https://tizishequ.com/articles/cross-platform-client-subscription-setup-guide-2026.html</loc>
-        <lastmod>2026-11-04</lastmod>
+        <lastmod>2026-11-26</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.95</priority>
     </url>
     <url>
         <loc>https://tizishequ.com/articles/mptcp-multi-path-bandwidth-aggregation-2026.html</loc>
-        <lastmod>2026-11-01</lastmod>
+        <lastmod>2026-11-26</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.95</priority>
     </url>
     <url>
         <loc>https://tizishequ.com/posts/doc-26132.html</loc>
-        <lastmod>2026-10-28</lastmod>
+        <lastmod>2026-11-26</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://tizishequ.com/posts/doc-26128.html</loc>
-        <lastmod>2026-10-23</lastmod>
+        <lastmod>2026-11-26</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://tizishequ.com/posts/doc-26124.html</loc>
-        <lastmod>2026-10-23</lastmod>
+        <lastmod>2026-11-26</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://tizishequ.com/posts/doc-26120.html</loc>
-        <lastmod>2026-10-23</lastmod>
+        <lastmod>2026-11-26</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://tizishequ.com/posts/doc-26116.html</loc>
-        <lastmod>2026-10-23</lastmod>
+        <lastmod>2026-11-26</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
