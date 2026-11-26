@@ -28,6 +28,12 @@
     </url>
     <!-- 独立静态深度技术研报与白皮书 (HTTP 200 OK 真实单页) -->
     <url>
+        <loc>https://tizishequ.com/articles/2026-tizi-cesu-wangzhan-shice-zhinan.html</loc>
+        <lastmod>2026-11-26</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.95</priority>
+    </url>
+    <url>
         <loc>https://tizishequ.com/articles/2026-airport-ladder-mobile-travel-guide.html</loc>
         <lastmod>2026-11-26</lastmod>
         <changefreq>monthly</changefreq>
